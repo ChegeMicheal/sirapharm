@@ -64,6 +64,10 @@ def sign_up():
         
     return render_template("signUp.html", user = current_user)
 
+@auth.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    return render_template('dashboard.html', user=current_user)
+
 @auth.route('/supplier', methods=['GET', 'POST'])
 def supplier():
     return render_template('supplier.html', user=current_user)
