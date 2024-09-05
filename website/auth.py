@@ -64,24 +64,24 @@ def sign_up():
         
     return render_template("signUp.html", user = current_user)
 
-@auth.route('/about_us', methods=['GET', 'POST'])
-def about_us():
-    return render_template('aboutUs.html', user=current_user)
+@auth.route('/supplier', methods=['GET', 'POST'])
+def supplier():
+    return render_template('supplier.html', user=current_user)
 
 
-@auth.route('/contact_us', methods=['GET', 'POST'])
-def contact_us():
-    return render_template('contactUs.html', user=current_user)
+@auth.route('/stock', methods=['GET', 'POST'])
+def stock():
+    return render_template('stock.html', user=current_user)
 
 
-@auth.route('/updateProfile', methods=['GET', 'POST'])
-def updateProfile():
+@auth.route('/supplyHistory', methods=['GET', 'POST'])
+def supplyHistory():
     
-    return render_template('updateProfile.html', user=current_user)
+    return render_template('supplyHistory.html', user=current_user)
 
-@auth.route('/loan', methods=['GET', 'POST'])
-def loan():
-    return render_template('loan.html', user=current_user)
+@auth.route('/retail', methods=['GET', 'POST'])
+def retail():
+    return render_template('retail.html', user=current_user)
 
 @auth.route('/home', methods=['GET', 'POST'])
 @login_required

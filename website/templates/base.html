@@ -11,6 +11,67 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 </head>
 <body>
+  <header class="header">
+    <div class="top-bar">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+    <div class="main-bar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/sira logo.png') }}" alt="Sira Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for products">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="contact-info">
+            <a href="#" class="whatsapp-link"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="account"><i class="fas fa-user"></i></a>
+            <a href="#" class="cart"><i class="fas fa-shopping-cart"></i></a>
+            <div class="open-menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="menu">
+            <div class="head">
+                <div class="logo"><img src="{{ url_for('static', filename='images/sira logo.png') }}" height="80" width="120" alt="logo"></div>
+                <button type="button" class="close-menu-btn"></button>
+              </div>
+            <ul>
+                <li><a href="#">Health Care</a></li>
+                <li class="dropdown">
+                  <a href="#">Skin Care</a>
+                  <i class="fa-solid fa-chevron-down"></i>
+                  <ul class="sub-menu">
+                    <li><a href="#"><span>La Roche - Posay</span></a></li>
+                    <li><a href="#"><span>Cerave</span></a></li>
+                    <li><a href="#"><span>Korean Skin Care</span></a></li>
+                    <li><a href="#"><span>The Ordinary</span></a></li>
+                    <li><a href="#"><span>Simple</span></a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Hair Care</a></li>
+                <li><a href="#">Dental Care</a></li>
+                <li><a href="#">Personal Care</a></li>
+                <li><a href="#">Mum & Baby</a></li>
+                <li><a href="#">Vitamins & Supplements</a></li>
+                <li><a href="#">Device & Diagnostics</a></li>
+                <li><a href="#">Men Grooming</a></li>
+                <li><a href="#">Family Planning</a></li>
+                <li><a href="#">Prescription</a></li>
+                <br>                <li><a href="/retail">Retail form</a></li>
+                <li><a href="/supplyHistory">Supply form</a></li>
+                <li><a href="/stock">register item</a></li>
+                <li><a href="/supplier">register supplier</a></li>
+                <br>
+              </ul>
+        </nav>
+    </div>
+  </header>
     
   {% block content %}
 
