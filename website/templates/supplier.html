@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{ % block title % }
+<title>supplier</title>
+{ % endblock title % }
+
+{% block content %}
+<body>
+    <div class="container">
+        <form action="" method="post">
+            <h2>Supplier</h2>
+            <div class="input-box">
+                <label for="emailAddress">Email Address</label>
+                <input type="email" placeholder="Email Address" name="emailAddress" required>
+            </div>
+            <div class="input-box">
+                <label for="supplierName">supplier Name</label>
+                <input type="text" placeholder="Supplier Name" name="supplierName" required>
+            </div>
+            <div class="input-box">
+                <label for="telNumber">Telephone Number</label>
+                <input type="number" placeholder="Tel No." name="telNumber" required>
+            </div>
+            <div class="button-container">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock content %}

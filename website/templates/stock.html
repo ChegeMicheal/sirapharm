@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{ % block title % }
+<title>stock</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+{ % endblock title % }
+
+{% block content %}
+<body>
+    <div class="container">
+        <form action="" method="post">
+            <h2>Stock</h2>
+            <div class="input-box">
+                <label for="prdName">Product Name</label>
+                <input type="text" placeholder="Product name" name="prdName" required>
+            </div>
+            <div class="input-box">
+                <label for="productBuyingPrice">Product Buying Price</label>
+                <input type="number" placeholder="Product Buying Price" name="productBuyingPrice" required>
+            </div>
+            <div class="input-box">
+                <label for="productSellingPrice">Product Selling Price</label>
+                <input type="number" placeholder="product Selling Price" name="productSellingPrice" required>
+            </div>
+            <div class="input-box">
+                <label for="noOfItemsInStock">No. of Items in Stock</label>
+                <input type="number" placeholder="Product name" name="noOfItemsInStock" required>
+            </div>
+            <div class="input-box">
+                <label for="supplierEmailAddress">Supplier Email Address</label>
+                <input type="email" placeholder="Supplier Email Address" name="supplierEmailAddress" required>
+            </div>
+            <div class="input-box">
+                <label for="expiryDate">Expiry Date</label>
+                <input type="date" id="expiryDate" name="expiryDate" required>
+            </div>
+            <div class="button-container">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock content %}
