@@ -20,6 +20,21 @@ h2{
     font-weight: 600;
     text-align: left;
     color: #2f4f4f;
-    padding: bottom;
-    
+    padding-bottom: 8px;
+    border-bottom: 1px solid silver;
+}
+.content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.input-box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+.input-box:nth-child(2n){
+    justify-content: end;
 }
