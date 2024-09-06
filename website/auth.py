@@ -79,7 +79,7 @@ def supplier():
         db.session.add(new_supplier)
         db.session.commit()
         flash('supplier added successfully!', category='success')
-        return redirect(request.url)
+        return render_template('supplier.html')
         
     def getData():
         mydb = mysql.connector.connect(

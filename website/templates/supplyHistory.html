@@ -1,10 +1,6 @@
-{% extends "dashboard.html" %}
-
-{ % block title % }
+{% extends "dashboard.html" %} { % block title % }
 <title>supply history</title>
-{ % endblock title % } 
-
-{% block content %}
+{ % endblock title % } {% block content %}
 <!-- Supply History -->
 <section id="supply-history" class="section">
   <h2>Supply History</h2>
@@ -37,4 +33,36 @@
     <button type="submit">Add Supply History</button>
   </form>
 </section>
-{% endblock content %}
+{% endblock content %} {% block script %}
+<script>
+  /****** General POS Script File ******/
+  document.addEventListener("DOMContentLoaded", () => {});
+
+          // Handle supply history form submission
+          supplyHistoryForm.addEventListener("submit", (e) => {
+/*
+          const historyEmail = supplyHistoryForm.historyEmail.value;
+          const historyProduct = supplyHistoryForm.historyProduct.value;
+          const historyQuantity = parseInt(
+            supplyHistoryForm.historyQuantity.value,
+            10
+          );
+          const historyUnitPrice = parseFloat(
+            supplyHistoryForm.historyUnitPrice.value
+          );
+          const historyExpiryDate = supplyHistoryForm.historyExpiryDate.value;
+
+          // Add logic to handle supply history data here
+          console.log(
+            `Adding supply history: Email: ${historyEmail}, Product: ${historyProduct}, Quantity: ${historyQuantity}, Unit Price: ${historyUnitPrice}, Expiry Date: ${historyExpiryDate}`
+          );
+*/
+          alert("Supply history added!");
+          // Clear form fields
+          //supplyHistoryForm.reset();
+        });
+
+  /****** General POS Script File ******/
+</script>
+
+{% endblock script %}

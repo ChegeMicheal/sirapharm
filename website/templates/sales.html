@@ -1,6 +1,8 @@
-{% extends "dashboard.html" %} { % block title % }
+{% extends "dashboard.html" %} 
+{% block title %}
 <title>supply history</title>
-{ % endblock title % } {% block content %}
+{% endblock title %} 
+{% block content %}
 <!-- Sales Management -->
 <section id="sales" class="section">
   <h2>Sales</h2>
@@ -34,4 +36,86 @@
   </div>
   <button onclick="printSaleReceipt()">Print Receipt</button>
 </section>
-{% endblock content %}
+{% endblock content %} 
+{% block script %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const salesForm = document.getElementById("salesForm");
+    const saleItemList = document.getElementById("saleItemList").querySelector("ul");
+    const saleReceiptDiv = document.getElementById("saleReceipt");
+    const addSaleItemBtn = document.getElementById("addSaleItemBtn");
+    const generateSaleReceiptBtn = document.getElementById("generateSaleReceiptBtn");
+
+    let saleItems = [];
+    let totalSaleAmount = 0;
+
+    // Handle add item button click
+    addSaleItemBtn.addEventListener("click", () => {
+      const product = salesForm.saleProductName.value;
+      const quantity = parseInt(salesForm.saleQuantity.value, 10);
+      const unitPrice = parseFloat(salesForm.saleUnitPrice.value);
+      const paymentMode = salesForm.paymentMode.value;
+      const customerName = salesForm.customerName.value;
+
+      if (product && quantity > 0 && unitPrice > 0 && customerName) {
+        const item = {
+          product,
+          quantity,
+          unitPrice,
+          totalPrice: quantity * unitPrice,
+        };
+
+        saleItems.push(item);
+        totalSaleAmount += item.totalPrice;
+
+        const listItem = document.createElement("li");
+        listItem.textContent = `${item.product} - ${item.quantity} @ ${item.unitPrice.toFixed(2)} each = ${item.totalPrice.toFixed(2)}`;
+        saleItemList.appendChild(listItem);
+
+        // Clear input fields after adding the item
+        salesForm.saleProductName.value = "";
+        salesForm.saleQuantity.value = "";
+        salesForm.saleUnitPrice.value = "";
+        salesForm.customerName.value = "";
+      } else {
+        alert("Please fill out all fields with valid data.");
+      }
+    });
+
+    // Handle generate receipt button click
+    generateSaleReceiptBtn.addEventListener("click", () => {
+      saleReceiptDiv.innerHTML = ""; // Clear previous receipt
+
+      const receiptHeader = document.createElement("h3");
+      receiptHeader.textContent = "Receipt";
+      saleReceiptDiv.appendChild(receiptHeader);
+
+      const separator = document.createElement("div");
+      separator.classList.add("separator");
+      saleReceiptDiv.appendChild(separator);
+
+      saleItems.forEach((item) => {
+        const receiptItem = document.createElement("p");
+        receiptItem.textContent = `${item.product} - ${item.quantity} @ ${item.unitPrice.toFixed(2)} each = ${item.totalPrice.toFixed(2)}`;
+        saleReceiptDiv.appendChild(receiptItem);
+      });
+
+      const totalSection = document.createElement("p");
+      totalSection.classList.add("total-section");
+      totalSection.textContent = `Total: ${totalSaleAmount.toFixed(2)}`;
+      saleReceiptDiv.appendChild(totalSection);
+    });
+
+    // Print receipt function
+    window.printSaleReceipt = () => {
+      const receiptContent = saleReceiptDiv.innerHTML;
+      const printWindow = window.open("", "", "width=300,height=400"); // Adjust size for smaller receipts
+      printWindow.document.write("<html><head><title>Print Receipt</title></head><body>");
+      printWindow.document.write(receiptContent);
+      printWindow.document.write("</body></html>");
+      printWindow.document.close();
+      printWindow.print();
+    };
+  });
+</script>
+{% endblock script %}

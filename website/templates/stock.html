@@ -36,3 +36,32 @@
   </form>
 </section>
 {% endblock content %}
+
+{% block script %}
+<script>
+  /****** General POS Script File ******/
+  document.addEventListener("DOMContentLoaded", () => {});
+        // Handle stock form submission
+        stockForm.addEventListener("submit", (e) => {
+          /*
+          const productName = stockForm.productName.value;
+          const buyingPrice = parseFloat(stockForm.buyingPrice.value);
+          const sellingPrice = parseFloat(stockForm.sellingPrice.value);
+          const stockQuantity = parseInt(stockForm.stockQuantity.value, 10);
+          const supplierEmail = stockForm.stockSupplierEmail.value;
+          const expiryDate = stockForm.expiryDate.value;
+
+          // Add logic to handle stock data here
+          console.log(
+            `Adding stock: ${productName}, Buying Price: ${buyingPrice}, Selling Price: ${sellingPrice}, Quantity: ${stockQuantity}, Supplier: ${supplierEmail}, Expiry Date: ${expiryDate}`
+          );
+*/
+          alert("Stock added!");
+          // Clear form fields
+          //stockForm.reset();
+        });
+
+  /****** General POS Script File ******/
+</script>
+
+{% endblock script %}
