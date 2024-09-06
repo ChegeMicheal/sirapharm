@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy POS System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SIRA PHARMACY POS</h1>
+        </header>
+
+        <!-- Sidebar Menu -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showSection('supplier')">Supplier</a></li>
+                <li><a href="#" onclick="showSection('stock')">Stock</a></li>
+                <li><a href="#" onclick="showSection('supply-history')">Supply History</a></li>
+                <li><a href="#" onclick="showSection('sales')">Sales</a></li>
+            </ul>
+        </nav>
+
+        <!-- Content Section -->
+        <div class="content">
+            <!-- Supplier Management -->
+            <section id="supplier" class="section">
+                <h2>Supplier</h2>
+                <form id="supplierForm">
+                    <label for="supplierEmail">Supplier Email Address:</label>
+                    <input type="email" id="supplierEmail" name="supplierEmail" required>
+
+                    <label for="supplierName">Supplier Name:</label>
+                    <input type="text" id="supplierName" name="supplierName" required>
+
+                    <label for="supplierTelephone">Telephone Number:</label>
+                    <input type="tel" id="supplierTelephone" name="supplierTelephone" required>
+
+                    <button type="submit">Add Supplier</button>
+                </form>
+            </section>
+
+            <!-- Stock Management -->
+            <section id="stock" class="section">
+                <h2>Stock</h2>
+                <form id="stockForm">
+                    <label for="productName">Product Name:</label>
+                    <input type="text" id="productName" name="productName" required>
+
+                    <label for="buyingPrice">Product Buying Price:</label>
+                    <input type="number" id="buyingPrice" name="buyingPrice" required>
+
+                    <label for="sellingPrice">Product Selling Price:</label>
+                    <input type="number" id="sellingPrice" name="sellingPrice" required>
+
+                    <label for="stockQuantity">Number of Items in Stock:</label>
+                    <input type="number" id="stockQuantity" name="stockQuantity" required>
+
+                    <label for="stockSupplierEmail">Supplier Email Address:</label>
+                    <input type="email" id="stockSupplierEmail" name="stockSupplierEmail" required>
+
+                    <label for="expiryDate">Expiry Date:</label>
+                    <input type="date" id="expiryDate" name="expiryDate" required>
+
+                    <button type="submit">Add Stock</button>
+                </form>
+            </section>
+
+            <!-- Supply History -->
+            <section id="supply-history" class="section">
+                <h2>Supply History</h2>
+                <form id="supplyHistoryForm">
+                    <label for="historyEmail">Email Address:</label>
+                    <input type="email" id="historyEmail" name="historyEmail" required>
+
+                    <label for="historyProduct">Product Name:</label>
+                    <input type="text" id="historyProduct" name="historyProduct" required>
+
+                    <label for="historyQuantity">Quantity:</label>
+                    <input type="number" id="historyQuantity" name="historyQuantity" required>
+
+                    <label for="historyUnitPrice">Unit Price:</label>
+                    <input type="number" id="historyUnitPrice" name="historyUnitPrice" required>
+
+                    <label for="historyExpiryDate">Expiry Date:</label>
+                    <input type="date" id="historyExpiryDate" name="historyExpiryDate" required>
+
+                    <button type="submit">Add Supply History</button>
+                </form>
+            </section>
+
+            <!-- Sales Management -->
+            <section id="sales" class="section">
+                <h2>Sales</h2>
+                <form id="salesForm">
+                    <label for="saleProductName">Product Name:</label>
+                    <input type="text" id="saleProductName" name="saleProductName" required>
+
+                    <label for="saleQuantity">Quantity:</label>
+                    <input type="number" id="saleQuantity" name="saleQuantity" required>
+
+                    <label for="saleUnitPrice">Unit Price:</label>
+                    <input type="number" id="saleUnitPrice" name="saleUnitPrice" required>
+
+                    <label for="paymentMode">Mode of Payment:</label>
+                    <select id="paymentMode" name="paymentMode" required>
+                        <option value="cash">Cash</option>
+                        <option value="credit">Mpesa</option>
+                    </select>
+
+                    <label for="customerName">Customer Name:</label>
+                    <input type="text" id="customerName" name="customerName" required>
+
+                    <button type="button" id="addSaleItemBtn">Add Item</button>
+                    <button type="button" id="generateSaleReceiptBtn">Generate Receipt</button>
+                </form>
+                <div id="saleItemList">
+                    <ul></ul>
+                </div>
+                <div id="saleReceipt">
+                    <!-- Receipt will be dynamically generated here -->
+                </div>
+                <button onclick="printSaleReceipt()">Print Receipt</button>
+            </section>
+        </div>
+    </div>
+
+    
+
+    <script>
+
+        /****** General POS Script File ******/
+        
+        document.addEventListener('DOMContentLoaded', () => {
+    // Attach showSection to the global window object
+    window.showSection = (sectionId) => {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach((section) => {
+            section.style.display = 'none';
+        });
+        document.getElementById(sectionId).style.display = 'block';
+    };
+
+    showSection('supplier'); // Show supplier section by default
+
+    const supplierForm = document.getElementById('supplierForm');
+    const stockForm = document.getElementById('stockForm');
+    const supplyHistoryForm = document.getElementById('supplyHistoryForm');
+    const salesForm = document.getElementById('salesForm');
+    const saleItemList = document.querySelector('#saleItemList ul');
+    const generateSaleReceiptBtn = document.getElementById('generateSaleReceiptBtn');
+    const saleReceiptDiv = document.getElementById('saleReceipt');
+
+    let saleItems = [];
+    let totalSaleAmount = 0;
+
+    // Handle supplier form submission
+    supplierForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const supplierEmail = supplierForm.supplierEmail.value;
+        const supplierName = supplierForm.supplierName.value;
+        const supplierTelephone = supplierForm.supplierTelephone.value;
+
+        // Add logic to handle supplier data here
+        console.log(`Adding supplier: ${supplierName}, Email: ${supplierEmail}, Telephone: ${supplierTelephone}`);
+
+        alert('Supplier added!');
+        // Clear form fields
+        supplierForm.reset();
+    });
+
+    // Handle stock form submission
+    stockForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const productName = stockForm.productName.value;
+        const buyingPrice = parseFloat(stockForm.buyingPrice.value);
+        const sellingPrice = parseFloat(stockForm.sellingPrice.value);
+        const stockQuantity = parseInt(stockForm.stockQuantity.value, 10);
+        const supplierEmail = stockForm.stockSupplierEmail.value;
+        const expiryDate = stockForm.expiryDate.value;
+
+        // Add logic to handle stock data here
+        console.log(`Adding stock: ${productName}, Buying Price: ${buyingPrice}, Selling Price: ${sellingPrice}, Quantity: ${stockQuantity}, Supplier: ${supplierEmail}, Expiry Date: ${expiryDate}`);
+
+        alert('Stock added!');
+        // Clear form fields
+        stockForm.reset();
+    });
+
+    // Handle supply history form submission
+    supplyHistoryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const historyEmail = supplyHistoryForm.historyEmail.value;
+        const historyProduct = supplyHistoryForm.historyProduct.value;
+        const historyQuantity = parseInt(supplyHistoryForm.historyQuantity.value, 10);
+        const historyUnitPrice = parseFloat(supplyHistoryForm.historyUnitPrice.value);
+        const historyExpiryDate = supplyHistoryForm.historyExpiryDate.value;
+
+        // Add logic to handle supply history data here
+        console.log(`Adding supply history: Email: ${historyEmail}, Product: ${historyProduct}, Quantity: ${historyQuantity}, Unit Price: ${historyUnitPrice}, Expiry Date: ${historyExpiryDate}`);
+
+        alert('Supply history added!');
+        // Clear form fields
+        supplyHistoryForm.reset();
+    });
+
+    // Handle sales form submission and generate receipt
+    document.getElementById('addSaleItemBtn').addEventListener('click', () => {
+        const product = salesForm.saleProductName.value;
+        const quantity = parseInt(salesForm.saleQuantity.value, 10);
+        const unitPrice = parseFloat(salesForm.saleUnitPrice.value);
+        const paymentMode = salesForm.paymentMode.value;
+        const customerName = salesForm.customerName.value;
+
+        if (product && quantity > 0 && unitPrice > 0 && customerName) {
+            const item = {
+                product,
+                quantity,
+                unitPrice,
+                totalPrice: quantity * unitPrice
+            };
+
+            saleItems.push(item);
+            totalSaleAmount += item.totalPrice;
+
+            const listItem = document.createElement('li');
+            listItem.textContent = `${item.product} - ${item.quantity} @ ${item.unitPrice.toFixed(2)} each = ${item.totalPrice.toFixed(2)}`;
+            saleItemList.appendChild(listItem);
+
+            // Clear input fields after adding the item
+            salesForm.saleProductName.value = '';
+            salesForm.saleQuantity.value = '';
+            salesForm.saleUnitPrice.value = '';
+            salesForm.customerName.value = '';
+        } else {
+            alert('Please fill out all fields with valid data.');
+        }
+    });
+
+    generateSaleReceiptBtn.addEventListener('click', () => {
+        saleReceiptDiv.innerHTML = ''; // Clear previous receipt
+
+        const receiptHeader = document.createElement('h3');
+        receiptHeader.textContent = 'Receipt';
+        saleReceiptDiv.appendChild(receiptHeader);
+        
+        const separator = document.createElement('div');
+        separator.classList.add('separator');
+        saleReceiptDiv.appendChild(separator);
+
+        saleItems.forEach(item => {
+            const receiptItem = document.createElement('p');
+            receiptItem.textContent = `${item.product} - ${item.quantity} @ ${item.unitPrice.toFixed(2)} each = ${item.totalPrice.toFixed(2)}`;
+            saleReceiptDiv.appendChild(receiptItem);
+        });
+
+        const totalSection = document.createElement('p');
+        totalSection.classList.add('total-section');
+        totalSection.textContent = `Total: ${totalSaleAmount.toFixed(2)}`;
+        saleReceiptDiv.appendChild(totalSection);
+    });
+
+    // Print receipt function
+    window.printSaleReceipt = () => {
+        const receiptContent = saleReceiptDiv.innerHTML;
+        const printWindow = window.open('', '', 'width=300,height=400'); // Adjust size for smaller receipts
+        printWindow.document.write('<html><head><title>Print Receipt</title></head><body>');
+        printWindow.document.write(receiptContent);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    };
+});
+
+        
+        /****** General POS Script File ******/
+     </script>
+
+
+    
+    <style>
+/****** General Styling ******/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+header {
+    width: 100%;
+    background-color: rgb(0, 41, 128);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding-top: 60px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+.content {
+    margin-left: 200px; /* Adjust margin for fixed sidebar */
+    flex-grow: 1;
+    padding: 20px;
+    padding-top: 70px;
+}
+
+.section {
+    display: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="number"], input[type="email"], input[type="tel"], input[type="date"], select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: rgb(0, 41, 128);
+    color: white;
+    border: none;
+    cursor: pointer;
+    grid-column: span 2;
+}
+
+button:hover {
+    background-color: rgb(0, 41, 128);
+}
+
+/* Receipt Styling */
+#saleReceipt {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fafafa;
+    width: 300px; /* Adjust width for smaller receipts */
+}
+
+#saleReceipt h3 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.separator {
+    border-top: 1px dotted #000;
+    margin: 10px 0;
+}
+
+#saleReceipt p {
+    margin: 5px 0;
+    text-align: left;
+}
+
+.total-section {
+    font-weight: bold;
+    border-top: 1px dotted #000;
+    padding-top: 10px;
+}
+
+/* Print Receipt Button */
+button.print-btn {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(0, 41, 128);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/****** General Styling ******/
+    </style>
+
+
+
+</body>
+</html>
