@@ -19,6 +19,7 @@
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-linkedin-in"></i></a>
         </div>
+        <a class="pos" href="/dashboard"> Point Of Sale</a><br>
     </div>
     <div class="main-bar">
         <div class="logo">
@@ -41,7 +42,7 @@
                 <div class="logo"><img src="{{ url_for('static', filename='images/sira logo.png') }}" height="80" width="120" alt="logo"></div>
                 <button type="button" class="close-menu-btn"></button>
               </div>
-            <ul>
+            <ul class="navigation-menu">
                 <li><a href="#">Health Care</a></li>
                 <li class="dropdown">
                   <a href="#">Skin Care</a>
@@ -63,17 +64,11 @@
                 <li><a href="#">Men Grooming</a></li>
                 <li><a href="#">Family Planning</a></li>
                 <li><a href="#">Prescription</a></li>
-                <br>                <li><a href="/retail">Retail form</a></li>
-                <li><a href="/supplyHistory">Supply form</a></li>
-                <li><a href="/stock">register item</a></li>
-                <li><a href="/supplier">register supplier</a></li>
-                <li><a href="/dashboard">Point Of Sale</a></li>
-                <br>
               </ul>
         </nav>
+        
     </div>
   </header>
-    
   {% block content %}
 
   {% endblock content %}

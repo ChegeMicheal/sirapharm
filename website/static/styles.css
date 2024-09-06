@@ -6,6 +6,18 @@
   scroll-behavior: smooth;
 }
 
+.pos{
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  background-color: blue;
+  align-items: center;
+  border-radius: 10px;
+  height: auto;
+  padding: 0px 10px;
+  width: auto;
+}
+
 /* Header Styles */
 .header {
   position: relative;

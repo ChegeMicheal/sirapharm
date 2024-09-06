@@ -1,5 +1,5 @@
 from flask import Blueprint, Flask, render_template, request, flash, redirect, url_for
-from .models import Footer_message,User
+from .models import Supplier,User
 import os
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -70,7 +70,36 @@ def dashboard():
 
 @auth.route('/supplier', methods=['GET', 'POST'])
 def supplier():
-    return render_template('supplier.html', user=current_user)
+    if request.method == 'POST':
+        email = request.form.get('supplierEmail')
+        supplierName = request.form.get('supplierName')
+        telephone = request.form.get('supplierTelephone')
+        #add supplier to database
+        new_supplier = Supplier(email = email, supplierName=supplierName, telephone=telephone)
+        db.session.add(new_supplier)
+        db.session.commit()
+        flash('supplier added successfully!', category='success')
+        return redirect(request.url)
+        
+    def getData():
+        mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            passwd="MYSQLpassword2024",
+            database="user"
+            )
+        
+        mycursor = mydb.cursor()
+
+        mycursor.execute("SELECT * FROM supplier") 
+        DBData = mycursor.fetchall() 
+        print(DBData)
+        mycursor.close()
+        return DBData
+         
+    DBData = getData()
+    return render_template("supplier.html", supplier=DBData, user=current_user)
+
 
 
 @auth.route('/stock', methods=['GET', 'POST'])
@@ -83,36 +112,13 @@ def supplyHistory():
     
     return render_template('supplyHistory.html', user=current_user)
 
-@auth.route('/retail', methods=['GET', 'POST'])
-def retail():
-    return render_template('retail.html', user=current_user)
-
-@auth.route('/home', methods=['GET', 'POST'])
-@login_required
-def home():
-    user = User.query.all()
-    return render_template('home.html', user=current_user)
-
-@auth.route('/cars', methods=['GET', 'POST'])
-def cars():
-    return render_template('cars.html', user=current_user)
-
-@auth.route('/realestate', methods=['GET', 'POST'])
-def realestate():
-    return render_template('realestate.html', user=current_user)
-
-@auth.route('/architechture', methods=['GET', 'POST'])
-def architechture():
-    return render_template('architechture.html', user=current_user)
+@auth.route('/sales', methods=['GET', 'POST'])
+def sales():
+    return render_template('sales.html', user=current_user)
 
 @auth.route('/homepage', methods=['GET', 'POST'])
 def homepage():
     return render_template('homepage.html', user=current_user)
-
-@auth.route('/details', methods=['GET', 'POST'])
-def details():
-    return render_template('details.html', user=current_user, name='images/animal01.png')
-
 
 app= Flask(__name__)
 app.config["IMAGE_UPLOADS"]= r'C:\Users\USER\Desktop\kokonations\website\static\images\uploads'
@@ -170,7 +176,7 @@ def send_messages():
         message = request.form.get('message')
         visibility = request.form.get('visibility')
         #add user to database
-        new_message = Footer_message(email = email, message=message, visibility=visibility)
+        new_message = User(email = email, message=message, visibility=visibility)
         db.session.add(new_message)
         db.session.commit()
         flash('message submitted!', category='success')

@@ -12,9 +12,10 @@ def create_app():
     app.config['SECRET_KEY'] = 'TRIAL KEY'
 
     #sqlite database
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:MYSQLpassword24@localhost/user'
+    #mysql
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:MYSQLpassword2024@localhost/user'
 
     #jawsDB
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://mgewt9r4y3xqrzx9:tic4d2e6fe79vw98@d1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/c60lhk7e30osyo5v'
@@ -28,7 +29,7 @@ def create_app():
     app.register_blueprint(views, url_prefix = '/')
     app.register_blueprint(auth, url_prefix = '/')
     
-    from .models import User,Footer_message
+    from .models import User,Supplier
     
     create_database(app)
     

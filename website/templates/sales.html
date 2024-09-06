@@ -1,0 +1,37 @@
+{% extends "dashboard.html" %} { % block title % }
+<title>supply history</title>
+{ % endblock title % } {% block content %}
+<!-- Sales Management -->
+<section id="sales" class="section">
+  <h2>Sales</h2>
+  <form id="salesForm">
+    <label for="saleProductName">Product Name:</label>
+    <input type="text" id="saleProductName" name="saleProductName" required />
+
+    <label for="saleQuantity">Quantity:</label>
+    <input type="number" id="saleQuantity" name="saleQuantity" required />
+
+    <label for="saleUnitPrice">Unit Price:</label>
+    <input type="number" id="saleUnitPrice" name="saleUnitPrice" required />
+
+    <label for="paymentMode">Mode of Payment:</label>
+    <select id="paymentMode" name="paymentMode" required>
+      <option value="cash">Cash</option>
+      <option value="credit">Mpesa</option>
+    </select>
+
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName" name="customerName" required />
+
+    <button type="button" id="addSaleItemBtn">Add Item</button>
+    <button type="button" id="generateSaleReceiptBtn">Generate Receipt</button>
+  </form>
+  <div id="saleItemList">
+    <ul></ul>
+  </div>
+  <div id="saleReceipt">
+    <!-- Receipt will be dynamically generated here -->
+  </div>
+  <button onclick="printSaleReceipt()">Print Receipt</button>
+</section>
+{% endblock content %}
