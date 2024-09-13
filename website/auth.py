@@ -85,7 +85,7 @@ def supplier():
         mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            passwd="MYSQLpassword2024",
+            passwd="hashimraj",
             database="user"
             )
         

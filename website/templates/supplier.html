@@ -23,20 +23,22 @@
 
     <div>
       <table class="table table-striped">
-        <tr>
+        <thead>
           <th>ID</th>
           <th>EMAIL</th>
           <th>NAME</th>
           <th>TELEPHONE</th>
           <th>DATE ADDED</th>
-        </tr>
+        </thead>
 
         {% for i in range(supplier|length) %}
-        <tr>
-          {% for j in range(supplier[i]|length) %}
-          <td>{{ supplier[i][j] }}</td>
-          {% endfor %}
-        </tr>
+        <tbody>
+          <tr>
+            {% for j in range(supplier[i]|length) %}
+            <td>{{ supplier[i][j] }}</td>
+            {% endfor %}
+          </tr>
+        </tbody>
         {% endfor %}
       </table>
     </div>

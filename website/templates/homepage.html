@@ -19,229 +19,59 @@
   <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
 </div>
 
-<section class="product">
-  <h2 class="offer">On Offer</h2>
-  <button class="pre-btn"><img src="{{ url_for('static', filename='images/right-arrow-blue.png') }}" alt=""></button>
-  <button class="nxt-btn"><img src="{{ url_for('static', filename='images/right-arrow-blue.png') }}" alt=""></button>
-  <div class="product-container">
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med1.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med2.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med3.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med4.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med5.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med6.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med7.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med8.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-  </div>
+<!----- CATEGORIES ----->
+<section class="categories container section">
+    <h3 class="section_title"><span>Popular</span> Categories</h3>
+
+    <div class="categories_container swiper">
+        <div class="swiper-wrapper">
+            <a href="shop.html" class="category_item swiper-slide">
+                <img src="{{ url_for('static', filename='images/med2.png') }}" alt="" class="category_img">
+
+                <h3 class="category_title">Dawa</h3>
+            </a>
+
+            <a href="shop.html" class="category_item swiper-slide">
+                <img src="{{ url_for('static', filename='images/med3.png') }}" alt="" class="category_img">
+                
+                <h3 class="category_title">Med <br>ksh. 2000</h3>
+                
+            </a>
+
+            <a href="shop.html" class="category_item swiper-slide">
+                <img src="{{ url_for('static', filename='images/med4.png') }}" alt="" class="category_img">
+
+                <h3 class="category_title">Drug</h3>
+            </a>
+
+            <a href="shop.html" class="category_item swiper-slide">
+                <img src="{{ url_for('static', filename='images/med5.png') }}" alt="" class="category_img">
+
+                <h3 class="category_title">Dawa</h3>
+            </a>
+
+            <a href="shop.html" class="category_item swiper-slide">
+                <img src="{{ url_for('static', filename='images/med1.png') }}" alt="" class="category_img">
+
+                <h3 class="category_title">Pills</h3>
+            </a>
+
+            <a href="shop.html" class="category_item swiper-slide">
+                <img src="{{ url_for('static', filename='images/med2.png') }}" alt="" class="category_img">
+
+                <h3 class="category_title">Medicine</h3>
+            </a>
+        </div>
+
+        <div class="swiper-button-next">
+            <!--<i class="fi fi-rs-angle-small-right"></i>--> 
+        </div>
+        <div class="swiper-button-prev">
+            <!--<i class="fi fi-rs-angle-small-left"></i>-->
+        </div>
+    </div>
 </section>
 
-<section class="product">
-  <h2 class="offer">On Offer</h2>
-  <button class="pre-btn"><img src="{{ url_for('static', filename='images/right-arrow-blue.png') }}" alt=""></button>
-  <button class="nxt-btn"><img src="{{ url_for('static', filename='images/right-arrow-blue.png') }}" alt=""></button>
-  <div class="product-container">
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med1.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med2.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med3.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med4.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med5.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med6.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med7.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med8.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-  </div>
-</section>
 
 
 <div class="welcome-to-sira">
@@ -310,51 +140,6 @@
 
     $('.carousel-next').on('click', function(){
         $('.carousel').slick('slickNext');
-    });
-
-    // Initialize offers carousel with 5 products shown horizontally, no autoplay
-    $('.offers-carousel').slick({
-        autoplay: false,
-        arrows: true,
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 5, // Display 5 products horizontally
-        slidesToScroll: 1,
-        responsive: [
-            {
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 4
-                }
-            },
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 576,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
-
-    $('.offers-carousel-prev').on('click', function(){
-        $('.offers-carousel').slick('slickPrev');
-    });
-    
-    $('.offers-carousel-next').on('click', function(){
-        $('.offers-carousel').slick('slickNext');
     });
 
     
