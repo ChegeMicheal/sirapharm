@@ -18,7 +18,10 @@ def create_app():
     #app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
     #mysql
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:MYSQLpassword2024@localhost/user'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:hashimraj@localhost/user'
+
+    #mysql
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:MYSQLpassword2024@localhost/user'
 
     #jawsDB
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://mgewt9r4y3xqrzx9:tic4d2e6fe79vw98@d1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/c60lhk7e30osyo5v'

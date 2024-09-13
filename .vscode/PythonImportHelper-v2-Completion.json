@@ -455,7 +455,7 @@
         "kind": 5,
         "importPath": "website.createdb",
         "description": "website.createdb",
-        "peekOfCode": "mydb = mysql.connector.connect(\n    host=\"localhost\",\n    user=\"root\",\n    passwd=\"MYSQLpassword2024\"\n)\nmy_cursor = mydb.cursor()\n#my_cursor.execute(\"CREATE DATABASE user\")\nmy_cursor.execute(\"SHOW DATABASES\")\nfor db in my_cursor:\n    print(db)",
+        "peekOfCode": "mydb = mysql.connector.connect(\n    host=\"localhost\",\n    user=\"root\",\n    passwd=\"hashimraj\"\n)\nmy_cursor = mydb.cursor()\n#my_cursor.execute(\"CREATE DATABASE user\")\nmy_cursor.execute(\"SHOW DATABASES\")\nfor db in my_cursor:\n    print(db)",
         "detail": "website.createdb",
         "documentation": {}
     },
