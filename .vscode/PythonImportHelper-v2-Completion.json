@@ -1,0 +1,552 @@
+[
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "secure_filename",
+        "importPath": "werkzeug.utils",
+        "description": "werkzeug.utils",
+        "isExtraImport": true,
+        "detail": "werkzeug.utils",
+        "documentation": {}
+    },
+    {
+        "label": "generate_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {}
+    },
+    {
+        "label": "check_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {}
+    },
+    {
+        "label": "login_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "logout_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "UserMixin",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "mysql.connector",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "MySQL",
+        "importPath": "flask_mysqldb",
+        "description": "flask_mysqldb",
+        "isExtraImport": true,
+        "detail": "flask_mysqldb",
+        "documentation": {}
+    },
+    {
+        "label": "func",
+        "importPath": "sqlalchemy.sql",
+        "description": "sqlalchemy.sql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.sql",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "pdfkit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pdfkit",
+        "description": "pdfkit",
+        "detail": "pdfkit",
+        "documentation": {}
+    },
+    {
+        "label": "create_app",
+        "importPath": "website",
+        "description": "website",
+        "isExtraImport": true,
+        "detail": "website",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def login():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        password = request.form.get('password')\n        user = User.query.filter_by(email = email).first()\n        if user:\n            if check_password_hash(user.password,password):\n                flash('logged in successfully', category= 'success')\n                login_user(user, remember=True)\n                return redirect(url_for('auth.dashboard'))",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def logout():\n    logout_user()\n    return redirect(url_for('auth.dashboard'))\n@auth.route('/sign_up', methods=['GET', 'POST'])\ndef sign_up():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        fullName = request.form.get('fullname')\n        password1 = request.form.get('password1')\n        password2 = request.form.get('password2')",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "sign_up",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def sign_up():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        fullName = request.form.get('fullname')\n        password1 = request.form.get('password1')\n        password2 = request.form.get('password2')\n        user = User.query.filter_by(email=email).first()\n        if user:\n            flash('email already exists', category = 'error')\n        elif len(email) < 4:",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "dashboard",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def dashboard():\n    return render_template('dashboard.html', user=current_user)\n@auth.route('/supplier', methods=['GET', 'POST'])\ndef supplier():\n    if request.method == 'POST':\n        email = request.form.get('supplierEmail')\n        supplierName = request.form.get('supplierName')\n        telephone = request.form.get('supplierTelephone')\n        #add supplier to database\n        new_supplier = Supplier(email = email, supplierName=supplierName, telephone=telephone)",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "supplier",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def supplier():\n    if request.method == 'POST':\n        email = request.form.get('supplierEmail')\n        supplierName = request.form.get('supplierName')\n        telephone = request.form.get('supplierTelephone')\n        #add supplier to database\n        new_supplier = Supplier(email = email, supplierName=supplierName, telephone=telephone)\n        db.session.add(new_supplier)\n        db.session.commit()\n        flash('supplier added successfully!', category='success')",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "supplierReport",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def supplierReport():       \n    def getData():\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT * FROM supplier\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "stock",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def stock():\n    if request.method == 'POST':\n        productName = request.form.get('productName')\n        stockQuantity = 0\n        productBuyPrice = 0\n        productSellPrice = 0\n        itemTally=''\n        buyPriceTally=''\n        sellPriceTally=''\n        for i in range(stockQuantity):",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "stockReport",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def stockReport():\n    def getData():\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT id, productName, productBuyPrice, productSellPrice, stockQuantity, expiryDate, supplierEmail FROM stock\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "supplyHistory",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def supplyHistory():\n    if request.method == 'POST':\n        supplyProductName = request.form.get('historyProduct')\n        supplyProductBuyPrice = request.form.get('historyUnitPrice',type=int)\n        proftMargin = request.form.get('profitMargin',type=int)\n        supplyStockQuantity = request.form.get('historyQuantity', type=int)\n        supplierEmail = request.form.get('historyEmail')\n        supplyExpiryDate = request.form.get('historyExpiryDate')\n        # Add supply to the database\n        new_supply = Supply(",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "supplyReport",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def supplyReport():    \n    def getData():\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT id, supplyProductName, supplyProductBuyPrice, supplyStockQuantity, supplyExpiryDate, supplierEmail, date_submitted FROM supply\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "sales",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def sales():\n    if request.method == 'POST':\n        saleProductName = request.form.get('saleProductName')\n        saleQuantity = request.form.get('saleQuantity', type=int)\n        saleTally = ''\n        for i in range(saleQuantity):\n            saleTally += '|'\n        # Add sale to the database\n        new_confirmSale = SaleFetch(\n            saleProductName=saleProductName,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "confirmSale",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def confirmSale():\n    product_name = ''\n    quantity = 0\n    sellPrice = 0\n    def getSale():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "salesReport",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def salesReport():        \n    def getData():\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT id, saleProductName, saleUnitPrice, saleQuantity, customerName, paymentMode, date_submitted FROM sale\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "homepage",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def homepage():\n    #define getProductName method\n    def getProductName():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "allowed_image",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def allowed_image(filename):\n    if not '.' in filename:\n        return False\n    ext = filename.rsplit('.',1)[1]\n    if ext.upper() in app.config[\"ALLOWED_IMAGE_EXTENSIONS\"]:\n        return True\n    else:\n        return False\n@auth.route('/datalist', methods=['GET', 'POST'])\ndef datalist():",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "datalist",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def datalist():\n  return render_template('datalist.html')  \n@auth.route('/upload_image', methods=['GET', 'POST'])\ndef upload_image():\n    if request.method == 'POST':\n        if request.files:\n            image=request.files[\"image\"]\n            if image.filename == \"\":\n                print(\"image must have a filename\")\n                return redirect(request.url)",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "upload_image",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def upload_image():\n    if request.method == 'POST':\n        if request.files:\n            image=request.files[\"image\"]\n            if image.filename == \"\":\n                print(\"image must have a filename\")\n                return redirect(request.url)\n            if not allowed_image(image.filename):\n                print(\"that image extension is not allowed\")\n                return redirect(request.url)",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "send_messages",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def send_messages():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        message = request.form.get('message')\n        visibility = request.form.get('visibility')\n        #add user to database\n        new_message = User(email = email, message=message, visibility=visibility)\n        db.session.add(new_message)\n        db.session.commit()\n        flash('message submitted!', category='success')",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "view_messages",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def view_messages():\n    def getData():\n        mydb = mysql.connector.connect(\n             host=\"d1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\",\n             user=\"mgewt9r4y3xqrzx9\",\n             passwd=\"tic4d2e6fe79vw98\",\n             database=\"c60lhk7e30osyo5v\"\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT * FROM footer_message WHERE visibility='public'\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "view_private_messages",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def view_private_messages():\n    def getData():\n        mydb = mysql.connector.connect(\n             host=\"d1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\",\n             user=\"mgewt9r4y3xqrzx9\",\n             passwd=\"tic4d2e6fe79vw98\",\n             database=\"c60lhk7e30osyo5v\"\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT * FROM footer_message WHERE visibility='private'\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "page_not_found",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def page_not_found(e):\n    return render_template(\"404.html\"),404\n#internal server error\n@auth.errorhandler(500)\ndef server_error(e):\n    return render_template(\"500.html\"),500",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "server_error",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def server_error(e):\n    return render_template(\"500.html\"),500",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "auth",
+        "kind": 5,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "auth = Blueprint('auth', __name__)\nhost=\"localhost\"\nuser=\"root\"\npasswd=\"MYSQLpassword2024\"\ndatabase=\"user\"\n@auth.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        password = request.form.get('password')",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "mydb",
+        "kind": 5,
+        "importPath": "website.createdb",
+        "description": "website.createdb",
+        "peekOfCode": "mydb = mysql.connector.connect(\n    host=\"localhost\",\n    user=\"root\",\n    passwd=\"hashimraj\"\n)\nmy_cursor = mydb.cursor()\n#my_cursor.execute(\"CREATE DATABASE user\")\nmy_cursor.execute(\"SHOW DATABASES\")\nfor db in my_cursor:\n    print(db)",
+        "detail": "website.createdb",
+        "documentation": {}
+    },
+    {
+        "label": "my_cursor",
+        "kind": 5,
+        "importPath": "website.createdb",
+        "description": "website.createdb",
+        "peekOfCode": "my_cursor = mydb.cursor()\n#my_cursor.execute(\"CREATE DATABASE user\")\nmy_cursor.execute(\"SHOW DATABASES\")\nfor db in my_cursor:\n    print(db)",
+        "detail": "website.createdb",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class User(db.Model, UserMixin):\n    id= db.Column(db.Integer, primary_key = True)\n    fullName = db.Column(db.String(150), nullable=False)\n    email = db.Column(db.String(150), unique = True, nullable=False)\n    password = db.Column(db.String(1000))\n    #create string\n    def __repr__(self):\n        return '<Name %r>' % self.name\nclass Supplier(db.Model):\n    id= db.Column(db.Integer, primary_key = True)",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Supplier",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Supplier(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    email = db.Column(db.String(150), nullable=False, unique=True)\n    supplierName = db.Column(db.String(150), nullable=False)\n    telephone = db.Column(db.String(100), nullable=False)\n    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)\n    stocks = db.relationship('Stock', backref='supplier')\n    supplies = db.relationship('Supply', backref='supply')\nclass Stock(db.Model):\n    id= db.Column(db.Integer, primary_key = True)",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Stock",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Stock(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    productName = db.Column(db.String(150), nullable=False, unique=True)\n    productBuyPrice = db.Column(db.Integer, nullable=False)\n    buyPriceTally = db.Column(db.String(1000), nullable=False)\n    stockQuantity= db.Column(db.Integer, nullable=False)\n    itemTally = db.Column(db.String(1000), nullable=False)\n    productSellPrice = db.Column(db.Integer, nullable=False)\n    sellPriceTally = db.Column(db.String(1000), nullable=False)\n    expiryDate = db.Column(db.DateTime)",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Supply",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Supply(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    supplyProductName = db.Column(db.String(150), nullable=False)\n    supplyProductBuyPrice = db.Column(db.Integer, nullable=False)\n    supplyStockQuantity= db.Column(db.Integer, nullable=False)\n    supplyExpiryDate = db.Column(db.DateTime, nullable=False)\n    supplierEmail = db.Column(db.String(150), nullable=False)\n    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)\n    supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'))\nclass Sale(db.Model):",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Sale",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Sale(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    saleProductName = db.Column(db.String(150), nullable=False)\n    saleUnitPrice = db.Column(db.Integer, nullable=False)\n    saleQuantity= db.Column(db.Integer, nullable=False)\n    paymentMode = db.Column(db.String(150), nullable=False)\n    customerName = db.Column(db.String(150), nullable=False)\n    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)\n    stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'))\nclass SaleFetch(db.Model):",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "SaleFetch",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class SaleFetch(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    saleProductName = db.Column(db.String(150), nullable=False)\n    saleQuantity= db.Column(db.Integer, nullable=False)\n    saleTally = db.Column(db.String(1000), nullable=False)\n    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "homepage",
+        "kind": 2,
+        "importPath": "website.views",
+        "description": "website.views",
+        "peekOfCode": "def homepage():\n    #define getProductName method\n    def getProductName():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )",
+        "detail": "website.views",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "kind": 5,
+        "importPath": "website.views",
+        "description": "website.views",
+        "peekOfCode": "views = Blueprint('views',__name__)\nhost=\"localhost\"\nuser=\"root\"\npasswd=\"MYSQLpassword2024\"\ndatabase=\"user\"\n@views.route('/')\ndef homepage():\n    #define getProductName method\n    def getProductName():\n        # Connect to the database",
+        "detail": "website.views",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = create_app()\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "detail": "main",
+        "documentation": {}
+    }
+]

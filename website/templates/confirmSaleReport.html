@@ -1,29 +1,47 @@
 {% extends "dashboard.html" %} 
 {% block title %}
-<title>Sales</title>
+<title>Sales Management</title>
 {% endblock title %} 
 {% block content %}
 <!-- Sales Management -->
 <section id="sales" class="section">
-  <h2>Sales</h2>
-  <form id="salesForm">
-    <label for="barcodeInput">Scan Barcode:</label>
-    <input type="text" id="barcodeInput" name="barcodeInput" placeholder="Scan product barcode" autofocus />
+  <h2 style="text-align: center;">SALES REPORT</h2><br>   
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <th>ID</th>
+          <th>Product Name</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Customer Name</th>
+          <th>Mode of Payment</th>
+          <th>Date Submitted</th>
+        </thead>
 
-    <label for="saleProductName">Product Name:</label>
-    <input type="text" id="saleProductName" name="saleProductName" required />
-
-    <label for="saleQuantity">Quantity:</label>
-    <input type="number" id="saleQuantity" name="saleQuantity" required />
-
-    <button type="submit">Proceed to checkout</button> <!-- Button to submit the form -->
+        {% for i in range(sales|length) %}
+        <tbody>
+          <tr>
+            {% for j in range(sales[i]|length) %}
+            <td>{{ sales[i][j] }}</td>
+            {% endfor %}
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
+    <br><br>
+    <button type="button" id="addSaleItemBtn">Add Item</button>
+    <button type="button" id="generateSaleReceiptBtn">Generate Receipt</button>
   </form>
   <div id="saleItemList">
     <ul></ul>
   </div>
+  <div id="saleReceipt">
+    <!-- Receipt will be dynamically generated here -->
+  </div>
+  <button onclick="printSaleReceipt()">Print Receipt</button>
 </section>
 {% endblock content %} 
-
 {% block script %}
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -32,48 +50,17 @@
     const saleReceiptDiv = document.getElementById("saleReceipt");
     const addSaleItemBtn = document.getElementById("addSaleItemBtn");
     const generateSaleReceiptBtn = document.getElementById("generateSaleReceiptBtn");
-    const barcodeInput = document.getElementById("barcodeInput");
 
     let saleItems = [];
     let totalSaleAmount = 0;
 
-    // Function to fetch product details using barcode
-    async function fetchProductDetails(barcode) {
-      try {
-        const response = await fetch(`/lookup-product?barcode=${barcode}`);
-        if (!response.ok) throw new Error('Product not found!');
-        const product = await response.json();
-        return product;
-      } catch (error) {
-        console.error("Error fetching product details:", error);
-        alert("Product not found!");
-      }
-    }
-
-    // Handle barcode input
-    barcodeInput.addEventListener("change", async () => {
-      const barcode = barcodeInput.value;
-
-      if (barcode) {
-        const productDetails = await fetchProductDetails(barcode);
-
-        if (productDetails) {
-          // Populate product name and unit price fields
-          salesForm.saleProductName.value = productDetails.name;
-          salesForm.saleUnitPrice.value = productDetails.price;
-        }
-      }
-
-      // Clear the barcode input after processing
-      barcodeInput.value = '';
-    });
-
     // Handle add item button click
     addSaleItemBtn.addEventListener("click", () => {
-      const product = salesForm.saleProductName.value.trim();
+      const product = salesForm.saleProductName.value;
       const quantity = parseInt(salesForm.saleQuantity.value, 10);
       const unitPrice = parseFloat(salesForm.saleUnitPrice.value);
-      const customerName = salesForm.customerName.value.trim();
+      const paymentMode = salesForm.paymentMode.value;
+      const customerName = salesForm.customerName.value;
 
       if (product && quantity > 0 && unitPrice > 0 && customerName) {
         const item = {
@@ -88,19 +75,6 @@
 
         const listItem = document.createElement("li");
         listItem.textContent = `${item.product} - ${item.quantity} @ ${item.unitPrice.toFixed(2)} each = ${item.totalPrice.toFixed(2)}`;
-        
-        // Create edit and remove buttons for each item
-        const editBtn = document.createElement("button");
-        editBtn.textContent = "Edit";
-        editBtn.addEventListener("click", () => editItem(item, listItem));
-
-        const removeBtn = document.createElement("button");
-        removeBtn.textContent = "Remove";
-        removeBtn.addEventListener("click", () => removeItem(item, listItem));
-
-        listItem.appendChild(editBtn);
-        listItem.appendChild(removeBtn);
-
         saleItemList.appendChild(listItem);
 
         // Clear input fields after adding the item
@@ -112,26 +86,6 @@
         alert("Please fill out all fields with valid data.");
       }
     });
-
-    // Function to edit an item
-    function editItem(item, listItem) {
-      salesForm.saleProductName.value = item.product;
-      salesForm.saleQuantity.value = item.quantity;
-      salesForm.saleUnitPrice.value = item.unitPrice;
-      salesForm.customerName.value = item.customerName;
-
-      // Remove the item from the saleItems array and update total
-      saleItems = saleItems.filter(i => i !== item);
-      totalSaleAmount -= item.totalPrice;
-      listItem.remove();
-    }
-
-    // Function to remove an item
-    function removeItem(item, listItem) {
-      saleItems = saleItems.filter(i => i !== item);
-      totalSaleAmount -= item.totalPrice;
-      listItem.remove();
-    }
 
     // Handle generate receipt button click
     generateSaleReceiptBtn.addEventListener("click", () => {

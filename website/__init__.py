@@ -1,9 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from os import path
 from flask_login import LoginManager
 
 db = SQLAlchemy()
+app = Flask(__name__)
+migrate=Migrate(app, db)
 DB_NAME = 'users'
 
 
@@ -32,7 +35,7 @@ def create_app():
     app.register_blueprint(views, url_prefix = '/')
     app.register_blueprint(auth, url_prefix = '/')
     
-    from .models import User,Supplier
+    from .models import User,Supplier,Stock,Supply,Sale,SaleFetch
     
     create_database(app)
     
