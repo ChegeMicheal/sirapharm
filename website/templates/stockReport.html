@@ -7,13 +7,30 @@
 {% block content %}
 <!-- Stock Management -->
 <section id="stock" class="section">
-  <h2 style="text-align: center;">REGISTER PRODUCT</h2><br>
-  <form id="stockForm" method="post" action="/stock">
-    
-    <label for="productName">Product Name:</label>
-    <input type="text" id="productName" name="productName" required />
+  <h2 style="text-align: center;">ITEMS IN STOCK</h2><br>   
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <th>ID</th>
+          <th>Product Name</th>
+          <th>Product Buy Price</th>
+          <th>Product Sell Price</th>
+          <th>Stock Quantity</th>
+          <th>Expiry Date</th>
+          <th>Supplier Email</th>
+        </thead>
 
-    <button type="submit">REGISTER PRODUCT</button>
+        {% for i in range(stock|length) %}
+        <tbody>
+          <tr>
+            {% for j in range(stock[i]|length) %}
+            <td>{{ stock[i][j] }}</td>
+            {% endfor %}
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
   </form>
 </section>
 {% endblock content %}

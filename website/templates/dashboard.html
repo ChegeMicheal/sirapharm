@@ -9,22 +9,63 @@
   <body>
     <div class="container">
       <header>
-        <h1>SIRA PHARMACY POS</h1>
+        <!--
+        {% with messages = get_flashed_messages (with_categories = true) %}
+        {% if messages %}
+        {% for category, massage in messages  %}
+        {% if category == 'error' %}
+        <div class="alert alert-danger alert-dismissable fadeshow" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alert-dismissable fadeshow" role="alert"></div>
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %} 
+        -->
+
+
+    <div class="flex">
+      <h1>SIRA PHARMACY POS</h1>
+      {% if user.is_authenticated %}
+      <a class="pos" href="/logout"> logout </a>
+      {% if user.id == 1 %}     
+      &nbsp;&nbsp;
+      <a class="pos" href="/homepage"> go to website </a>
+      {% endif %}
+      {% endif %}
+    </div>
+
       </header>
 
       <!-- Sidebar Menu -->
       <nav class="sidebar">
         <ul>
+          <hr>
+        {% if user.is_authenticated %}
+          {% if user.id == 1 %}
           <li>
-            <a href="/supplier" onclick="showSection('supplier')">Supplier</a>
+            <a href="/supplier" onclick="showSection('supplier')">Register Supplier</a>
           </li>
-          <li><a href="/stock" onclick="showSection('stock')">Stock</a></li>
-          <li>
-            <a href="/supplyHistory" onclick="showSection('supply-history')"
-              >Supply History</a
-            >
-          </li>
+          <li><a href="/stock" onclick="showSection('stock')">Register Product</a></li>
+          <li><a href="/supplyHistory" onclick="showSection('supply-history')">Record Supply</a></li>
+          <hr>
+          <li><a href="/stockReport">View Items in Stock</a></li>
+          <li><a href="/supplierReport">View Suppliers</a></li>
+          <li><a href="/supplyReport">View Supply History</a></li>
+          <li><a href="/salesReport">View Sales</a></li>
+          {% elif user.id == 2 %}
           <li><a href="/sales" onclick="showSection('sales')">Sales</a></li>
+          <hr>
+          <li><a href="/salesReport">View Sales</a></li>
+          {% endif%}
+        {% endif %}   
+          <hr>
         </ul>
       </nav>
       <!-- Content Section -->
@@ -90,6 +131,68 @@
         top: 0;
         left: 0;
         z-index: 1000;
+      }
+
+      .pos{
+        text-decoration: none;
+        color: white;
+        font-size: 1.2rem;
+        background-color: blue;
+        align-items: center;
+        border-radius: 10px;
+        height: auto;
+        padding: 0px 10px;
+        width: auto;
+        margin-left: 20px;
+      }
+
+      .flex{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        justify-items: center;
+        align-self: center;
+        align-items: center;
+      }
+
+      .login-content{
+        background-color: white;
+        border-radius: 10px;
+        border: 1px solid #0000ff;
+        width: 400px;
+        padding: 20px;
+        margin: 0 5px;
+      }
+
+      label{
+        overflow: hidden;
+        width: 200px;
+        margin-right: 5px;
+      }
+
+      .links{
+        color: blue;
+        margin: 0px 5px;
+        display: inline-block;
+        margin: 0 5px;
+      }
+
+      .login-textbox{
+        margin: 5px;
+        left: 200px;
+        width: 200px;
+        line-height: 1.2rem;
+        font-size: 1.1rem;
+      }
+
+      .btn-db{
+        width: 100%;
+        line-height: 1.5rem;
+        font-size: 1.3rem;
+        background-color: blue;
+        color: white;
+        border-radius: 10px;
+        border: 1px solid blue;
       }
 
       .sidebar {
@@ -211,6 +314,25 @@
         color: white;
         border: none;
         cursor: pointer;
+      }
+
+      .table{
+        border-collapse: collapse;
+        z-index: 2;
+        top: 55%;
+      }
+      .table td,.table th{
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        text-align: center;
+        font-size: 16px;
+      }
+      .table th{
+        background-color: darkblue;
+        color: #ffffff;
+      }
+      .table tbody tr:nth-child(even){
+        background-color: #f5f5f5;
       }
 
       /****** General Styling ******/

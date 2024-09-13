@@ -8,7 +8,7 @@ class User(db.Model, UserMixin):
     id= db.Column(db.Integer, primary_key = True)
     fullName = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(150), unique = True, nullable=False)
-    password = db.Column(db.String(150))
+    password = db.Column(db.String(1000))
 
     #create string
     def __repr__(self):
@@ -17,9 +17,55 @@ class User(db.Model, UserMixin):
 
 class Supplier(db.Model):
     id= db.Column(db.Integer, primary_key = True)
-    email = db.Column(db.String(150), nullable=False)
+    email = db.Column(db.String(150), nullable=False, unique=True)
     supplierName = db.Column(db.String(150), nullable=False)
-    telephone = db.Column(db.String(10000), nullable=False)
+    telephone = db.Column(db.String(100), nullable=False)
+    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)
+    stocks = db.relationship('Stock', backref='supplier')
+    supplies = db.relationship('Supply', backref='supply')
+    
+class Stock(db.Model):
+    id= db.Column(db.Integer, primary_key = True)
+    productName = db.Column(db.String(150), nullable=False, unique=True)
+    productBuyPrice = db.Column(db.Integer, nullable=False)
+    buyPriceTally = db.Column(db.String(1000), nullable=False)
+    stockQuantity= db.Column(db.Integer, nullable=False)
+    itemTally = db.Column(db.String(1000), nullable=False)
+    productSellPrice = db.Column(db.Integer, nullable=False)
+    sellPriceTally = db.Column(db.String(1000), nullable=False)
+    expiryDate = db.Column(db.DateTime)
+    supplierEmail = db.Column(db.String(150))
+    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)
+    supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'))
+    sales = db.relationship('Sale', backref='sales')
+    
+
+class Supply(db.Model):
+    id= db.Column(db.Integer, primary_key = True)
+    supplyProductName = db.Column(db.String(150), nullable=False)
+    supplyProductBuyPrice = db.Column(db.Integer, nullable=False)
+    supplyStockQuantity= db.Column(db.Integer, nullable=False)
+    supplyExpiryDate = db.Column(db.DateTime, nullable=False)
+    supplierEmail = db.Column(db.String(150), nullable=False)
+    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)
+    supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'))
+    
+
+class Sale(db.Model):
+    id= db.Column(db.Integer, primary_key = True)
+    saleProductName = db.Column(db.String(150), nullable=False)
+    saleUnitPrice = db.Column(db.Integer, nullable=False)
+    saleQuantity= db.Column(db.Integer, nullable=False)
+    paymentMode = db.Column(db.String(150), nullable=False)
+    customerName = db.Column(db.String(150), nullable=False)
+    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)
+    stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'))
+    
+class SaleFetch(db.Model):
+    id= db.Column(db.Integer, primary_key = True)
+    saleProductName = db.Column(db.String(150), nullable=False)
+    saleQuantity= db.Column(db.Integer, nullable=False)
+    saleTally = db.Column(db.String(1000), nullable=False)
     date_submitted = db.Column(db.DateTime, default=datetime.utcnow)
     
 
