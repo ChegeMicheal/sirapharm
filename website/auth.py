@@ -7,16 +7,50 @@ from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 import json
 import mysql.connector
+from random import randint
 
 from flask_mysqldb import MySQL
-
+import smtplib
+from email.message import EmailMessage
 
 auth = Blueprint('auth', __name__)
 host="localhost"
 user="root"
 passwd="MYSQLpassword2024"
 database="user"
-
+    
+    
+@auth.route('/verifyEmail', methods=['GET', 'POST'])
+def verifyEmail():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        
+        def email_alert(subject, body, to):
+            msg = EmailMessage()
+            msg.set_content(body)
+            msg['subject'] = subject
+            msg['to'] = to
+    
+            user = "chegemichael@gmail.com"
+            msg['from'] = user
+            password=""
+    
+            server = smtplib.SMTP("smtp.gmail.com", 587)
+            server.sratrttls()
+            server.login(user, password)
+            server.send_message(msg)
+    
+            server.quit()
+            
+        def codeGenerator():
+            code = randint(100000,999999)
+            return code
+        
+        code = codeGenerator()
+        email_alert('EMAIL VERIFICATION CODE.', 'YOUR VERICATION CODE IS {{ code }}', email)#send email
+        return code
+    return render_template('verifyEmail.html', user=current_user)
+    
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
