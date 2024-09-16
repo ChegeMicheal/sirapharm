@@ -7,6 +7,7 @@
 
     /*----- Colors -----*/
     /*----- Color mode HSL(hue, saturation, lightness)-----*/
+    --web-color:hsl(221, 100%, 25%);
     --first-color: hsl(176, 88%, 27%);
     --first-color-alt: hsl(129, 44%, 94%);
     --second-color: hsl(34, 94%, 87%);
@@ -404,6 +405,19 @@ display: none;
   display: none;
 }
 
+.cart .count {
+  position: absolute;
+  top: 1rem;
+  right: 1.6rem;
+  background-color: var(--first-color);
+  color: var(--body-color);
+  height: 18px;
+  width: 18px;
+  line-height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: var(--tiny-font-size);
+}
 
 /* What about this*/
 /* Carousel */
@@ -462,6 +476,29 @@ display: none;
   color: var(--text-color);
   font-size: var(--small-font-size);
 }
+
+.p-price {
+  position: absolute;
+  right: 20px;
+}
+
+.ctgbtn {
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid #2adb2a;
+  color: #2adb2a;
+  height: 25px;
+  width: 100px;
+  border-radius: .2rem;
+  
+  transition: all 0.4s var(--transition);
+}
+
+.ctgbtn:hover {
+  background-color: #2adb2a;
+  color: #ffffff;
+}
+
 /*----- SWIPER CLASS -----*/
 .swiper {
   overflow: initial;
@@ -565,6 +602,11 @@ padding-bottom: 20px;
 
 @media screen and (max-width: 768px) {
 
+  .cart .count {
+    top: -0.55rem;
+    right: 2.6srem;
+  }
+
 .carousel-container {
   position: relative;
   height: 230px;
@@ -621,6 +663,7 @@ padding-bottom: 20px;
   .contact-info .open-menu-btn {
       display: block;
       margin-left: 10px;
+      padding-left: 5px;
   }
 
   .open-menu-btn {
@@ -866,5 +909,6 @@ ul{
     transform: translateY(8px);
   }
 }
+
 
 /*header modifications*/

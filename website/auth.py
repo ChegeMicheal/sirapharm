@@ -14,7 +14,7 @@ from flask_mysqldb import MySQL
 auth = Blueprint('auth', __name__)
 host="localhost"
 user="root"
-passwd="MYSQLpassword2024"
+passwd="hashimraj"
 database="user"
 
 @auth.route('/login', methods=['GET', 'POST'])
