@@ -8,7 +8,7 @@ import mysql.connector
 views = Blueprint('views',__name__)
 host="localhost"
 user="root"
-passwd="hashimraj"
+passwd="MYSQLpassword2024"
 database="user"
 
 @views.route('/')
