@@ -573,7 +573,7 @@ def homepage():
     return render_template('homepage.html', products=getProductName(), user=current_user)
 
 app= Flask(__name__)
-app.config["IMAGE_UPLOADS"]= r'C:\Users\Rawlings\Desktop\sirapharm\website\static\images'
+app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\images'
 app.config["ALLOWED_IMAGE_EXTENSIONS"]=["PNG","JPG","JPEG","GIF"]
 app.config["MAX_IMAGE_FILESIZE"]=0.5 * 1024 * 1024
 

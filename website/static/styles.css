@@ -59,6 +59,9 @@
       --tiny-font-size: ;
   }
 }
+body {
+  position: relative;
+}
 *{
   margin: 0;
   padding: 0;
@@ -80,12 +83,13 @@
 
 /* Header Styles */
 .header {
-  position: relative;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   background-color: #ffffff;
   border-bottom: 0.3px solid rgb(0, 41, 128);
+  z-index: 1000000;
 }
 
 .container{
@@ -420,10 +424,20 @@ display: none;
 }
 
 /* What about this*/
+.upload_image{
+  margin-top: 300px;
+}
+.itemPrice{
+  display: block;
+}
 /* Carousel */
 .carousel-container {
   position: relative;
   width: 100%;
+  margin-top: 200px;
+}
+.carousel-container .carousel .carol{
+  margin: 0 15px;
 }
 
 .carousel-container .carousel img {
@@ -483,6 +497,7 @@ display: none;
 }
 
 .ctgbtn {
+  margin: 0 25%;
   cursor: pointer;
   background-color: transparent;
   border: 2px solid #2adb2a;
@@ -490,7 +505,6 @@ display: none;
   height: 25px;
   width: 100px;
   border-radius: .2rem;
-  
   transition: all 0.4s var(--transition);
 }
 
@@ -592,6 +606,7 @@ padding-bottom: 20px;
     position: relative;
     height: 450px;
     width: 100%;
+    
   }
   
   .carousel-container .carousel img {
@@ -604,7 +619,7 @@ padding-bottom: 20px;
 
   .cart .count {
     top: -0.55rem;
-    right: 2.6srem;
+    right: 2.6rem;
   }
 
 .carousel-container {
