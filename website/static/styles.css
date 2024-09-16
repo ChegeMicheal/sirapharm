@@ -88,23 +88,34 @@ body {
   top: 0;
   width: 100%;
   background-color: #ffffff;
-  border-bottom: 0.3px solid rgb(0, 41, 128);
   z-index: 1000000;
 }
 
 .container{
 max-width: 100%;
-margin: auto;
-padding: 0 20px;
+margin: 0 5px;
+padding: 0 5px;
+}
+
+.navigation-menu{
+  display: inline-flex;
+  line-height: 1rem;
+  margin-top: -10px;
+  margin: 0px;
+  height: 50px;
+  text-align: center;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
 }
 
 .section {
-  padding-block: 2rem;
+  padding-block: .5rem;
 }
 
 .section_title {
   font-size: var(--h4-font-size);
-  margin-bottom: 1.5rem;
+  margin-bottom: 5px;
 }
 
 .section_title span {
@@ -114,10 +125,8 @@ padding: 0 20px;
 .top-bar {
   background-color: rgb(0, 41, 128);
   color: white;
-  height: 100%;
-  padding: 5px 10px;
+  height: 30px;
   padding-left: 20px;
-  padding-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -127,7 +136,7 @@ padding: 0 20px;
 display: inline-block;
 height: 20px;
 width: 20px;
-margin: 0 10px 10px 0;
+margin: 25% 10px;
 text-align: center;
 color: #ffffff;
 transition: all 0.5s ease;
@@ -219,7 +228,7 @@ list-style: none;
 display: inline-block;
 }
 .header .menu > ul > li:not(:last-child){
-margin-right: 40px;
+margin-right: 10px;
 }
 .header .menu .dropdown{
 position: relative;
@@ -227,21 +236,18 @@ position: relative;
 .header .menu a{
 text-decoration: none;
 text-transform: capitalize;
-font-size: 18px;
-font-weight: 500;
 color: black;
-line-height: 1.5;
-display: block;
+height: auto;
 }
 .header .menu > ul > li > a{
-padding: 24px 0;
+padding: 2px;
 }
 .header .menu > ul > .dropdown > a{
 padding-right: 15px;
 
 }
 .header .menu i{
-font-size: 10px;
+font-size: 1rem;
 pointer-events: none;
 user-select: none;
 position: absolute;
@@ -253,10 +259,10 @@ right: 0;
 }
 .header .menu .sub-menu{
 position: absolute;
-top: 100%;
+margin-top: -40px;
 left: 0;
 width: 230px;
-padding: 15px 0;
+padding: 2px 0;
 background-color: #ffffff;
 border-top: 2px solid #51eaea;
 box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.5);
@@ -434,7 +440,7 @@ display: none;
 .carousel-container {
   position: relative;
   width: 100%;
-  margin-top: 200px;
+  margin-top: 175px;
 }
 .carousel-container .carousel .carol{
   margin: 0 15px;
@@ -582,11 +588,11 @@ padding-bottom: 20px;
 
 /* Responsive Design */
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 500px) {
 
   .search-bar {
-      margin: 0 auto;
-      max-width: 600px;
+      width: 100%;
+      margin: 0 5%;
   }
 
   .search-btn {
@@ -595,7 +601,7 @@ padding-bottom: 20px;
   }
 
   .contact-info {
-      margin-left: auto;
+      margin-left: 30px;
   }
 
   .menu-nav {
@@ -606,7 +612,7 @@ padding-bottom: 20px;
     position: relative;
     height: 450px;
     width: 100%;
-    
+    margin-top: 145px;
   }
   
   .carousel-container .carousel img {
@@ -632,30 +638,11 @@ padding-bottom: 20px;
   height: 230px;
   width: 100%;
 }
-  .top-bar {
-      height: 100%;
-  }
-
   .main-bar {
       flex-direction: column;
       align-items: center;
       padding: 10px 20px;
       position: relative;
-  }
-
-  .search-bar {
-      width: calc(100% - 40px);
-      position: relative;
-  }
-
-  .search-bar input {
-      width: calc(100% - 60px);
-      padding-right: 50px;
-  }
-
-  .search-btn {
-      right: 70px;
-      font-size: 14px;
   }
 
   .contact-info {
@@ -665,6 +652,7 @@ padding-bottom: 20px;
       top: 50%;
       transform: translateY(-50%);
       display: flex;
+      margin-left: 30px;
       align-items: center;
   }
 
@@ -789,11 +777,13 @@ ul{
 /* footer */
 
 /*header modifications*/
+@media(max-width:500px){
+  .navigation-menu{
+    display: block;
+  }
+}
 
 @media(max-width:991px){
-  .header{
-    padding: 12px 0;
-  }
   .header .menu{
     position: fixed;
     right: 0;
@@ -801,7 +791,7 @@ ul{
     width: 320px;
     height: 100%;
     background-color: #ffffff;
-    padding: 15px 30px 30px;
+    padding: 0px 30px 30px;
     overflow-y: auto;
     z-index: 1;
     transform: translateX(100%);
