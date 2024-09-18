@@ -16,7 +16,7 @@ from email.message import EmailMessage
 auth = Blueprint('auth', __name__)
 host="localhost"
 user="root"
-passwd="MYSQLpassword2024"
+passwd="hashimraj"
 database="user"
     
     
