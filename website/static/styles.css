@@ -585,12 +585,13 @@ padding-bottom: 20px;
 
 .become-sira-member {
   cursor: pointer;
-  padding: px 5%;
+  padding: 0px 5%;
   background: linear-gradient(to right, blueviolet, rgb(81,26,233), blueviolet);
   width: 100%;
   margin-top: 20px;
   display: flex;
   box-sizing: border-box;
+  overflow: hidden;
   gap: 40px;
 }
 
