@@ -32,7 +32,7 @@
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="/datalist"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="whatsapp-link"><i class="fab fa-whatsapp"></i></a>
         </div>
         {% if user.is_authenticated %} {% if user.id == 1%}
         <a class="pos" href="/dashboard"> Admin Page </a><br />
@@ -71,11 +71,14 @@
 
           <button class="search-btn"><i class="fas fa-search"></i></button>
         </div>
+
+                          <!--
         {% for i in range(products|length) %} {% for j in
         range(products[i]|length) %} {{ products[i][j] }} <br />
-        {% endfor %} {% endfor %}
+        {% endfor %} {% endfor %}                  -->
+
+
         <div class="contact-info">
-          <a href="#" class="whatsapp-link"><i class="fab fa-whatsapp"></i></a>
           <a href="#" class="account"><i class="fas fa-user"></i></a>
           <a href="#" class="cart">
             <i class="fas fa-shopping-cart"></i>
