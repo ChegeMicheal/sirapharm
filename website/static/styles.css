@@ -586,6 +586,81 @@ padding-bottom: 20px;
 
 }
 
+/* become a Sira Member */
+
+.become-sira-member {
+  cursor: pointer;
+  padding: px 5%;
+  background: linear-gradient(to right, blueviolet, rgb(81,26,233), blueviolet);
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  box-sizing: border-box;
+  gap: 40px;
+}
+
+.become-sira-member img{
+  height: 140px;
+  margin: 0;
+  margin-top: auto;
+}
+
+.become-sira-member > div:nth-child(1) {
+  min-width: max-content;
+  padding-top: 10px;
+}
+
+.become-sira-member > div:nth-child(1) h2{
+  font-size: 25px;
+  color: #ffffff;
+}
+
+.become-sira-member > div:nth-child(1) > h2 > span,
+.become-sira-member > div:nth-child(1) > h2 > span > i{
+  color: rgb(255, 174, 0);
+}
+
+.become-sira-member > div:nth-child(1) > p{
+  margin-top: 15px;
+  color: rgb(221, 211, 211);
+}
+
+.become-sira-member > div:nth-child(1) > hr{
+  margin-top: 20px;
+  background: linear-gradient(to right, rgb(255, 174, 0), rgb(0, 0, 0, 0));
+  height: 2px;
+  border: none;
+}
+
+.become-sira-member > div:nth-child(2) > p {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.become-sira-member > div:nth-child(2) > button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: rgb(255, 174, 0);
+  color: white;
+  font-weight: var(--weight-600);
+  border: none;
+  align-items: center;
+  cursor: pointer;
+}
+
+.become-sira-member > div:nth-child(2) > button i {
+  color: rgb(255, 174, 0);
+  margin-left: 10px;
+  border-width: 20px;
+  padding: 3px 6px;
+  font-size: 13px;
+  background-color: white;
+}
 /* Responsive Design */
 
 @media screen and (max-width: 500px) {
