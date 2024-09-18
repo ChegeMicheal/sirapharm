@@ -6,10 +6,15 @@ import json
 import mysql.connector
 
 views = Blueprint('views',__name__)
-host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
-user="ujwh39au1e2iiwzc"
-passwd="ooxt9nik14itgjvs"
-database="ta87as92i9tzhnji"
+host = "localhost"
+user = "root"
+passwd = "MYSQLpassword2024"
+database = "user"
+
+#host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+#user="ujwh39au1e2iiwzc"
+#passwd="ooxt9nik14itgjvs"
+#database="ta87as92i9tzhnji"
 
 @views.route('/')
 def homepage():

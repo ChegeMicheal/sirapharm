@@ -14,12 +14,44 @@ import smtplib
 from email.message import EmailMessage
 
 auth = Blueprint('auth', __name__)
-host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
-user="ujwh39au1e2iiwzc"
-passwd="ooxt9nik14itgjvs"
-database="ta87as92i9tzhnji"
+host = "localhost"
+user = "root"
+passwd = "MYSQLpassword2024"
+database = "user"
+
+#host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+#user="ujwh39au1e2iiwzc"
+#passwd="ooxt9nik14itgjvs"
+#database="ta87as92i9tzhnji"
+
+from flask_mail import Mail, Message
+
+app = Flask(__name__)
+
+app.config['MAIL_SERVER']= 'live.smtp.mailtrap.io'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = 'chegemichael003@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Mbogo5836'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+mail = Mail(app)
+
+@app.route("/sendEmail")
+def send_email_to_multiple_recipients():
+    # List of recipients
+    recipients = ["hashimraj02@gmail.com", "terryrawlings50@gmail.com"]
+
+    # Creating the message
+    msg = Message("Email to Multiple Recipients",
+                  sender="chegemichael003@gmail.com",
+                  recipients=recipients)
+    msg.body = "mzee, twende kwa johnte."
     
+    # Sending the email
+    mail.send(msg)
     
+    return "Email sent to multiple recipients!"
+
 @auth.route('/verifyEmail', methods=['GET', 'POST'])
 def verifyEmail():
     if request.method == 'POST':
