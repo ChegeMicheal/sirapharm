@@ -661,6 +661,10 @@ padding-bottom: 20px;
 
 @media screen and (max-width: 500px) {
 
+  .carousel-container {
+    margin-top: 175px;
+  }
+
   .search-bar {
       width: 100%;
       margin: 0 5%;
