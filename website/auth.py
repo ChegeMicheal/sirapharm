@@ -19,10 +19,10 @@ auth = Blueprint('auth', __name__)
 #user="ujwh39au1e2iiwzc"
 #passwd="ooxt9nik14itgjvs"
 #database="ta87as92i9tzhnji"
-host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
-user="ujwh39au1e2iiwzc"
-passwd="ooxt9nik14itgjvs"
-database="ta87as92i9tzhnji"
+host="localhost"
+user="root"
+passwd="MYSQLpassword2024"
+database="user"
 
 
 from flask_mail import Mail, Message
@@ -31,16 +31,16 @@ app = Flask(__name__)
 
 app.config['MAIL_SERVER']= 'live.smtp.mailtrap.io'
 app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = 'chegemichael003@gmail.com'
-app.config['MAIL_PASSWORD'] = 'Mbogo5836'
+app.config['MAIL_USERNAME'] = 'terryrawlings50@gmail.com'
+app.config['MAIL_PASSWORD'] = 'nucq gtgw whsy rrob'
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 mail = Mail(app)
 
-@app.route("/sendEmail")
+@auth.route("/sendEmail")
 def send_email_to_multiple_recipients():
     # List of recipients
-    recipients = ["hashimraj02@gmail.com", "terryrawlings50@gmail.com"]
+    recipients = ["hashimraj02@gmail.com", "terryrawlings50@gmail.com", "chegemichael003@gmail.com"]
 
     # Creating the message
     msg = Message("Email to Multiple Recipients",
@@ -51,7 +51,7 @@ def send_email_to_multiple_recipients():
     # Sending the email
     mail.send(msg)
     
-    return "Email sent to multiple recipients!"
+    return render_template('homepage.html')
 
 @auth.route('/verifyEmail', methods=['GET', 'POST'])
 def verifyEmail():
@@ -101,6 +101,24 @@ def login():
                 
     
     return render_template("login.html", user = current_user)
+
+@auth.route('/userLogin', methods=['GET', 'POST'])
+def userLogin():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        
+        user = User.query.filter_by(email = email).first()
+        if user:
+            if check_password_hash(user.password,password):
+                flash('logged in successfully', category= 'success')
+                login_user(user, remember=True)
+                return redirect(url_for('auth.dashboard'))
+            else:
+                flash('incorrect password, try again', category = 'error')
+                
+    
+    return render_template("userLogin.html", user = current_user)
 
 @auth.route('/logout')
 @login_required
@@ -611,6 +629,7 @@ def salesReport():
 
 @auth.route('/homepage', methods=['GET', 'POST'])
 def homepage():
+    cart = 0
     #define getProductName method
     def getProductName():
         # Connect to the database
@@ -637,7 +656,7 @@ def homepage():
         mydb.close()
 
         return DBData
-    return render_template('homepage.html', products=getProductName(), user=current_user)
+    return render_template('homepage.html', products=getProductName(), cart =cart, user=current_user)
 
 app= Flask(__name__)
 app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\images'
@@ -769,3 +788,12 @@ def page_not_found(e):
 def server_error(e):
     return render_template("500.html"),500
 
+@auth.route('/cart', methods=['GET', 'POST'])
+def cart():
+    cart = 0
+    return render_template('cart.html', cart = cart, user=current_user)
+
+@auth.route('/shop', methods=['GET', 'POST'])
+def shop():
+    cart = 1
+    return render_template('homepage.html', cart = cart, user=current_user)
