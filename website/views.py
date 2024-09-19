@@ -6,6 +6,7 @@ import json
 import mysql.connector
 
 views = Blueprint('views',__name__)
+
 host="localhost"
 user="root"
 passwd="hashimraj"
@@ -15,6 +16,11 @@ database="user"
 #user="ujwh39au1e2iiwzc"
 #passwd="ooxt9nik14itgjvs"
 #database="ta87as92i9tzhnji"
+
+#host="localhost"
+#user="root"
+#passwd="MYSQLpassword2024"
+#database="user"
 
 
 @views.route('/')
