@@ -101,8 +101,7 @@ padding: 0 5px;
   line-height: 1rem;
   margin-top: -10px;
   margin: 0px;
-  height: 50px; 
-  height: 50px;
+  height: auto; 
 }
 
 .section {
@@ -660,7 +659,7 @@ padding-bottom: 20px;
 }
 /* Responsive Design */
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
 
   .carousel-container {
     margin-top: 175px;
@@ -695,6 +694,20 @@ padding-bottom: 20px;
     height: auto;
     width: 100%;
   }
+
+  .become-sira-member {
+    cursor: pointer;
+    padding: 0px 5%;
+    background: linear-gradient(to right, blueviolet, rgb(81,26,233), blueviolet);
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 40px;
+  }
+  
 }
 
 @media screen and (max-width: 768px) {
@@ -766,17 +779,6 @@ padding-bottom: 20px;
       padding-right: 50px;
   
   }
-}
-.become-sira-member {
-  cursor: pointer;
-  padding: px 5%;
-  background: linear-gradient(to right, blueviolet, rgb(81,26,233), blueviolet);
-  width: 100%;
-  height: auto;
-  margin-top: 20px;
-  display: flex;
-  box-sizing: border-box;
-  gap: 40px;
 }
 
 /* footer */
