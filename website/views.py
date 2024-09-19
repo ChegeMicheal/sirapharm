@@ -7,20 +7,23 @@ import mysql.connector
 
 views = Blueprint('views',__name__)
 
-#host="localhost"
-#user="root"
-#passwd="hashimraj"
-#database="user"
+programDatabase = 3
 
-host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
-user="ujwh39au1e2iiwzc"
-passwd="ooxt9nik14itgjvs"
-database="ta87as92i9tzhnji"
-
-#host="localhost"
-#user="root"
-#passwd="MYSQLpassword2024"
-#database="user"
+if programDatabase == 1:
+    host="localhost"
+    user="root"
+    passwd="hashimraj"
+    database="user"
+elif programDatabase == 2:
+    host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+    user="ujwh39au1e2iiwzc"
+    passwd="ooxt9nik14itgjvs"
+    database="ta87as92i9tzhnji"
+elif programDatabase == 3:
+    host="localhost"
+    user="root"
+    passwd="MYSQLpassword2024"
+    database="user"
 
 
 @views.route('/')
