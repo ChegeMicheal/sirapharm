@@ -31,7 +31,7 @@
           <a href="https://www.instagram.com/sira_pharmacy?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
           <a href="https://www.tiktok.com/@sira.pharmacy?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
           <a href="https://wa.me/+254114542511" class="whatsapp-link"><i class="fab fa-whatsapp"></i></a>
-       <a href="/sendEmail"><i class="fab fa-x"></i></a>
+       <!-- <a href="/sendEmail"><i class="fab fa-x"></i></a> -->
           </div>
         {% if user.is_authenticated %} {% if user.id == 1%}
         <a class="pos" href="/dashboard"> Admin Page </a><br />
@@ -80,9 +80,9 @@
         <div class="contact-info">
           <a href="/homepage" class="account"><i class="fas fa-home"></i></a>
           <a href="#" class="account"><i class="fas fa-user"></i></a>
-          <a href="/cart" class="cart">
+          <a href="#" class="cart">
             <i class="fas fa-shopping-cart"></i>
-            <span class="count">{{ cart }}</span>
+            <span class="count">0</span>
           </a>
           <div class="open-menu-btn"><i class="fas fa-bars"></i></div>
         </div>
@@ -103,7 +103,7 @@
           <ul class="navigation-menu">
             <li><a href="#">Health Care</a></li>
             <li class="dropdown">
-              <a href="#">Skin Care</a>
+              <a href="#skincare">Skin Care</a>
               <i class="fa-solid fa-chevron-down"></i>
               <ul class="sub-menu">
                 <li>
@@ -127,7 +127,7 @@
             <li><a href="#">Dental Care</a></li>
             <li><a href="#">Personal Care</a></li>
             <li><a href="#">Mum & Baby</a></li>
-            <li><a href="#">Vitamins & Supplements</a></li>
+            <li><a href="#vitamins&supplements">Vitamins & Supplements</a></li>
             <li><a href="#">Device & Diagnostics</a></li>
             <li><a href="#">Men Grooming</a></li>
             <li><a href="#">Family Planning</a></li>

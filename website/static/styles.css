@@ -101,6 +101,7 @@ padding: 0 5px;
   line-height: 1rem;
   margin-top: -10px;
   margin: 0px;
+  height: 50px; 
   height: 50px;
 }
 
@@ -442,7 +443,7 @@ display: none;
 }
 
 .carousel-container .carousel img {
-  height: 450px;
+  height: auto;
   width: 100%;
 }
 
@@ -685,13 +686,13 @@ padding-bottom: 20px;
 
   .carousel-container {
     position: relative;
-    height: 450px;
+    height: auto;
     width: 100%;
     margin-top: 145px;
   }
   
   .carousel-container .carousel img {
-    height: 450px;
+    height: auto;
     width: 100%;
   }
 }
@@ -705,12 +706,12 @@ padding-bottom: 20px;
 
 .carousel-container {
   position: relative;
-  height: 230px;
+  height: auto;
   width: 100%;
 }
 
 .carousel-container .carousel img {
-  height: 230px;
+  height: auto;
   width: 100%;
 }
   .main-bar {
@@ -765,6 +766,17 @@ padding-bottom: 20px;
       padding-right: 50px;
   
   }
+}
+.become-sira-member {
+  cursor: pointer;
+  padding: px 5%;
+  background: linear-gradient(to right, blueviolet, rgb(81,26,233), blueviolet);
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  display: flex;
+  box-sizing: border-box;
+  gap: 40px;
 }
 
 /* footer */

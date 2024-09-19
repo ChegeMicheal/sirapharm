@@ -15,14 +15,20 @@ from email.message import EmailMessage
 
 auth = Blueprint('auth', __name__)
 
-#host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
-#user="ujwh39au1e2iiwzc"
-#passwd="ooxt9nik14itgjvs"
-#database="ta87as92i9tzhnji"
-host="localhost"
-user="root"
-passwd="MYSQLpassword2024"
-database="user"
+#host="localhost"
+#user="root"
+#passwd="hashimraj"
+#database="user"
+
+host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+user="ujwh39au1e2iiwzc"
+passwd="ooxt9nik14itgjvs"
+database="ta87as92i9tzhnji"
+
+#host="localhost"
+#user="root"
+#passwd="MYSQLpassword2024"
+#database="user"
 
 
 from flask_mail import Mail, Message
@@ -47,6 +53,7 @@ def send_email_to_multiple_recipients():
                   sender="chegemichael003@gmail.com",
                   recipients=recipients)
     msg.body = "mzee, twende kwa johnte."
+
     
     # Sending the email
     mail.send(msg)
