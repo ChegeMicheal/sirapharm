@@ -659,7 +659,7 @@ padding-bottom: 20px;
 }
 /* Responsive Design */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
 
   .carousel-container {
     margin-top: 175px;
