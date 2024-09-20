@@ -35,6 +35,8 @@ class Stock(db.Model):
     sellPriceTally = db.Column(db.String(1000), nullable=False)
     expiryDate = db.Column(db.DateTime)
     supplierEmail = db.Column(db.String(150))
+    imageFileName = db.Column(db.String(150))
+    productCategory = db.Column(db.String(150))
     date_submitted = db.Column(db.DateTime, default=datetime.utcnow)
     supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'))
     sales = db.relationship('Sale', backref='sales')

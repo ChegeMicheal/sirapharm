@@ -15,7 +15,7 @@ from email.message import EmailMessage
 
 auth = Blueprint('auth', __name__)
 
-programDatabase = 2
+programDatabase = 3
 
 if programDatabase == 1:
     host="localhost"
@@ -211,6 +211,8 @@ def supplierReport():
 def stock():
     if request.method == 'POST':
         productName = request.form.get('productName')
+        productCategory = request.form.get('productCategory')
+        imageFileName = 'images/' + productName +'.png'
         stockQuantity = 0
         productBuyPrice = 0
         productSellPrice = 0
@@ -229,7 +231,7 @@ def stock():
             sellPriceTally+='|'
                
         #add stock to database
-        new_stock = Stock(productName=productName, itemTally=itemTally, stockQuantity=stockQuantity,productBuyPrice=productBuyPrice,productSellPrice=productSellPrice,buyPriceTally=buyPriceTally,sellPriceTally=sellPriceTally)
+        new_stock = Stock(productName=productName, itemTally=itemTally, stockQuantity=stockQuantity,productBuyPrice=productBuyPrice,productSellPrice=productSellPrice,buyPriceTally=buyPriceTally,sellPriceTally=sellPriceTally,productCategory=productCategory,imageFileName=imageFileName)
         db.session.add(new_stock)
         db.session.commit()
         flash('stock added successfully!', category='success')
@@ -669,7 +671,8 @@ def homepage():
     return render_template('homepage.html', products=getProductName(), cart =cart, user=current_user)
 
 app= Flask(__name__)
-app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\images'
+#app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\images'
+app.config["IMAGE_UPLOADS"]= r'C:\Users\Rawlings\Desktop\sirapharm\website\static\images'
 app.config["ALLOWED_IMAGE_EXTENSIONS"]=["PNG","JPG","JPEG","GIF"]
 app.config["MAX_IMAGE_FILESIZE"]=0.5 * 1024 * 1024
 
@@ -720,71 +723,97 @@ def upload_image():
 
     return render_template('upload_image.html', user=current_user)
 
+@auth.route('/cart', methods=['GET', 'POST'])
+def cart():
+    cart = 0
+    return render_template('cart.html', cart = cart, user=current_user)
 
-@auth.route('/send_messages', methods=['GET', 'POST'])
-def send_messages():
+@auth.route('/shop', methods=['GET', 'POST'])
+def shop():
+    cart = 1
+    return render_template('homepage.html', cart = cart, user=current_user)
+
+@auth.route('/search', methods=['GET', 'POST'])
+def search():
     if request.method == 'POST':
-        email = request.form.get('email')
-        message = request.form.get('message')
-        visibility = request.form.get('visibility')
-        #add user to database
-        new_message = User(email = email, message=message, visibility=visibility)
-        db.session.add(new_message)
-        db.session.commit()
-        flash('message submitted!', category='success')
+        productName = request.form.get('products')
+        # Update stock table
+        searchProdList = [productName]
+        searchPrdList = [productName]
+
+        def getResults():
+            # Connect to the database
+            mydb = mysql.connector.connect(
+                host=host,
+                user=user,
+                passwd=passwd,
+                database=database
+                )
+
+            mycursor = mydb.cursor()
+
+            # Query the database with parameters as a tuple
+            query = "SELECT productName, productCategory, imageFileName, productSellPrice FROM stock WHERE productName=%s or productCategory=%s"
+            mycursor.execute(query, (searchProdList[0],searchPrdList[0],))
+
+            # Fetch and print the results
+            DBData = mycursor.fetchall()  # Use fetchone() for a single result
+            print("Query:", query)
+            print("Parameters:", (searchProdList[0],))
+            print("DBData:", DBData)
+
+            # Close the cursor and connection
+            mycursor.close()
+            mydb.close()
+
+            return DBData
+
+        # Call the function
+        search = getResults()
+        filename=''
         
-    return render_template("homepage.html")
-    
+        if search:
+            filename = search[0][2]   
+            category = search[0][1] 
+            
+            rSearchProdList = [category]
+            def getResult():
+                # Connect to the database
+                mydb = mysql.connector.connect(
+                    host=host,
+                    user=user,
+                    passwd=passwd,
+                    database=database
+                    )
 
+                mycursor = mydb.cursor()
 
-@auth.route('/view_messages', methods=['GET', 'POST'])
-def view_messages():
-    
-    def getData():
-        mydb = mysql.connector.connect(
-             host="d1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-             user="mgewt9r4y3xqrzx9",
-             passwd="tic4d2e6fe79vw98",
-             database="c60lhk7e30osyo5v"
-            )
+                # Query the database with parameters as a tuple
+                query = "SELECT productName, productCategory, imageFileName, productSellPrice FROM stock WHERE productCategory=%s"
+                mycursor.execute(query, (rSearchProdList[0],))
+
+                # Fetch and print the results
+                DBData = mycursor.fetchall()  # Use fetchone() for a single result
+                print("Query:", query)
+                print("Parameters:", (rSearchProdList[0],))
+                print("DBData:", DBData)
+
+                # Close the cursor and connection
+                mycursor.close()
+                mydb.close()
+
+                return DBData
+
+            # Call the function
+            relatedSearch = getResult()
+        else:
+            return redirect(url_for('auth.search404'))
         
-        mycursor = mydb.cursor()
+    return render_template('search.html',search=search,relatedSearch=relatedSearch, filename=filename, user=current_user)
 
-        mycursor.execute("SELECT * FROM footer_message WHERE visibility='public'") 
-        DBData = mycursor.fetchall() 
-        print(DBData)
-        mycursor.close()
-        return DBData
-         
-    DBData = getData()
-    return render_template("messages.html", footer_message=DBData)
-
-@auth.route('/view_private_messages', methods=['GET', 'POST'])
-def view_private_messages():
-    
-    def getData():
-        mydb = mysql.connector.connect(
-             host="d1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-             user="mgewt9r4y3xqrzx9",
-             passwd="tic4d2e6fe79vw98",
-             database="c60lhk7e30osyo5v"
-            )
-        
-        mycursor = mydb.cursor()
-
-        mycursor.execute("SELECT * FROM footer_message WHERE visibility='private'") 
-        DBData = mycursor.fetchall() 
-        print(DBData)
-        mycursor.close()
-        return DBData
-         
-    DBData = getData()
-    return render_template("private_messages.html", footer_message=DBData)
-
-    #footer_message = Footer_message.query.all()
-    #print(footer_message)
-    #return render_template('messages.html', footer_message=footer_message)
-
+@auth.route('/search404', methods=['GET', 'POST'])
+def search404():
+    return render_template('search404.html', user=current_user)
 
 #create custom error pages
 
@@ -798,12 +827,3 @@ def page_not_found(e):
 def server_error(e):
     return render_template("500.html"),500
 
-@auth.route('/cart', methods=['GET', 'POST'])
-def cart():
-    cart = 0
-    return render_template('cart.html', cart = cart, user=current_user)
-
-@auth.route('/shop', methods=['GET', 'POST'])
-def shop():
-    cart = 1
-    return render_template('homepage.html', cart = cart, user=current_user)

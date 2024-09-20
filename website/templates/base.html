@@ -13,26 +13,44 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <!-- Slick Carousel CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+    />
 
     <!----- FLATICON ----->
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css"
+    />
 
     <!----- SWIPER CSS ----->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-  />
-
-</head>
-<body>
-  <header class="header">
-    <div class="top-bar">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="top-bar">
         <div class="social-links">
-          <a href="https://www.instagram.com/sira_pharmacy?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
-          <a href="https://www.tiktok.com/@sira.pharmacy?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
-          <a href="https://wa.me/+254114542511" class="whatsapp-link"><i class="fab fa-whatsapp"></i></a>
-       <!-- <a href="/sendEmail"><i class="fab fa-x"></i></a> -->
-          </div>
+          <a
+            href="https://www.instagram.com/sira_pharmacy?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.tiktok.com/@sira.pharmacy?is_from_webapp=1&sender_device=pc"
+            ><i class="fab fa-tiktok"></i
+          ></a>
+          <a href="https://wa.me/+254114542511" class="whatsapp-link"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+          <!-- <a href="/sendEmail"><i class="fab fa-x"></i></a> -->
+        </div>
         {% if user.is_authenticated %} {% if user.id == 1%}
         <a class="pos" href="/dashboard"> Admin Page </a><br />
         {% endif %} {% endif %}
@@ -44,22 +62,21 @@
             alt="Sira Logo"
           />
         </div>
-        <div class="search-bar">
-          <input
-          list="products"
-          name="products"
-          id="products"
-          placeholder="Search for products"
-        />
-        
-        <datalist id="products">
+        <form action="/search" method="post">
+          <div class="search-bar">
+            <input
+              list="products"
+              name="products"
+              id="products"
+              placeholder="Search for products"
+            />
 
-        <option value="trumol"></option> 
-        <option value="paracetamol"></option>
+            <datalist id="products">
+              <option value="trumol"></option>
+              <option value="paracetamol"></option>
+            </datalist>
 
-        </datalist>  
-
-                  <!--
+            <!--
           {% for i in range(products|length) %}
             {% for j in range(products[i]|length) %}
               <option value="{{ products[i][j] }}"></option>
@@ -67,15 +84,14 @@
           {% endfor %}
                   -->
 
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+          </div>
+        </form>
 
-          <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
-
-                          <!--
+        <!--
         {% for i in range(products|length) %} {% for j in
         range(products[i]|length) %} {{ products[i][j] }} <br />
         {% endfor %} {% endfor %}                  -->
-
 
         <div class="contact-info">
           <a href="/homepage" class="account"><i class="fas fa-home"></i></a>
@@ -192,38 +208,36 @@
 
     <script>
       /*----- SWIPER CATEGORIES ----*/
-var swiperCategories = new Swiper(".categories_container", {
-    spaceBetween: 24,
-    loop: true,
+      var swiperCategories = new Swiper(".categories_container", {
+        spaceBetween: 24,
+        loop: true,
 
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
 
-    breakpoints: {
-        320: {
-          slidesPerView: 2,
-          spaceBetween: 10,
+        breakpoints: {
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          555: {
+            slidesPerView: 3,
+            spaceBetween: 18,
+          },
+          790: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1025: {
+            slidesPerView: 5,
+            spaceBetween: 24,
+          },
         },
-        555: {
-          slidesPerView: 3,
-          spaceBetween: 18,
-        },
-        790: {
-          slidesPerView: 4,
-          spaceBetween: 20,
-        },
-        1025: {
-          slidesPerView: 5,
-          spaceBetween: 24,
-        },
-      },
-  });
+      });
     </script>
 
-    {% block script %}
-
-    {% endblock script %}
-</body>
+    {% block script %} {% endblock script %}
+  </body>
 </html>
