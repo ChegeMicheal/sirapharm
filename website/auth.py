@@ -777,6 +777,7 @@ def search():
             category = search[0][1] 
             
             rSearchProdList = [category]
+            
             def getResult():
                 # Connect to the database
                 mydb = mysql.connector.connect(
