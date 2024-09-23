@@ -123,7 +123,7 @@ def userLogin():
             if check_password_hash(user.password,password):
                 flash('logged in successfully', category= 'success')
                 login_user(user, remember=True)
-                return redirect(url_for('auth.dashboard'))
+                return redirect(url_for('auth.homapege'))
             else:
                 flash('incorrect password, try again', category = 'error')
                 
@@ -730,15 +730,22 @@ def cart():
 
 @auth.route('/shop', methods=['GET', 'POST'])
 def shop():
-    cart = 1
-    return render_template('homepage.html', cart = cart, user=current_user)
+    if current_user != '':
+        return redirect(url_for('auth.shopV'))
+    else:
+        return redirect(url_for('auth.userLogin'))
+
+@auth.route('/shopV', methods=['GET', 'POST'])
+def shopV():
+    
+    return render_template('homepage.html', user=current_user)
 
 @auth.route('/search', methods=['GET', 'POST'])
 def search():
     if request.method == 'POST':
         productName = request.form.get('products')
         # Update stock table
-        searchProdList = [productName]
+        searchProdList = [productName.lower()]
         searchPrdList = [productName]
 
         def getResults():
