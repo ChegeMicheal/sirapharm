@@ -823,7 +823,7 @@ def search():
 def search404():
     return render_template('search404.html', user=current_user)
 
-#create custom error pages
+#create custom error page(s)
 
 #invalid url
 @auth.errorhandler(404)
