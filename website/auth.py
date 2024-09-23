@@ -123,7 +123,7 @@ def userLogin():
             if check_password_hash(user.password,password):
                 flash('logged in successfully', category= 'success')
                 login_user(user, remember=True)
-                return redirect(url_for('auth.homapege'))
+                return redirect(url_for('auth.dashboard'))
             else:
                 flash('incorrect password, try again', category = 'error')
                 
@@ -211,8 +211,6 @@ def supplierReport():
 def stock():
     if request.method == 'POST':
         productName = request.form.get('productName')
-        productCategory = request.form.get('productCategory')
-        imageFileName = 'images/' + productName +'.png'
         stockQuantity = 0
         productBuyPrice = 0
         productSellPrice = 0
@@ -231,7 +229,7 @@ def stock():
             sellPriceTally+='|'
                
         #add stock to database
-        new_stock = Stock(productName=productName, itemTally=itemTally, stockQuantity=stockQuantity,productBuyPrice=productBuyPrice,productSellPrice=productSellPrice,buyPriceTally=buyPriceTally,sellPriceTally=sellPriceTally,productCategory=productCategory,imageFileName=imageFileName)
+        new_stock = Stock(productName=productName, itemTally=itemTally, stockQuantity=stockQuantity,productBuyPrice=productBuyPrice,productSellPrice=productSellPrice,buyPriceTally=buyPriceTally,sellPriceTally=sellPriceTally)
         db.session.add(new_stock)
         db.session.commit()
         flash('stock added successfully!', category='success')
@@ -671,8 +669,7 @@ def homepage():
     return render_template('homepage.html', products=getProductName(), cart =cart, user=current_user)
 
 app= Flask(__name__)
-#app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\images'
-app.config["IMAGE_UPLOADS"]= r'C:\Users\Rawlings\Desktop\sirapharm\website\static\images'
+app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\images'
 app.config["ALLOWED_IMAGE_EXTENSIONS"]=["PNG","JPG","JPEG","GIF"]
 app.config["MAX_IMAGE_FILESIZE"]=0.5 * 1024 * 1024
 
