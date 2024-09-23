@@ -7,7 +7,7 @@ import mysql.connector
 
 views = Blueprint('views',__name__)
 
-programDatabase = 3
+programDatabase = 1
 
 if programDatabase == 1:
     host="localhost"
