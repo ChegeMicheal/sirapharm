@@ -211,10 +211,14 @@ def supplierReport():
 def stock():
     if request.method == 'POST':
         productName = request.form.get('productName')
+        productCategory= request.form.get('productCategory')
+        
         stockQuantity = 0
         productBuyPrice = 0
         productSellPrice = 0
         
+        imageFileName = ''
+        imageFileName = 'images/' + productName + '.png'
         itemTally=''
         buyPriceTally=''
         sellPriceTally=''
@@ -229,7 +233,7 @@ def stock():
             sellPriceTally+='|'
                
         #add stock to database
-        new_stock = Stock(productName=productName, itemTally=itemTally, stockQuantity=stockQuantity,productBuyPrice=productBuyPrice,productSellPrice=productSellPrice,buyPriceTally=buyPriceTally,sellPriceTally=sellPriceTally)
+        new_stock = Stock(productName=productName, itemTally=itemTally, stockQuantity=stockQuantity,productBuyPrice=productBuyPrice,productSellPrice=productSellPrice,buyPriceTally=buyPriceTally,sellPriceTally=sellPriceTally,imageFileName=imageFileName,productCategory=productCategory)
         db.session.add(new_stock)
         db.session.commit()
         flash('stock added successfully!', category='success')
