@@ -1,364 +1,105 @@
-{% extends "base.html" %}
-
-{% block title %}
-<title>homepage</title>
-{% endblock title %}
-
-{% block content %}
-  
-
+{% extends "base.html" %} {% block title %}
+<title>Search</title>
+{% endblock title %} {% block content %}
 <!-- Main Carousel -->
 <div class="carousel-container">
   <div class="carousel">
-      <div><img src="{{ url_for('static', filename='images/corA1.png') }}" alt="Slide 1"></div>
-      <div><img src="{{ url_for('static', filename='images/corA2.png') }}" alt="Slide 2"></div>
-      <div><img src="{{ url_for('static', filename='images/corA3.png') }}" alt="Slide 3"></div>
-      <!-- Add more slides as needed -->
+    <div class="carol"><h4>SEARCH RESULTS</h4></div>
   </div>
-  <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
-  <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
 </div>
+<!----- CATEGORIES ----->
+<section class="categories container section" id="skincare">
+  <h4>Showing results for <i>'{{ search[0][0] }}'</i></h4>
 
-<section class="product">
-  <h2 class="offer">On Offer</h2>
-  <button class="pre-btn"><img src="{{ url_for('static', filename='images/right-arrow-blue.png') }}" alt=""></button>
-  <button class="nxt-btn"><img src="{{ url_for('static', filename='images/right-arrow-blue.png') }}" alt=""></button>
-  <div class="product-container">
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med1.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
+  <div class="categories_container swiper">
+
+    <div class="swiper-wrapper">
+      <a href="/shop" class="category_item swiper-slide">
+        <img
+          src="{{ url_for('static', filename=filename ) }}"
+          alt=""
+          class="category_img"
+        />
+
+        <div class="itemPrice">
+          <div>
+            <h3 class="category_title"><p>{{ search[0][0] }}</p></h3>
           </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med2.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med3.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med4.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med5.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med6.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med7.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med8.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
+          <div><h5 class="p-price">Ksh. {{ search[0][3] }}</h5></div>
+        </div>
+        <br /><br />
+
+        <button class="ctgbtn">Add to Cart</button>
+      </a>
+    </div>
+
+    <div class="swiper-button-next">
+      <!--<i class="fi fi-rs-angle-small-right"></i>-->
+    </div>
+    <div class="swiper-button-prev">
+      <!--<i class="fi fi-rs-angle-small-left"></i>-->
+    </div>
   </div>
 </section>
 
-<section class="product">
-  <h2 class="offer">On Offer</h2>
-  <button class="pre-btn"><img src="{{ url_for('static', filename='images/right-arrow-blue.png') }}" alt=""></button>
-  <button class="nxt-btn"><img src="{{ url_for('static', filename='images/right-arrow-blue.png') }}" alt=""></button>
-  <div class="product-container">
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med1.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
+<!----- CATEGORIES ----->
+<section class="categories container section" id="skincare">
+  <h3 class="section_title"><span>Related</span> searches</h3>
+
+  <div class="categories_container swiper">
+    <div class="swiper-wrapper">
+      {% for i in range(relatedSearch|length) %}
+
+      <a href="/shop" class="category_item swiper-slide">
+        <img
+          src="{{ url_for('static', filename=relatedSearch[i][2] ) }}"
+          alt=""
+          class="category_img"
+        />
+
+        <div class="itemPrice">
+          <div>
+            <h3 class="category_title"><p>{{ relatedSearch[i][0] }}</p></h3>
           </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med2.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med3.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med4.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med5.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med6.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med7.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
-      <div class="product-card">
-          <div class="product-image">
-              <span class="discount-tag">50% off</span>
-              <img src="{{ url_for('static', filename='images/med8.png') }}" alt="" class="product-thumb">
-              <button class="card-btn">Add to cart</button>
-          </div>
-          <div class="product-info">
-              <h1 class="product-title">Title</h1>
-              <p class="product-short-description">A short line about the product</p>
-              <span class="price">$20</span>
-              <span class="actual-price">$40</span>
-          </div>
-      </div>
+          <div><h5 class="p-price">Ksh. {{ relatedSearch[i][3] }}</h5></div>
+        </div>
+        <br /><br />
+
+        <button class="ctgbtn">Add to Cart</button>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="swiper-button-next">
+      <!--<i class="fi fi-rs-angle-small-right"></i>-->
+    </div>
+    <div class="swiper-button-prev">
+      <!--<i class="fi fi-rs-angle-small-left"></i>-->
+    </div>
   </div>
 </section>
-
-
-<div class="welcome-to-sira">
-  <h2>WELCOME TO SIRA PHARMACY</h2>
-  <h3>Better Care, Bright Future</h3>
-
-  <p>Welcome to Sira Pharmacy, your trusted partner in healthcare and wellness. 
-      At Sira Pharmacy, we are dedicated to providing high-quality pharmaceutical 
-      services and products tailored to meet the diverse needs of our community. 
-      Our commitment to excellence is reflected in our wide range of prescription 
-      medications, over-the-counter drugs, and health-related products, all 
-      designed to support your well-being and enhance your quality of life.
-  </p>
-
-  <p>Our knowledgeable and compassionate team of pharmacists is here to offer 
-      expert advice and personalized care. Whether you need assistance with 
-      managing medications, understanding dosage instructions, or exploring 
-      health and wellness solutions, our professionals are ready to provide 
-      guidance and support. We believe in building lasting relationships with 
-      our customers, ensuring that every visit is met with a warm 
-      welcome and attentive service.
-  </p>
-
-  <p>At Sira Pharmacy, we understand that convenience is key to maintaining 
-      your health regimen. That’s why we offer a range of services designed 
-      to make your experience as smooth and efficient as possible. 
-      From easy prescription refills and medication synchronization to our 
-      user-friendly online portal, we strive to meet your needs with minimal hassle. 
-      Our goal is to ensure that you have access to the products and services you need,
-       when you need them.
-  </p>
-
-  <p>Community engagement and customer satisfaction are at the heart of 
-      our mission. We actively participate in local health initiatives 
-      and support various charitable causes to give back to the community 
-      that has supported us. At Sira Pharmacy, we are not just a place to 
-      get your medications; we are a hub for health and wellness that aims 
-      to positively impact the lives of those we serve. Join us in our 
-      journey to better health and experience the difference that 
-      personalized care and community commitment can make.
-  </p>
-</div>
-
-
-
-{% endblock content %}
-
-{% block script %}
-    <script>
-      $(document).ready(function(){
+{% endblock content %} {% block script %}
+<script>
+  $(document).ready(function () {
     // Initialize main carousel
-    $('.carousel').slick({
-        autoplay: true,
-        autoplaySpeed: 3000,
-        arrows: false,
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
+    $(".carousel").slick({
+      autoplay: true,
+      autoplaySpeed: 3000,
+      arrows: false,
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 2,
+      slidesToScroll: 1,
     });
 
-    $('.carousel-prev').on('click', function(){
-        $('.carousel').slick('slickPrev');
+    $(".carousel-prev").on("click", function () {
+      $(".carousel").slick("slickPrev");
     });
 
-    $('.carousel-next').on('click', function(){
-        $('.carousel').slick('slickNext');
+    $(".carousel-next").on("click", function () {
+      $(".carousel").slick("slickNext");
     });
-
-    // Initialize offers carousel with 5 products shown horizontally, no autoplay
-    $('.offers-carousel').slick({
-        autoplay: false,
-        arrows: true,
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 5, // Display 5 products horizontally
-        slidesToScroll: 1,
-        responsive: [
-            {
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 4
-                }
-            },
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 576,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
-
-    $('.offers-carousel-prev').on('click', function(){
-        $('.offers-carousel').slick('slickPrev');
-    });
-    
-    $('.offers-carousel-next').on('click', function(){
-        $('.offers-carousel').slick('slickNext');
-    });
-
-    
-});
-
-    </script>
-    {% endblock script %}
+  });
+</script>
+{% endblock script %}
