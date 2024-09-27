@@ -15,7 +15,7 @@ from email.message import EmailMessage
 
 auth = Blueprint('auth', __name__)
 
-programDatabase = 1
+programDatabase = 3
 
 if programDatabase == 1:
     host="localhost"
@@ -692,11 +692,7 @@ def homepage():
         mydb.close()
 
         return DBData
-<<<<<<< HEAD
-    return render_template('homepage.html', products=getProductName(), user=current_user)
-=======
     return render_template('homepage.html', products=getProductName(),  cart=ItemsIncart(),user=current_user)
->>>>>>> c468862da639a1b1c577c4f1b8a1de31eefe98f4
 
 app= Flask(__name__)
 app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\images'
@@ -750,13 +746,6 @@ def upload_image():
 
     return render_template('upload_image.html', user=current_user)
 
-<<<<<<< HEAD
-
-
-@auth.route('/checkout', methods=['GET', 'POST'])
-def checkout():
-    return render_template('checkout.html', user=current_user)
-=======
 @auth.route('/add2cart', methods=['GET', 'POST'])
 @login_required
 def add2cart():
@@ -949,7 +938,6 @@ def ItemsIncart():
     cart = len(cartItems)
     return cart
 
->>>>>>> c468862da639a1b1c577c4f1b8a1de31eefe98f4
 
 @auth.route('/shop', methods=['GET', 'POST'])
 def shop():
