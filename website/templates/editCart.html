@@ -1,0 +1,86 @@
+{% extends "base.html" %} { % block title % }
+<title>stock</title>
+{ % endblock title % } {% block content %}
+<!-- Stock Management -->
+<section id="stock" class="section">
+  <h2 style="text-align: center">EDIT CART ITEM</h2>
+  <br />
+  <form id="stockForm" method="post" action="/updateCart">
+    <div class="editCart">
+      <div>
+        <img
+          src="{{ url_for('static', filename=filename) }}"
+          alt=""
+          class="editCartImage"
+        />
+      </div>
+
+      <div class="cartForm">
+        <div>
+          <label for="productName">Product Name:</label>
+          <output>{{ name }} </output>
+        </div>
+
+        <div>
+          <br>
+          <label for="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            placeholder="{{ quantity }}"
+            required
+          />
+        </div>
+
+        <div>
+          <input
+            class="mike"
+            type="text"
+            id="productName"
+            name="productName"
+            placeholder="{{ name }}"
+            value="{{ name }}"
+          />
+          <input
+            type="checkbox"
+            name="product_id"
+            class="mike"
+            value="{{ id }}"
+            checked="true"
+          />
+          <br>
+          <button type="submit" class="cartbtn">UPDATE CART</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+{% endblock content %} {% block script %}
+<script>
+  /****** General POS Script File ******/
+  document.addEventListener("DOMContentLoaded", () => {});
+  // Handle stock form submission
+  stockForm.addEventListener("submit", (e) => {
+    /*
+          const productName = stockForm.productName.value;
+          const buyingPrice = parseFloat(stockForm.buyingPrice.value);
+          const sellingPrice = parseFloat(stockForm.sellingPrice.value);
+          const stockQuantity = parseInt(stockForm.stockQuantity.value, 10);
+          const supplierEmail = stockForm.stockSupplierEmail.value;
+          const expiryDate = stockForm.expiryDate.value;
+
+          // Add logic to handle stock data here
+          console.log(
+            `Adding stock: ${productName}, Buying Price: ${buyingPrice}, Selling Price: ${sellingPrice}, Quantity: ${stockQuantity}, Supplier: ${supplierEmail}, Expiry Date: ${expiryDate}`
+          );
+*/
+    alert("cart updated!");
+    // Clear form fields
+    //stockForm.reset();
+  });
+
+  /****** General POS Script File ******/
+</script>
+
+{% endblock script %}

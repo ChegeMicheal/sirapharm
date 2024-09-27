@@ -50,7 +50,7 @@
           <a href="https://wa.me/+254114542511" class="whatsapp-link"
             ><i class="fab fa-whatsapp"></i
           ></a>
-          <!-- <a href="/sendEmail"><i class="fab fa-x"></i></a> -->
+          <a href="/send_mail"><i class="fab fa-x"></i></a> 
         </div>
         {% if user.is_authenticated %} {% if user.id == 1%}
         <a class="pos" href="/dashboard"> Admin Page </a><br />
@@ -99,7 +99,7 @@
           <a href="#" class="account"><i class="fas fa-user"></i></a>
           <a href="/cart" class="cart">
             <i class="fas fa-shopping-cart"></i>
-            <span class="count" id="count">0</span>
+            <span class="count">{{ cart }}</span>
           </a>
           <div class="open-menu-btn"><i class="fas fa-bars"></i></div>
         </div>
@@ -117,39 +117,8 @@
             </div>
             <button type="button" class="close-menu-btn"></button>
           </div>
-          <ul class="navigation-menu">
-            <li><a href="#">Health Care</a></li>
-            <li class="dropdown">
-              <a href="#skincare">Skin Care</a>
-              <i class="fa-solid fa-chevron-down"></i>
-              <ul class="sub-menu">
-                <li>
-                  <a href="#"><span>La Roche - Posay</span></a>
-                </li>
-                <li>
-                  <a href="#"><span>Cerave</span></a>
-                </li>
-                <li>
-                  <a href="#"><span>Korean Skin Care</span></a>
-                </li>
-                <li>
-                  <a href="#"><span>The Ordinary</span></a>
-                </li>
-                <li>
-                  <a href="#"><span>Simple</span></a>
-                </li>
-              </ul>
-            </li>
-            <li><a href="#">Hair Care</a></li>
-            <li><a href="#">Dental Care</a></li>
-            <li><a href="#">Personal Care</a></li>
-            <li><a href="#">Mum & Baby</a></li>
-            <li><a href="#vitamins&supplements">Vitamins & Supplements</a></li>
-            <li><a href="#">Device & Diagnostics</a></li>
-            <li><a href="#">Men Grooming</a></li>
-            <li><a href="#">Family Planning</a></li>
-            <li><a href="#">Prescription</a></li>
-          </ul>
+{% block head %}
+{% endblock head %}
         </nav>
       </div>
     </header>
@@ -183,7 +152,7 @@
             <h4>Our Services</h4>
             <ul>
               <li><a href="#">Health Services</a></li>
-              <li><a href="#">Prescription Asvice</a></li>
+              <li><a href="#">Prescription Advice</a></li>
               <li><a href="#">Family Planning</a></li>
               <li><a href="#">Men Grooming</a></li>
             </ul>
