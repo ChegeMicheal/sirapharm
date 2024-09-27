@@ -25,14 +25,14 @@ class Supplier(db.Model):
     supplies = db.relationship('Supply', backref='supply')
     
 class Stock(db.Model):
+    itemTally = db.Column(db.String(1000), nullable=False)
+    productSellPrice = db.Column(db.Integer, nullable=False)
     id= db.Column(db.Integer, primary_key = True)
     productName = db.Column(db.String(150), nullable=False, unique=True)
     productBuyPrice = db.Column(db.Integer, nullable=False)
     buyPriceTally = db.Column(db.String(1000), nullable=False)
     stockQuantity= db.Column(db.Integer, nullable=False)
-    itemTally = db.Column(db.String(1000), nullable=False)
-    productSellPrice = db.Column(db.Integer, nullable=False)
-    sellPriceTally = db.Column(db.String(1000), nullable=False)
+    ellPriceTally = db.Column(db.String(1000), nullable=False)
     expiryDate = db.Column(db.DateTime)
     supplierEmail = db.Column(db.String(150))
     imageFileName = db.Column(db.String(150))

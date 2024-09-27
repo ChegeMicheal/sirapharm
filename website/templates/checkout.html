@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/checkout.css"> <!-- External stylesheet for better organization -->
+    <style>
+        /* Custom styles for checkout page */
+        .checkout-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #f8f9fa;
+        }
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .checkout-header h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        .summary-item h5 {
+            margin: 0;
+        }
+        .total {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .payment-methods img {
+            width: 50px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h1>Checkout</h1>
+        </div>
+        <form id="checkoutForm">
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Delivery Address</label>
+                <textarea class="form-control" id="address" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="paymentMethod" class="form-label">Payment Method</label>
+                <select class="form-control" id="paymentMethod" required>
+                    <option value="" disabled selected>Select Payment Method</option>
+                    <option value="credit_card">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="mpesa">M-Pesa</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <h4>Order Summary</h4>
+                <div id="orderSummary">
+                    <!-- Order summary items will be inserted here -->
+                </div>
+                <div class="summary-item">
+                    <h5>Total:</h5>
+                    <h5 class="total" id="orderTotal">Ksh 0.00</h5>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+        <div class="payment-methods mt-4">
+            <h5>We Accept</h5>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Logo_2011.svg/1280px-Visa_Logo_2011.svg.png" alt="Visa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/MasterCard_logo.svg/2560px-MasterCard_logo.svg.png" alt="MasterCard">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/PayPal_logo_2014.svg/1280px-PayPal_logo_2014.svg.png" alt="PayPal">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/M-Pesa_logo.svg/2560px-M-Pesa_logo.svg.png" alt="M-Pesa">
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderSummary = document.getElementById('orderSummary');
+            const orderTotal = document.getElementById('orderTotal');
+
+            // Function to display order summary
+            function displayOrderSummary() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (cart.length > 0) {
+                    const summaryItems = cart.map(item => {
+                        const { title, price, quantity } = item;
+                        return (
+                            `<div class='summary-item'>
+                                <h5>${title} x${quantity}</h5>
+                                <h5>Ksh ${price * quantity}.00</h5>
+                            </div>`
+                        );
+                    }).join('');
+                    
+                    orderSummary.innerHTML = summaryItems;
+                    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    orderTotal.innerText = `Ksh ${total}.00`;
+                }
+            }
+
+            displayOrderSummary(); // Display the order summary on page load
+
+            document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Handle form submission logic here, such as sending data to server
+                alert('Order placed successfully!');
+                // Optionally, you could redirect to a confirmation page or clear the cart
+            });
+        });
+    </script>
+</body>
+</html>

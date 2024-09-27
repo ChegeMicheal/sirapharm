@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sira Pharmacy</title>
+    <link rel="icon" type="favicon" href="{{ url_for('static', filename='images/sira logo.png') }}">
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
@@ -96,9 +97,9 @@
         <div class="contact-info">
           <a href="/homepage" class="account"><i class="fas fa-home"></i></a>
           <a href="#" class="account"><i class="fas fa-user"></i></a>
-          <a href="#" class="cart">
+          <a href="/cart" class="cart">
             <i class="fas fa-shopping-cart"></i>
-            <span class="count">0</span>
+            <span class="count" id="count">0</span>
           </a>
           <div class="open-menu-btn"><i class="fas fa-bars"></i></div>
         </div>
@@ -152,6 +153,8 @@
         </nav>
       </div>
     </header>
+
+
     {% block content %} {% endblock content %}
 
     <footer class="footer">
@@ -199,6 +202,7 @@
     </footer>
 
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='addToCart.js') }}"></script>
     <!-- Slick Carousel JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>

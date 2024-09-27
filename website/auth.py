@@ -211,10 +211,14 @@ def supplierReport():
 def stock():
     if request.method == 'POST':
         productName = request.form.get('productName')
+        productCategory= request.form.get('productCategory')
+        
         stockQuantity = 0
         productBuyPrice = 0
         productSellPrice = 0
         
+        imageFileName = ''
+        imageFileName = 'images/' + productName + '.png'
         itemTally=''
         buyPriceTally=''
         sellPriceTally=''
@@ -229,7 +233,7 @@ def stock():
             sellPriceTally+='|'
                
         #add stock to database
-        new_stock = Stock(productName=productName, itemTally=itemTally, stockQuantity=stockQuantity,productBuyPrice=productBuyPrice,productSellPrice=productSellPrice,buyPriceTally=buyPriceTally,sellPriceTally=sellPriceTally)
+        new_stock = Stock(productName=productName, itemTally=itemTally, stockQuantity=stockQuantity,productBuyPrice=productBuyPrice,productSellPrice=productSellPrice,buyPriceTally=buyPriceTally,sellPriceTally=sellPriceTally,imageFileName=imageFileName,productCategory=productCategory)
         db.session.add(new_stock)
         db.session.commit()
         flash('stock added successfully!', category='success')
@@ -639,7 +643,6 @@ def salesReport():
 
 @auth.route('/homepage', methods=['GET', 'POST'])
 def homepage():
-    cart = 0
     #define getProductName method
     def getProductName():
         # Connect to the database
@@ -666,7 +669,7 @@ def homepage():
         mydb.close()
 
         return DBData
-    return render_template('homepage.html', products=getProductName(), cart =cart, user=current_user)
+    return render_template('homepage.html', products=getProductName(), user=current_user)
 
 app= Flask(__name__)
 app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\images'
@@ -720,10 +723,11 @@ def upload_image():
 
     return render_template('upload_image.html', user=current_user)
 
-@auth.route('/cart', methods=['GET', 'POST'])
-def cart():
-    cart = 0
-    return render_template('cart.html', cart = cart, user=current_user)
+
+
+@auth.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+    return render_template('checkout.html', user=current_user)
 
 @auth.route('/shop', methods=['GET', 'POST'])
 def shop():

@@ -1,7 +1,189 @@
-{% extends "base.html" %} {% block title %}
-<title>cart</title>
-{% endblock title %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="/static/cart.css"> <!-- External stylesheet for better organization -->
+    <script src="/static/addToCart.js" defer></script> <!-- Load JS after HTML -->
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="head">My Cart</div>
+            <div id="cartItem">Your cart is empty</div>
+            <div class="foot">
+                <div class="total-container">
+                    <h3>Total</h3>
+                    <h2 id="total">Ksh 0.00</h2>
+                </div>
+                <form action="/checkout" method="post">
+                    <button id="checkoutBtn">Checkout</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-{% block content %}
+    <style>
+        /* Increase cart width and container width */
+        .container {
+            display: flex;
+            width: 90%; /* Increased the container width */
+            margin-bottom: 30px;
+        }
+        .sidebar {
+            width: 70%; /* Increased the cart width */
+            border-radius: 5px;
+            background-color: #eee;
+            margin-left: 20px;
+            padding: 15px;
+            text-align: center;
+        }
+        .head {
+            background-color: goldenrod;
+            border-radius: 3px;
+            height: 40px;
+            padding: 10px;
+            margin-bottom: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .foot {
+            display: flex;
+            flex-direction: column;
+            margin: 20px 0;
+            padding: 10px 0;
+            border-top: 1px solid #333;
+        }
+        .total-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Align items on the same line */
+        }
+        .total-container h2 {
+            margin: 0; /* Remove default margin */
+        }
+        #checkoutBtn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: goldenrod;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #checkoutBtn:hover {
+            background-color: darkgoldenrod;
+        }
+        /* Flexbox for horizontal product layout */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Align vertically */
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        .row-img img {
+            width: 60px; /* Adjusted image size */
+            height: 60px;
+            object-fit: cover;
+        }
+        .item-details {
+            flex-grow: 1; /* Make the item details expand to fill available space */
+            padding-left: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .fa-trash {
+            cursor: pointer;
+            color: red;
+            margin-left: 10px; /* Some space between trash icon and quantity */
+        }
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin-left: 10px;
+        }
+        /* Ensure details and trash icon are on the same line */
+        .cart-item .item-details p, .cart-item .item-details h2, .cart-item .item-details .quantity-container {
+            margin: 0;
+            padding: 0;
+        }
+        .quantity-container {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 
-{% endblock content %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemContainer = document.getElementById('cartItem');
+            const totalElement = document.getElementById('total');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            // Function to display cart items and total dynamically
+            function displayCart() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                if (cart.length === 0) {
+                    cartItemContainer.innerHTML = "Your cart is empty";
+                    totalElement.innerText = "Ksh 0.00";
+                } else {
+                    cartItemContainer.innerHTML = cart.map((item, index) => {
+                        const { image, title, price, quantity } = item;
+                        return (
+                            `<div class='cart-item'>
+                                <div class='row-img'>
+                                    <img class='rowimg' src="${image}">
+                                </div>
+                                <div class='item-details'>
+                                    <p style='font-size: 12px;'>${title}</p>
+                                    <h2 style='font-size: 15px;'>Ksh. ${price}.00</h2>
+                                    <div class='quantity-container'>
+                                        <p>Quantity:</p>
+                                        <input type='number' class='quantity-input' value='${quantity}' min='1' onchange='updateQuantity(${index}, this.value)' />
+                                    </div>
+                                </div>
+                                <i class='fa-solid fa-trash' onclick='removeItem(${index})'></i>
+                            </div>`
+                        );
+                    }).join('');
+
+                    // Update total
+                    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    totalElement.innerText = `Ksh ${total}.00`;
+                }
+            }
+
+            // Function to remove an item from the cart
+            window.removeItem = function (index) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.splice(index, 1); // Remove the item at the given index
+                localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
+                displayCart(); // Refresh cart display without reloading the page
+            };
+
+            // Function to update quantity of an item in the cart
+            window.updateQuantity = function (index, quantity) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (quantity <= 0) quantity = 1; // Ensure quantity is at least 1
+                cart[index].quantity = Number(quantity); // Update quantity in the cart
+                localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
+                displayCart(); // Refresh cart display without reloading the page
+            };
+
+            // Redirect to checkout page when 'checkout' button is clicked
+            checkoutBtn.addEventListener('click', () => {
+                window.location.href = '/checkout'; // Redirect to the Flask route for checkout page
+            });
+
+            displayCart(); // Initial display of the cart when the page loads
+        });
+    </script>
+</body>
+</html>
