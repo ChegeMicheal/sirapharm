@@ -817,7 +817,7 @@ def cart():
         return DBData
     
     cartItems = getCartItems()
-    return render_template('cartItems.html', cartItems=cartItems, user=current_user)
+    return render_template('cartItems.html', cartItems=cartItems, cart=ItemsIncart(), user=current_user)
 
 @auth.route('/deleteCart', methods=['GET', 'POST'])
 def deleteCart():
@@ -858,7 +858,7 @@ def editCart():
         id = request.form.get('product_id')
         name = request.form.get('productName')
         filename=request.form.get('imageFileName')
-    return render_template('editCart.html', id=id, name=name,filename=filename, user=current_user)
+    return render_template('editCart.html', id=id, name=name,filename=filename, cart=ItemsIncart(), user=current_user)
 
 @auth.route('/updateCart', methods=['GET', 'POST'])
 def updateCart():
