@@ -1,0 +1,61 @@
+{% extends "dashboard.html" %}
+
+{ % block title % }
+<title>stock</title>
+{ % endblock title % } 
+
+{% block content %}
+<!-- Stock Management -->
+<section id="stock" class="section">
+  <h2 style="text-align: center;">ITEMS IN CART</h2><br>   
+    <div>
+      <table class="table">
+        <thead>
+          <th>#</th>
+          <th>image</th>
+          <th>Product Name</th>
+          <th>quantity</th>
+          <th>action</th>
+        </thead>
+
+        {% for i in range(cartItems|length) %}
+        <tbody>
+          <tr>
+            <td>{{ i+1 }}</td>
+            {% set filename = cartItems[i][4] %}
+            <td>          <img
+              src="{{ url_for('static', filename=filename) }}"
+              alt=""
+              class="cartImage"
+            />
+            </td>
+            <td>{{ cartItems[i][0] }}</td>
+            <td>{{ cartItems[i][1] }}</td>
+            <td>
+              <div class="mikeBtns">
+              <form action="/editCart" method="post">
+                <input type="checkbox" name="product_id" class="mike" value="{{ cartItems[i][3] }}" checked="true">
+                <input type="checkbox" name="productName" class="mike" value="{{ cartItems[i][0] }}" checked="true">
+                <input type="checkbox" name="quantity" class="mike" value="{{ cartItems[i][1] }}" checked="true">
+                <input type="checkbox" name="imageFileName" class="mike" value="{{ cartItems[i][4] }}" checked="true">
+                <input type="submit" value="edit" class="ctgbtn">
+              </form>
+
+              <form action="/deleteCart" method="post">
+                <input type="checkbox" name="product_id" class="mike" value="{{ cartItems[i][3] }}" checked="true">
+                <input type="checkbox" name="productName" class="mike" value="{{ cartItems[i][0] }}" checked="true">
+                <input type="checkbox" name="quantity" class="mike" value="{{ cartItems[i][1] }}" checked="true">
+                <input type="submit" value="delete" class="dctgbtn">
+              </form>
+            </div>
+            </td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
+  </form>
+</section>
+{% endblock content %}
+
+

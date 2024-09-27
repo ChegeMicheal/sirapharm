@@ -69,6 +69,7 @@ body {
   scroll-behavior: smooth;
 }
 
+/* mike */
 .pos{
   text-decoration: none;
   color: white;
@@ -80,6 +81,16 @@ body {
   padding: 0px 10px;
   width: auto;
 }
+
+.mcart{
+  margin-top: 300px;
+}
+
+.mike{
+display: none;
+}
+/* endmike */
+
 
 /* Header Styles */
 .header {

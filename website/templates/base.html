@@ -49,7 +49,7 @@
           <a href="https://wa.me/+254114542511" class="whatsapp-link"
             ><i class="fab fa-whatsapp"></i
           ></a>
-          <!-- <a href="/sendEmail"><i class="fab fa-x"></i></a> -->
+          <a href="/send_mail"><i class="fab fa-x"></i></a> 
         </div>
         {% if user.is_authenticated %} {% if user.id == 1%}
         <a class="pos" href="/dashboard"> Admin Page </a><br />
@@ -96,9 +96,9 @@
         <div class="contact-info">
           <a href="/homepage" class="account"><i class="fas fa-home"></i></a>
           <a href="#" class="account"><i class="fas fa-user"></i></a>
-          <a href="#" class="cart">
+          <a href="/cart" class="cart">
             <i class="fas fa-shopping-cart"></i>
-            <span class="count">0</span>
+            <span class="count">{{ cart }}</span>
           </a>
           <div class="open-menu-btn"><i class="fas fa-bars"></i></div>
         </div>
@@ -180,7 +180,7 @@
             <h4>Our Services</h4>
             <ul>
               <li><a href="#">Health Services</a></li>
-              <li><a href="#">Prescription Asvice</a></li>
+              <li><a href="#">Prescription Advice</a></li>
               <li><a href="#">Family Planning</a></li>
               <li><a href="#">Men Grooming</a></li>
             </ul>

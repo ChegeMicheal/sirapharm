@@ -9,10 +9,7 @@ class User(db.Model, UserMixin):
     fullName = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(150), unique = True, nullable=False)
     password = db.Column(db.String(1000))
-
-    #create string
-    def __repr__(self):
-        return '<Name %r>' % self.name
+    carts = db.relationship('Cart', backref='cart')
     
 
 class Supplier(db.Model):
@@ -70,4 +67,12 @@ class SaleFetch(db.Model):
     saleTally = db.Column(db.String(1000), nullable=False)
     date_submitted = db.Column(db.DateTime, default=datetime.utcnow)
     
-
+class Cart(db.Model):
+    id= db.Column(db.Integer, primary_key = True)
+    productName = db.Column(db.String(150), nullable=False)
+    imageFileName = db.Column(db.String(150))
+    quantity= db.Column(db.Integer, nullable=False)    
+    itemTally = db.Column(db.String(1000), nullable=False)
+    paymentMode = db.Column(db.String(1000))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    

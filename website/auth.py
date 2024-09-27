@@ -1,5 +1,5 @@
 from flask import Blueprint, Flask, render_template, request, flash, redirect, url_for
-from .models import Supplier,User,Stock,Supply,Sale,SaleFetch
+from .models import Supplier,User,Stock,Supply,Sale,SaleFetch,Cart
 import os
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -34,17 +34,40 @@ elif programDatabase == 3:
     database="user"
 
 
+from flask import Flask
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
 
-app.config['MAIL_SERVER']= 'live.smtp.mailtrap.io'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = 'terryrawlings50@gmail.com'
-app.config['MAIL_PASSWORD'] = 'nucq gtgw whsy rrob'
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
+# Configure mail settings
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'terryrawlings50@gmail.com'  # Your email
+app.config['MAIL_PASSWORD'] = 'wvqoffdittvrchet'  # Your app password or regular password
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
 mail = Mail(app)
+
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
+@auth.route('/send_mail')
+def send_mail():
+    try:
+        mail_message = Message(
+            subject='Hello from Flask!',
+            sender='chegemichael003@gmail.com',
+            recipients=['hashimraj02@gmail.com']
+        )
+        mail_message.body = 'This is a test email.'
+        mail.send(mail_message)
+        return 'Mail sent!'
+    except Exception as e:
+        app.logger.error(f'Error: {e}')
+        return f'An error occurred: {e}'
+    
 
 @auth.route("/sendEmail")
 def send_email_to_multiple_recipients():
@@ -105,7 +128,7 @@ def login():
             if check_password_hash(user.password,password):
                 flash('logged in successfully', category= 'success')
                 login_user(user, remember=True)
-                return redirect(url_for('auth.dashboard'))
+                return redirect(url_for('auth.homepage'))
             else:
                 flash('incorrect password, try again', category = 'error')
                 
@@ -643,7 +666,6 @@ def salesReport():
 
 @auth.route('/homepage', methods=['GET', 'POST'])
 def homepage():
-    cart = 0
     #define getProductName method
     def getProductName():
         # Connect to the database
@@ -670,7 +692,7 @@ def homepage():
         mydb.close()
 
         return DBData
-    return render_template('homepage.html', products=getProductName(), cart =cart, user=current_user)
+    return render_template('homepage.html', products=getProductName(),  cart=ItemsIncart(),user=current_user)
 
 app= Flask(__name__)
 app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\images'
@@ -724,10 +746,198 @@ def upload_image():
 
     return render_template('upload_image.html', user=current_user)
 
+@auth.route('/add2cart', methods=['GET', 'POST'])
+@login_required
+def add2cart():
+    if request.method == 'POST':
+        productName = request.form.get('productName')
+        imageFileName = request.form.get('imageFileName')
+        
+        item = Cart.query.filter_by(productName=productName).first()
+        if item:
+            flash('item already exists', category = 'error')
+            return redirect(url_for('auth.cart'))
+        else:
+            quantity = 1
+        
+        
+        
+            itemTally=''
+            user_id = current_user.id
+            for i in range(quantity):
+             itemTally+='|'
+            
+            # Add cartItem to the database
+            new_cart = Cart(
+             productName=productName,
+             imageFileName=imageFileName,
+             quantity = quantity,
+             itemTally=itemTally,
+             user_id = user_id
+         )
+            db.session.add(new_cart)
+            db.session.commit()
+        
+            print(current_user)
+                           
+    return redirect(url_for('auth.homepage'))
+
 @auth.route('/cart', methods=['GET', 'POST'])
+@login_required
 def cart():
-    cart = 0
-    return render_template('cart.html', cart = cart, user=current_user)
+    user_id = current_user.id
+    
+    list = [user_id]
+    
+    def getCartItems():
+        # Connect to the database
+        mydb = mysql.connector.connect(
+            host=host,
+            user=user,
+            passwd=passwd,
+            database=database
+            )
+
+        mycursor = mydb.cursor()
+
+        # Query the database with parameters as a tuple
+        query = "SELECT productName, quantity, itemTally, id, imageFileName FROM cart WHERE user_id=%s"
+        mycursor.execute(query, (list[0],))
+
+        # Fetch and print the results
+        DBData = mycursor.fetchall()  # Use fetchone() for a single result
+        print("Query:", query)
+        print("Parameters:", (list[0],))
+        print("DBData:", DBData)
+
+        # Close the cursor and connection
+        mycursor.close()
+        mydb.close()
+
+        return DBData
+    
+    cartItems = getCartItems()
+    return render_template('cartItems.html', cartItems=cartItems, user=current_user)
+
+@auth.route('/deleteCart', methods=['GET', 'POST'])
+def deleteCart():
+    if request.method == 'POST':
+        id = request.form.get('product_id')
+    
+        list = [id]
+        #define getProductName method
+        def delCart():
+            # Connect to the database
+            mydb = mysql.connector.connect(
+                host=host,
+                user=user,
+                passwd=passwd,
+                database=database
+                )
+
+            mycursor = mydb.cursor()
+
+            # Query the database with parameters as a tuple
+            query = "DELETE FROM cart WHERE id=%s"
+            mycursor.execute(query, (list[0],))
+            
+            mydb.commit()  # Don't forget to commit the changes
+            
+            print("Query:", query)
+            print("Parameters:", (list[0],))
+
+            # Close the cursor and connection
+            mycursor.close()
+            mydb.close()
+    delCart()
+    return redirect(url_for('auth.cart'))
+
+@auth.route('/editCart', methods=['GET', 'POST'])
+def editCart():
+    if request.method == 'POST':
+        id = request.form.get('product_id')
+        name = request.form.get('productName')
+        filename=request.form.get('imageFileName')
+    return render_template('editCart.html', id=id, name=name,filename=filename, user=current_user)
+
+@auth.route('/updateCart', methods=['GET', 'POST'])
+def updateCart():
+    if request.method == 'POST':
+        id = request.form.get('product_id')
+        quantitty = request.form.get('quantity',type=int)
+        
+        if quantitty > 1:
+            quantity = quantitty
+        else:
+            quantity = 1
+        
+        itemTally = ''
+        for i in range(quantity):
+            itemTally+='|'
+            
+        list = [id]
+        
+        #define getProductName method
+        def updateCart():
+            # Connect to the database
+            mydb = mysql.connector.connect(
+                host=host,
+                user=user,
+                passwd=passwd,
+                database=database
+                )
+
+            mycursor = mydb.cursor()
+
+            # Correctly format the query with placeholders
+            query = "UPDATE cart SET itemTally=%s, quantity=%s WHERE id=%s"
+            mycursor.execute(query, (itemTally, quantity, list[0]))
+            
+            mydb.commit()  # Don't forget to commit the changes
+            mycursor.close()
+            mydb.close()
+    updateCart()
+    return redirect(url_for('auth.cart'))
+
+def ItemsIncart():
+    try:
+        user_id = current_user.id
+    except Exception as e:
+        user_id = -1
+    
+    list = [user_id]
+    
+    def CartItems():
+        # Connect to the database
+        mydb = mysql.connector.connect(
+            host=host,
+            user=user,
+            passwd=passwd,
+            database=database
+            )
+
+        mycursor = mydb.cursor()
+
+        # Query the database with parameters as a tuple
+        query = "SELECT productName, itemTally FROM cart WHERE user_id=%s"
+        mycursor.execute(query, (list[0],))
+
+        # Fetch and print the results
+        DBData = mycursor.fetchall()  # Use fetchone() for a single result
+        print("Query:", query)
+        print("Parameters:", (list[0],))
+        print("DBData:", DBData)
+
+        # Close the cursor and connection
+        mycursor.close()
+        mydb.close()
+
+        return DBData
+    
+    cartItems = CartItems()
+    cart = len(cartItems)
+    return cart
+
 
 @auth.route('/shop', methods=['GET', 'POST'])
 def shop():
@@ -835,4 +1045,3 @@ def page_not_found(e):
 @auth.errorhandler(500)
 def server_error(e):
     return render_template("500.html"),500
-

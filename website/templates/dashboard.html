@@ -29,43 +29,40 @@
         {% endwith %} 
         -->
 
-
-    <div class="flex">
-      <h1>SIRA PHARMACY POS</h1>
-      {% if user.is_authenticated %}
-      <a class="pos" href="/logout"> logout </a>
-      {% if user.id == 1 %}     
-      &nbsp;&nbsp;
-      <a class="pos" href="/homepage"> go to website </a>
-      {% endif %}
-      {% endif %}
-    </div>
-
+        <div class="flex">
+          <h1>SIRA PHARMACY DASHBOARD</h1>
+          <a href="/homepage" class="pos"><i class="fas fa-home"></i>home</a>
+          {% if user.is_authenticated %}
+          <a class="pos" href="/logout"> logout </a>
+          {% endif %}
+        </div>
       </header>
 
       <!-- Sidebar Menu -->
       <nav class="sidebar">
         <ul>
-          <hr>
-        {% if user.is_authenticated %}
-          {% if user.id == 1 %}
+          <hr />
+          {% if user.is_authenticated %} {% if user.id == 1 %}
           <li>
-            <a href="/supplier" onclick="showSection('supplier')">Register Supplier</a>
+            <a href="/supplier" onclick="showSection('supplier')"
+              >Register Supplier</a
+            >
           </li>
-          <li><a href="/stock" onclick="showSection('stock')">Register Product</a></li>
-          <li><a href="/supplyHistory" onclick="showSection('supply-history')">Record Supply</a></li>
-          <hr>
+          <li>
+            <a href="/stock" onclick="showSection('stock')">Register Product</a>
+          </li>
+          <li>
+            <a href="/supplyHistory" onclick="showSection('supply-history')"
+              >Record Supply</a
+            >
+          </li>
+          <hr />
           <li><a href="/stockReport">View Items in Stock</a></li>
           <li><a href="/supplierReport">View Suppliers</a></li>
           <li><a href="/supplyReport">View Supply History</a></li>
           <li><a href="/salesReport">View Sales</a></li>
-          {% elif user.id == 2 %}
-          <li><a href="/sales" onclick="showSection('sales')">Sales</a></li>
-          <hr>
-          <li><a href="/salesReport">View Sales</a></li>
-          {% endif%}
-        {% endif %}   
-          <hr>
+          {% elif user.id == 2 %} {% endif%} {% endif %}
+          <hr />
         </ul>
       </nav>
       <!-- Content Section -->
@@ -73,7 +70,7 @@
         {% block content %}
         <!-- Supplier Management -->
         <section id="supplier" class="section">
-          <h2>SIRA PHARMACY POINT OF SALE SYSTEM</h2>
+          <h2>SIRA PHARMACY POINT OF SALE SYSTEM &nbsp;</h2>
         </section>
         {% endblock content %}
       </div>
@@ -93,16 +90,13 @@
         };
 
         showSection("supplier"); // Show supplier section by default
-
       });
 
       /****** General POS Script File ******/
     </script>
 
-    {% block script %}
-    
-    {% endblock script %}
-    
+    {% block script %} {% endblock script %}
+
     <style>
       /****** General Styling ******/
       * {
@@ -133,7 +127,70 @@
         z-index: 1000;
       }
 
-      .pos{
+      .ctgbtn {
+        margin: 0 25%;
+        cursor: pointer;
+        background-color: transparent;
+        border: 2px solid #2adb2a;
+        color: #2adb2a;
+        height: 25px;
+        width: 50px;
+        border-radius: 0.2rem;
+        transition: all 0.4s var(--transition);
+      }
+
+      .ctgbtn:hover {
+        background-color: #2adb2a;
+        color: #ffffff;
+      }
+
+      .dctgbtn {
+        margin: 0 25%;
+        cursor: pointer;
+        background-color: transparent;
+        border: 2px solid red;
+        color: red;
+        height: 25px;
+        width: 50px;
+        border-radius: 0.2rem;
+        transition: all 0.4s var(--transition);
+      }
+
+      .dctgbtn:hover {
+        background-color: red;
+        color: #ffffff;
+      }
+      .cartImage{
+        height: 50px;
+        width: 50px;
+      }
+
+      .cartForm{
+        width: 400px;
+        margin: 10px;
+        display: block;
+      }
+      .cartbtn{
+        width: 80%;
+      }
+
+      .editCart{
+        display: flex;
+      }
+
+      .editCartImage{
+        height: 200px;
+        width: 200px;
+      }
+
+      .mikeBtns {
+        display: inline-flex;
+      }
+
+      .mike {
+        display: none;
+      }
+      .pos {
         text-decoration: none;
         color: white;
         font-size: 1.2rem;
@@ -146,7 +203,7 @@
         margin-left: 20px;
       }
 
-      .flex{
+      .flex {
         display: flex;
         text-align: center;
         justify-content: center;
@@ -155,7 +212,7 @@
         align-items: center;
       }
 
-      .login-content{
+      .login-content {
         background-color: white;
         border-radius: 10px;
         border: 1px solid #0000ff;
@@ -164,20 +221,20 @@
         margin: 0 5px;
       }
 
-      label{
+      label {
         overflow: hidden;
         width: 200px;
         margin-right: 5px;
       }
 
-      .links{
+      .links {
         color: blue;
         margin: 0px 5px;
         display: inline-block;
         margin: 0 5px;
       }
 
-      .login-textbox{
+      .login-textbox {
         margin: 5px;
         left: 200px;
         width: 200px;
@@ -185,7 +242,7 @@
         font-size: 1.1rem;
       }
 
-      .btn-db{
+      .btn-db {
         width: 100%;
         line-height: 1.5rem;
         font-size: 1.3rem;
@@ -316,24 +373,24 @@
         cursor: pointer;
       }
 
-      .table{
-        position: absolute;
-        width: 60%;
+      .table {
+        position: relative;
+        width: auto;
         border-collapse: collapse;
-        z-index: 2;
-        top: 55%;
       }
-      .table td,.table th{
+
+      .table td,
+      .table th {
         padding: 12px 15px;
         border: 1px solid #ddd;
         text-align: center;
         font-size: 16px;
       }
-      .table th{
+      .table th {
         background-color: darkblue;
         color: #ffffff;
       }
-      .table tbody tr:nth-child(even){
+      .table tbody tr:nth-child(even) {
         background-color: #f5f5f5;
       }
 
