@@ -699,7 +699,6 @@ app.config["IMAGE_UPLOADS"]= r'C:\Users\ADMIN\Desktop\sirapharm\website\static\i
 app.config["ALLOWED_IMAGE_EXTENSIONS"]=["PNG","JPG","JPEG","GIF"]
 app.config["MAX_IMAGE_FILESIZE"]=0.5 * 1024 * 1024
 
-
 def allowed_image(filename):
     if not '.' in filename:
         return False
@@ -711,14 +710,6 @@ def allowed_image(filename):
     else:
         return False
     
-
-
-
-@auth.route('/datalist', methods=['GET', 'POST'])
-def datalist():
-  return render_template('datalist.html')  
-
-
 @auth.route('/upload_image', methods=['GET', 'POST'])
 def upload_image():
     if request.method == 'POST':
