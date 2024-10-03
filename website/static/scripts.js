@@ -21,3 +21,29 @@ menu.querySelectorAll(".dropdown > i").forEach((arrow) => {
     });
 });
 
+// Function to toggle password visibility
+function togglePasswordVisibility(toggleButtonId, passwordFieldId) {
+    const toggleButton = document.querySelector(toggleButtonId);
+    const passwordField = document.querySelector(passwordFieldId);
+
+    if (toggleButton && passwordField) {
+        toggleButton.addEventListener("click", function () {
+            // Toggle the type attribute (password to text and vice versa)
+            const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+
+            // Toggle the eye / eye-slash icon
+            this.classList.toggle("fa-eye");
+            this.classList.toggle("fa-eye-slash");
+        });
+    }
+}
+
+// Toggle for the login password field
+togglePasswordVisibility("#toggle-password", "#password-field");
+
+// Toggle for the register password field
+togglePasswordVisibility("#toggle-register-password", "#register-password");
+
+// Toggle for the confirm password field
+togglePasswordVisibility("#toggle-confirm-password", "#confirm-password");

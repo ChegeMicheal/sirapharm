@@ -15,7 +15,7 @@ from email.message import EmailMessage
 
 auth = Blueprint('auth', __name__)
 
-programDatabase = 3
+programDatabase = 2
 
 if programDatabase == 1:
     host="localhost"
@@ -24,9 +24,9 @@ if programDatabase == 1:
     database="user"
 elif programDatabase == 2:
     host="mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
-    user="ujwh39au1e2iiwzc"
-    passwd="ooxt9nik14itgjvs"
-    database="ta87as92i9tzhnji"
+    user="chmq59xthwhdmp9k"
+    passwd="cicqmdv5hg2k41wz"
+    database="qjtfk3q5n196eyyf"
 elif programDatabase == 3:
     host="localhost"
     user="root"
