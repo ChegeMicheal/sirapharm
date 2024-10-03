@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <div class="wrapper">
+        <h1>Login</h1>
+        <form action="#">
+            <div class="credentials">
+                <div class="input-container">
+                    <i class="fa fa-envelope icon"></i>
+                    <input type="email" placeholder="Email" required>
+                </div>
+
+                <div class="input-container">
+                    <i class="fa fa-lock icon"></i>
+                    <input type="password" id="password-field" name="password" placeholder="Password" required>
+                    <i class="fa fa-eye" id="toggle-password"></i>
+                </div>
+                <div class="recover">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </div>
+
+            <button type="submit" class="ubutton">Log in</button>
+            <div class="member">
+                Not a member? <a href="/usignup">
+                    Register Now 
+            </a>
+        </div>
+
+        </form>
+    </div>
+</body>
+
+
+<style>
+   .search-bar,
+   .cart .fa-shopping-cart,
+   .count,
+   .contact-info .open-menu-btn{
+    display: none;
+   } 
+   
+   .icon{
+    position: absolute;
+    left: 10px;
+    top: 38%;
+    transform: translateY(-50%);
+    color: #555;
+   }
+
+</style>
+
+{% endblock %}

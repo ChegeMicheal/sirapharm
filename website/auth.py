@@ -15,7 +15,7 @@ from email.message import EmailMessage
 
 auth = Blueprint('auth', __name__)
 
-programDatabase = 3
+programDatabase = 1
 
 if programDatabase == 1:
     host="localhost"
@@ -941,6 +941,15 @@ def shop():
 def shopV():
     
     return render_template('homepage.html', user=current_user)
+
+@auth.route('/usignin', methods=['GET', 'POST'])
+def usignin():
+    return render_template('usignin.html', user=current_user)
+
+
+@auth.route('/usignup', methods=['GET', 'POST'])
+def usignup():
+    return render_template('usignup.html', user=current_user)
 
 @auth.route('/search', methods=['GET', 'POST'])
 def search():
