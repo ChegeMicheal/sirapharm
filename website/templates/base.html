@@ -52,9 +52,11 @@
           ></a>
           <a href="/send_mail"><i class="fab fa-x"></i></a> 
         </div>
-        {% if user.is_authenticated %} {% if user.id == 1%}
-        <a class="pos" href="/dashboard"> Admin Page </a><br />
-        {% endif %} {% endif %}
+        {% if user.is_authenticated %} 
+        <a class="pos" href="/logout"> logout </a><br />
+        {% else %}
+        <a class="pos" href="/login"> login </a><br />
+       {% endif %}
       </div>
       <div class="main-bar">
         <div class="logo">
@@ -95,12 +97,53 @@
         {% endfor %} {% endfor %}                  -->
 
         <div class="contact-info">
+          {% if user.id != 1 %}
           <a href="/homepage" class="account"><i class="fas fa-home"></i></a>
-          <a href="#" class="account"><i class="fas fa-user"></i></a>
+          <a href="/orders" class="account"><i class="fas fa-user"></i></a>
           <a href="/cart" class="cart">
             <i class="fas fa-shopping-cart"></i>
             <span class="count">{{ cart }}</span>
           </a>
+          {% else %}
+          <form action="/orderFilter" method="post">
+            <input
+              type="checkbox"
+              name="status"
+              class="mike"
+              value="pending"
+              checked="true"
+            />
+          
+            <input type="submit" value="pending" class="pbtn" />
+          </form>
+
+          <form action="/orderFilter" method="post">
+            <input
+              type="checkbox"
+              name="status"
+              class="mike"
+              value="completed"
+              checked="true"
+            />
+          
+            <input type="submit" value="completed" class="orderbtn" />
+          </form>
+
+          <form action="/orderFilter" method="post">
+            <input
+              type="checkbox"
+              name="status"
+              class="mike"
+              value="rejected"
+              checked="true"
+            />
+          
+            <input type="submit" value="rejected" class="dctgbtn" />
+          </form>
+
+          <a href="/admin" class="account"><i class="fas fa-home"></i></a>
+          {% endif %}
+
           <div class="open-menu-btn"><i class="fas fa-bars"></i></div>
         </div>
       </div>

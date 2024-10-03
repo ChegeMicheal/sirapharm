@@ -35,7 +35,7 @@ def create_app():
     app.register_blueprint(views, url_prefix = '/')
     app.register_blueprint(auth, url_prefix = '/')
     
-    from .models import User,Supplier,Stock,Supply,Sale,SaleFetch
+    from .models import User,Supplier,Stock,Supply,Sale,SaleFetch,Order
     
     create_database(app)
     

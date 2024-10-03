@@ -1,0 +1,57 @@
+{% extends "base.html" %} { % block title % }
+<title>stock</title>
+{ % endblock title % } {% block content %}
+<!-- Stock Management -->
+<section id="stock" class="section">
+  <h2 style="text-align: center">ITEMS IN CART</h2>
+  <br />
+  <div class="table-wrapper">
+    <div>
+      <p>ORDER NUMBER: <b>SP00{{ order_id }}</b></p>
+      <p>ORDER DATE: <b>{{ date_submitted }}</b></p>
+    </div>
+
+    <table class="table">
+      <thead>
+        <th>#</th>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </thead>
+
+      <tbody>
+        {% for i in range(orderDetails|length) %}
+        <tr>
+          <td>{{ i+1 }}</td>
+          {% set filename = orderDetails[i][4] %}
+          <td>
+            <img
+              src="{{ url_for('static', filename=filename) }}"
+              alt=""
+              class="cartImage"
+            />
+          </td>
+
+          <td>{{ orderDetails[i][0] }}</td>
+          <td>{{ orderDetails[i][5] }}</td>
+          <td>{{ orderDetails[i][1] }}</td>
+          {% set total =
+          ((orderDetails[i][2]|length)*(orderDetails[i][6]|length)) %}
+          <td>{{ total }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><b>TOTAL:</b></td>
+          <td><b>KSH {{ totalPrice }}</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock content %}

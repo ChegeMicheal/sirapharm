@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique = True, nullable=False)
     password = db.Column(db.String(1000))
     carts = db.relationship('Cart', backref='cart')
+    orders = db.relationship('Order', backref='order')
     
 
 class Supplier(db.Model):
@@ -70,9 +71,25 @@ class SaleFetch(db.Model):
 class Cart(db.Model):
     id= db.Column(db.Integer, primary_key = True)
     productName = db.Column(db.String(150), nullable=False)
+    productPrice= db.Column(db.Integer, nullable=False)
+    priceTally = db.Column(db.String(10000), nullable=False)
     imageFileName = db.Column(db.String(150))
     quantity= db.Column(db.Integer, nullable=False)    
     itemTally = db.Column(db.String(1000), nullable=False)
-    paymentMode = db.Column(db.String(1000))
+    status = db.Column(db.String(1000), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    orderNumber = db.Column(db.Integer, db.ForeignKey('order.id'))
+    
+    
+class Order(db.Model):
+    id= db.Column(db.Integer, primary_key = True)
+    customerName = db.Column(db.String(150))
+    ItemsCount= db.Column(db.Integer, nullable=False)
+    email = db.Column(db.String(10000))
+    paymentMode = db.Column(db.String(1000))
+    destination = db.Column(db.String(1000))
+    status = db.Column(db.String(1000), nullable=False)
+    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    orderNos = db.relationship('Cart', backref='orderNo')
     

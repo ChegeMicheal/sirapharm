@@ -1,0 +1,75 @@
+{% extends "base.html" %} { % block title % }
+<title>stock</title>
+{ % endblock title % } {% block content %}
+<!-- Stock Management -->
+<section id="stock" class="section">
+  <h2 style="text-align: center">ITEMS IN CART</h2>
+  <br />
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+        <th>OrderNo</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>No. of Items</th>
+        <th>Mode of Payment</th>
+        <th>Status</th>
+        <th>Order Date</th>
+        <th>Action</th>
+      </thead>
+
+      <tbody>
+        {% for i in range(orders|length) %}
+        <tr>
+          <td>SP00{{ orders[i][6] }}</td>
+          <td>{{ orders[i][0] }}</td>
+          <td>{{ orders[i][1] }}</td>
+          <td>{{ orders[i][2] }}</td>
+          <td>{{ orders[i][3] }}</td>
+          <td
+            {%
+            if
+            orders[i][4]=="completed"
+            %}
+            style="color: green"
+            {%
+            elif
+            orders[i][4]=="rejected"
+            %}
+            style="color: red"
+            {%
+            endif
+            %}
+          >
+            {{ orders[i][4] }}
+          </td>
+          <td>{{ orders[i][5] }}</td>
+          <td>
+            <div class="mikeBtns">
+              <form action="/orderDetails" method="post">
+                <input
+                  type="checkbox"
+                  name="order_id"
+                  class="mike"
+                  value="{{ orders[i][6] }}"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  name="date_submitted"
+                  class="mike"
+                  value="{{ orders[i][5] }}"
+                  checked="true"
+                />
+
+                <input type="submit" value="view details" class="orderbtn" />
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock content %}

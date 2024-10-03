@@ -1,5 +1,5 @@
 from flask import Blueprint, Flask, render_template, request, flash, redirect, url_for
-from .models import Supplier,User,Stock,Supply,Sale,SaleFetch,Cart
+from .models import Supplier,User,Stock,Supply,Sale,SaleFetch,Cart,Order
 import os
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -128,30 +128,16 @@ def login():
             if check_password_hash(user.password,password):
                 flash('logged in successfully', category= 'success')
                 login_user(user, remember=True)
-                return redirect(url_for('auth.homepage'))
+                if user.id == 1:
+                    return redirect(url_for('auth.admin'))
+                else:
+                    return redirect(url_for('auth.homepage'))
             else:
                 flash('incorrect password, try again', category = 'error')
                 
     
     return render_template("login.html", user = current_user)
 
-@auth.route('/userLogin', methods=['GET', 'POST'])
-def userLogin():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        
-        user = User.query.filter_by(email = email).first()
-        if user:
-            if check_password_hash(user.password,password):
-                flash('logged in successfully', category= 'success')
-                login_user(user, remember=True)
-                return redirect(url_for('auth.dashboard'))
-            else:
-                flash('incorrect password, try again', category = 'error')
-                
-    
-    return render_template("userLogin.html", user = current_user)
 
 @auth.route('/logout')
 @login_required
@@ -742,9 +728,10 @@ def upload_image():
 def add2cart():
     if request.method == 'POST':
         productName = request.form.get('productName')
+        productPrice = request.form.get('productPrice',type=int)
         imageFileName = request.form.get('imageFileName')
         
-        item = Cart.query.filter_by(productName=productName).first()
+        item = Cart.query.filter_by(productName=productName, status='cart', user_id=current_user.id).first()
         if item:
             flash('item already exists', category = 'error')
             return redirect(url_for('auth.cart'))
@@ -754,16 +741,21 @@ def add2cart():
         
         
             itemTally=''
+            priceTally=''
             user_id = current_user.id
             for i in range(quantity):
              itemTally+='|'
-            
+            for i in range(productPrice):
+                 priceTally+='|'
             # Add cartItem to the database
             new_cart = Cart(
              productName=productName,
+             productPrice=productPrice,
+             priceTally=priceTally,
              imageFileName=imageFileName,
              quantity = quantity,
              itemTally=itemTally,
+             status='cart',
              user_id = user_id
          )
             db.session.add(new_cart)
@@ -775,40 +767,8 @@ def add2cart():
 
 @auth.route('/cart', methods=['GET', 'POST'])
 @login_required
-def cart():
-    user_id = current_user.id
-    
-    list = [user_id]
-    
-    def getCartItems():
-        # Connect to the database
-        mydb = mysql.connector.connect(
-            host=host,
-            user=user,
-            passwd=passwd,
-            database=database
-            )
-
-        mycursor = mydb.cursor()
-
-        # Query the database with parameters as a tuple
-        query = "SELECT productName, quantity, itemTally, id, imageFileName FROM cart WHERE user_id=%s"
-        mycursor.execute(query, (list[0],))
-
-        # Fetch and print the results
-        DBData = mycursor.fetchall()  # Use fetchone() for a single result
-        print("Query:", query)
-        print("Parameters:", (list[0],))
-        print("DBData:", DBData)
-
-        # Close the cursor and connection
-        mycursor.close()
-        mydb.close()
-
-        return DBData
-    
-    cartItems = getCartItems()
-    return render_template('cartItems.html', cartItems=cartItems, cart=ItemsIncart(), user=current_user)
+def cart():    
+    return render_template('cartItems.html', cartItems=getCartItems(), cart=ItemsIncart(), totalPrice = cartTotal(), user=current_user)
 
 @auth.route('/deleteCart', methods=['GET', 'POST'])
 def deleteCart():
@@ -890,6 +850,260 @@ def updateCart():
     updateCart()
     return redirect(url_for('auth.cart'))
 
+
+import threading
+
+def orderCart(order_num, cart_item_id):
+    try:
+        with mysql.connector.connect(
+            host=host,
+            user=user,
+            passwd=passwd,
+            database=database
+        ) as mydb:
+            with mydb.cursor() as mycursor:
+                # Correctly format the query with placeholders
+                query = "UPDATE cart SET status='order', orderNumber=%s WHERE id=%s"
+                mycursor.execute(query, (order_num, cart_item_id))
+            mydb.commit()  # Commit the changes
+    except mysql.connector.Error as err:
+        print(f"Error updating cart: {err}")
+
+def updateCartItems(orderNum, cartItems):
+    for item in cartItems:
+        cart_item_id = item[3]  # Assuming item[3] contains the ID
+        orderCart(orderNum, cart_item_id)  # Update the cart item status
+
+@auth.route('/updateOrder', methods=['GET', 'POST'])
+@login_required
+def updateOrder():
+    if request.method == 'POST':
+        id = request.form.get('order_id')
+        status = request.form.get('status')
+        list = [id]
+        
+        #define getProductName method
+        def update_order():
+            # Connect to the database
+            mydb = mysql.connector.connect(
+                host=host,
+                user=user,
+                passwd=passwd,
+                database=database
+                )
+
+            mycursor = mydb.cursor()
+
+            # Correctly format the query with placeholders
+            query = "UPDATE `order` SET status=%s WHERE id=%s"
+            mycursor.execute(query, (status, list[0]))
+            
+            mydb.commit()  # Don't forget to commit the changes
+            mycursor.close()
+            mydb.close()
+    update_order()
+    return render_template('admin.html', orders=getAllOrders(), user=current_user)
+
+@auth.route('/placeOrder', methods=['GET', 'POST'])
+@login_required
+def placeOrder():
+    cartItems = getCartItems()
+    orderNum = orderNumber() 
+    ItemsCount = ItemsIncart()
+    
+    if request.method == 'POST':
+        customerName = request.form.get('customerName')
+        email = request.form.get('email')
+        paymentMode = request.form.get('paymentMode')
+        destination = request.form.get('destination')
+
+        new_order = Order(
+            ItemsCount=ItemsCount,
+            destination=destination,
+            customerName=customerName,
+            paymentMode=paymentMode,
+            email=email,
+            status='pending',
+            user_id=current_user.id
+        )
+        
+        db.session.add(new_order)
+        db.session.commit()
+
+        # Start a new thread to update the cart items after response
+        threading.Thread(target=updateCartItems, args=(orderNum, cartItems)).start()
+        return redirect(url_for('auth.homepage'))
+
+    # Handle GET request
+    return render_template('placeOrder.html', totalPrice=cartTotal(), cartItems=getCartItems(), cart=0, user=current_user)
+
+@auth.route('/orders', methods=['GET', 'POST'])
+@login_required
+def orders():
+    
+    return render_template('orders.html', orders=getOrders(), cart=ItemsIncart(), user=current_user)
+
+@auth.route('/orderDetails', methods=['GET', 'POST'])
+@login_required
+def orderDetails():
+    filename=''
+    if request.method == 'POST':
+        id = request.form.get('order_id')
+        date_submitted = request.form.get('date_submitted')
+        
+        def getOrderItems():
+            user_id = current_user.id
+            list = [user_id]
+            list1 = [id]
+            # Connect to the database
+            mydb = mysql.connector.connect(
+                host=host,
+                user=user,
+                passwd=passwd,
+                database=database
+                )
+
+            mycursor = mydb.cursor()
+
+            # Query the database with parameters as a tuple
+            query = "SELECT productName, quantity, itemTally, id, imageFileName, productPrice, priceTally FROM cart WHERE orderNumber=%s and user_id=%s"
+            mycursor.execute(query, (list1[0],list[0]))
+
+            # Fetch and print the results
+            DBData = mycursor.fetchall()  # Use fetchone() for a single result
+            print("Query:", query)
+            print("DBData:", DBData)
+
+            # Close the cursor and connection
+            mycursor.close()
+            mydb.close()
+
+            return DBData
+        
+        orderDetails = getOrderItems()
+        totalPrice = 0
+        for i in range (len(orderDetails)):
+            totalPrice = totalPrice + ((len(orderDetails[i][2]))*(len(orderDetails[i][6])))
+      
+    return render_template('orderDetails.html', orderDetails=orderDetails, filename=filename, order_id=id, date_submitted=date_submitted, totalPrice=totalPrice, cart=ItemsIncart(), user=current_user)
+
+
+@auth.route('/admin', methods=['GET', 'POST'])
+@login_required
+def admin():
+    if current_user.id != 1:
+        return redirect(url_for('auth.homepage'))
+    return render_template('admin.html', orders=getAllOrders(), user=current_user)
+
+@auth.route('/orderFilter', methods=['GET', 'POST'])
+@login_required
+def orderFilter():
+    if request.method == 'POST':
+        status = request.form.get('status')
+        
+        def getFilteredOrders():
+            list = [status]
+            # Connect to the database
+            mydb = mysql.connector.connect(
+                host=host,
+                user=user,
+                passwd=passwd,
+                database=database
+                )
+
+            mycursor = mydb.cursor()
+
+            # Query the database with parameters as a tuple
+            query = "SELECT customerName, email, ItemsCount, paymentMode, status, date_submitted,  id FROM `order` WHERE status=%s"
+            mycursor.execute(query, (list[0],))
+
+            # Fetch and print the results
+            DBData = mycursor.fetchall()  # Use fetchone() for a single result
+            print("Query:", query)
+            print("Parameters:", (list[0],))
+            ("DBData:", DBData)
+
+            # Close the cursor and connection
+            mycursor.close()
+            mydb.close()
+
+            return DBData
+        orders = getFilteredOrders()
+        return render_template('admin.html', orders=orders, user=current_user)
+
+@auth.route('/adminOrderDetails', methods=['GET', 'POST'])
+@login_required
+def adminOrderDetails():
+    filename=''
+    if request.method == 'POST':
+        id = request.form.get('order_id')
+        date_submitted = request.form.get('date_submitted')
+        
+        def getOrderItems():
+            list1 = [id]
+            # Connect to the database
+            mydb = mysql.connector.connect(
+                host=host,
+                user=user,
+                passwd=passwd,
+                database=database
+                )
+
+            mycursor = mydb.cursor()
+
+            # Query the database with parameters as a tuple
+            query = "SELECT productName, quantity, itemTally, id, imageFileName, productPrice, priceTally FROM cart WHERE orderNumber=%s"
+            mycursor.execute(query, (list1[0],))
+
+            # Fetch and print the results
+            DBData = mycursor.fetchall()  # Use fetchone() for a single result
+            print("Query:", query)
+            print("DBData:", DBData)
+
+            # Close the cursor and connection
+            mycursor.close()
+            mydb.close()
+
+            return DBData
+        
+        orderDetails = getOrderItems()
+        totalPrice = 0
+        for i in range (len(orderDetails)):
+            totalPrice = totalPrice + ((len(orderDetails[i][2]))*(len(orderDetails[i][6])))
+      
+    return render_template('adminOrderDetails.html', orderDetails=orderDetails, filename=filename, order_id=id, date_submitted=date_submitted, totalPrice=totalPrice, cart=ItemsIncart(), user=current_user)
+
+
+
+def getCartItems():
+    user_id = current_user.id
+    list = [user_id]
+    # Connect to the database
+    mydb = mysql.connector.connect(
+        host=host,
+        user=user,
+        passwd=passwd,
+        database=database
+        )
+
+    mycursor = mydb.cursor()
+
+    # Query the database with parameters as a tuple
+    query = "SELECT productName, quantity, itemTally, id, imageFileName, productPrice, priceTally FROM cart WHERE user_id=%s and status='cart'"
+    mycursor.execute(query, (list[0],))
+
+    # Fetch and print the results
+    DBData = mycursor.fetchall()  # Use fetchone() for a single result
+    print("Query:", query)
+    print("Parameters:", (list[0],))
+    print("DBData:", DBData)
+
+    # Close the cursor and connection
+    mycursor.close()
+    mydb.close()
+
+    return DBData
+
 def ItemsIncart():
     try:
         user_id = current_user.id
@@ -910,7 +1124,7 @@ def ItemsIncart():
         mycursor = mydb.cursor()
 
         # Query the database with parameters as a tuple
-        query = "SELECT productName, itemTally FROM cart WHERE user_id=%s"
+        query = "SELECT productName, itemTally FROM cart WHERE user_id=%s and status='cart'"
         mycursor.execute(query, (list[0],))
 
         # Fetch and print the results
@@ -929,6 +1143,133 @@ def ItemsIncart():
     cart = len(cartItems)
     return cart
 
+def cartTotal():
+    try:
+        user_id = current_user.id
+    except Exception as e:
+        user_id = -1
+    
+    list = [user_id]
+    
+    def cartPrices():
+        # Connect to the database
+        mydb = mysql.connector.connect(
+            host=host,
+            user=user,
+            passwd=passwd,
+            database=database
+            )
+
+        mycursor = mydb.cursor()
+
+        # Query the database with parameters as a tuple
+        query = "SELECT priceTally, itemTally FROM cart WHERE user_id=%s and status='cart'"
+        mycursor.execute(query, (list[0],))
+        
+
+        # Fetch and print the results
+        DBData = mycursor.fetchall()  # Use fetchone() for a single result
+        print("Query:", query)
+        print("Parameters:", (list[0],))
+        print("DBData:", DBData)
+
+        # Close the cursor and connection
+        mycursor.close()
+        mydb.close()
+
+        return DBData
+    
+    total = cartPrices()
+    totalPrice = 0
+    for i in range (len(total)):
+        totalPrice = totalPrice + ((len(total[i][0]))*(len(total[i][1])))    
+    return totalPrice
+
+def orderNumber():
+    list = ['try']
+    def orders():
+        # Connect to the database
+        mydb = mysql.connector.connect(
+            host=host,
+            user=user,
+            passwd=passwd,
+            database=database
+        )
+
+        mycursor = mydb.cursor()
+
+        # Query the database with parameters as a tuple
+        mycursor.execute("SELECT id FROM `order`")
+
+        # Fetch and print the results
+        DBData = mycursor.fetchall()  # Use fetchone() for a single result
+        print("DBData:", DBData)
+
+        # Close the cursor and connection
+        mycursor.close()
+        mydb.close()
+
+        return DBData
+    
+    orderNo = orders()
+    orderNum = len(orderNo) + 1    
+    
+    return orderNum
+
+def getOrders():
+    user_id = current_user.id
+    list = [user_id]
+    # Connect to the database
+    mydb = mysql.connector.connect(
+        host=host,
+        user=user,
+        passwd=passwd,
+        database=database
+        )
+
+    mycursor = mydb.cursor()
+
+    # Query the database with parameters as a tuple
+    query = "SELECT customerName, email, ItemsCount, paymentMode, status, date_submitted,  id FROM `order` WHERE user_id=%s"
+    mycursor.execute(query, (list[0],))
+
+    # Fetch and print the results
+    DBData = mycursor.fetchall()  # Use fetchone() for a single result
+    print("Query:", query)
+    print("Parameters:", (list[0],))
+    print("DBData:", DBData)
+
+    # Close the cursor and connection
+    mycursor.close()
+    mydb.close()
+
+    return DBData
+
+def getAllOrders():
+    # Connect to the database
+    mydb = mysql.connector.connect(
+        host=host,
+        user=user,
+        passwd=passwd,
+        database=database
+        )
+
+    mycursor = mydb.cursor()
+
+    # Query the database with parameters as a tuple
+    query = "SELECT customerName, email, ItemsCount, paymentMode, status, date_submitted,  id FROM `order`"
+    mycursor.execute(query)
+
+    # Fetch and print the results
+    DBData = mycursor.fetchall()  # Use fetchone() for a single result
+    print("Query:", query)
+    print("DBData:", DBData)
+
+    # Close the cursor and connection
+    mycursor.close()
+    mydb.close()
+
+    return DBData
 
 @auth.route('/shop', methods=['GET', 'POST'])
 def shop():
