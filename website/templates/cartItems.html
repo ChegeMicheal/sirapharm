@@ -12,14 +12,16 @@
       <table class="table">
         <thead>
           <th>#</th>
-          <th>image</th>
+          <th>Image</th>
           <th>Product Name</th>
-          <th>quantity</th>
-          <th>action</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
         </thead>
-
-        {% for i in range(cartItems|length) %}
+       
         <tbody>
+          {% for i in range(cartItems|length) %}
           <tr>
             <td>{{ i+1 }}</td>
             {% set filename = cartItems[i][4] %}
@@ -29,8 +31,12 @@
               class="cartImage"
             />
             </td>
+
             <td>{{ cartItems[i][0] }}</td>
+            <td>{{ cartItems[i][5] }}</td>
             <td>{{ cartItems[i][1] }}</td>
+            {% set total = ((cartItems[i][2]|length)*(cartItems[i][6]|length)) %}
+            <td>{{ total }}</td> 
             <td>
               <div class="mikeBtns">
               <form action="/editCart" method="post">
@@ -50,11 +56,26 @@
             </div>
             </td>
           </tr>
+          {% endfor %}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>TOTAL:</b></td> 
+            <td><b>KSH {{ totalPrice }}</b></td>
+            <td></td>
+        </tr>
         </tbody>
-        {% endfor %}
+
       </table>
     </div>
-  </form>
+    {% if cart > 0 %}
+    <br>
+<div class="checkoutb">
+<a href="/placeOrder" class="checkoutbtn">proceed to checkout</a>
+</div>
+{% endif %}
 </section>
 {% endblock content %}
 

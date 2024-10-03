@@ -1,8 +1,9 @@
-{% extends "base.html" %} {% block title %}
-<title>user login</title>
+{% extends "dashboard.html" %} {% block title %}
+<title>login</title>
 {% endblock title %} {% block content %}
-<form action="/userLogin" class="login" method="post">
+<form action="/adminLogin" class="login" method="post">
   <div class="login-content">
+    <h3>ADMIN LOGIN</h3>
     <label for="email address" class="login-label-dashboard">Email address</label>
     <input
       class="login-textbox"

@@ -141,14 +141,33 @@ body {
   color: #ffffff;
 }
 
+.orderbtn {
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid #2adb2a;
+  color: #2adb2a;
+  height: 25px;
+  width: auto;
+  border-radius: 0.2rem;
+  transition: all 0.4s var(--transition);
+}
+
+.orderbtn:hover {
+  background-color: #2adb2a;
+  color: #ffffff;
+}
+
+
 .dctgbtn {
   cursor: pointer;
   background-color: transparent;
   border: 2px solid red;
   color: red;
   height: 25px;
-  width: 50px;
+  width: auto;
   border-radius: 0.2rem;
+  margin-right: 10px;
   transition: all 0.4s var(--transition);
 }
 
@@ -156,6 +175,24 @@ body {
   background-color: red;
   color: #ffffff;
 }
+
+.pbtn {
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  height: 25px;
+  width: auto;
+  border-radius: 0.2rem;
+  margin-right: 10px;
+  transition: all 0.4s var(--transition);
+}
+
+.pbtn:hover {
+  background-color: black;
+  color: #ffffff;
+}
+
 .cartImage {
   height: 50px;
   width: 50px;
@@ -170,6 +207,31 @@ body {
   width: 80%;
 }
 
+.checkoutb{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkoutb a{
+  text-decoration: none;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+}
+.checkoutbtn{
+  height: 40px;
+  width: 200px;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+.checkoutbtn:hover{
+  background-color: darkblue;
+  cursor: pointer;
+}
 .editCart {
   margin-top: 50px;
   display: flex;
