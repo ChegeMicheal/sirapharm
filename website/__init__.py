@@ -52,11 +52,11 @@ def create_app():
 def create_database(app):
     if not path.exists('website/' + DB_NAME):
         with app.app_context():
-            #db.create_all()
+            db.create_all()
             print('database created!')
             
             #database_fatal_error ...(remove this after deployment)
-            db.drop_all()
+            #db.drop_all()
             #print('database dropped!')
 
         
