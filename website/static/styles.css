@@ -199,7 +199,7 @@ td[data-lable]::before{
   border: 2px solid #2adb2a;
   color: #2adb2a;
   height: 25px;
-  width: 50px;
+  width: auto;
   border-radius: 0.2rem;
   transition: all 0.4s var(--transition);
 }
