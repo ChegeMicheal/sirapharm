@@ -7,11 +7,11 @@
 {% block content %}
 <!-- Stock Management -->
 <section id="stock" class="section">
-  <h2 style="text-align: center;">ITEMS IN CART</h2><br>   
+  <h2 style="text-align: center;">MY CART</h2>
     <div class="table-wrapper">
       <table class="table">
         <thead>
-          <th>#</th>
+          <th>Id</th>
           <th>Image</th>
           <th>Product Name</th>
           <th>Unit Price</th>
@@ -23,21 +23,21 @@
         <tbody>
           {% for i in range(cartItems|length) %}
           <tr>
-            <td>{{ i+1 }}</td>
+            <td data-lable="Id">{{ i+1 }}</td>
             {% set filename = cartItems[i][4] %}
-            <td>          <img
+            <td data-lable="Image">          <img
               src="{{ url_for('static', filename=filename) }}"
               alt=""
               class="cartImage"
             />
             </td>
 
-            <td>{{ cartItems[i][0] }}</td>
-            <td>{{ cartItems[i][5] }}</td>
-            <td>{{ cartItems[i][1] }}</td>
+            <td data-lable="Product Name" >{{ cartItems[i][0] }}</td>
+            <td data-lable="Unit Price" >{{ cartItems[i][5] }}</td>
+            <td data-lable="Quantity" >{{ cartItems[i][1] }}</td>
             {% set total = ((cartItems[i][2]|length)*(cartItems[i][6]|length)) %}
-            <td>{{ total }}</td> 
-            <td>
+            <td data-lable="Total" >{{ total }}</td> 
+            <td data-lable="Action">
               <div class="mikeBtns">
               <form action="/editCart" method="post">
                 <input type="checkbox" name="product_id" class="mike" value="{{ cartItems[i][3] }}" checked="true">

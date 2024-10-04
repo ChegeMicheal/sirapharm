@@ -69,6 +69,39 @@ body {
   scroll-behavior: smooth;
 }
 
+.udropdown{
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  list-style-type: none;
+  margin: 0;
+  width: auto;
+  white-space: nowrap;
+  overflow: visible;
+  z-index: 1000;
+}
+.udropdown li {
+  padding: 8px 12px;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+}
+.udropdown li:hover{
+  background-color: #f1f1f1;
+}
+.account:hover .udropdown {
+  display: block;
+  right: 0;
+  left: auto;
+  max-width: calc(100vw - 20px);
+  max-height: 200px;
+  overflow: auto;
+}
+
 /* mike */
 .pos {
   text-decoration: none;
@@ -92,14 +125,19 @@ body {
 
 .table-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .table {
   margin-top: 50px;
   position: relative;
-  width: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 100%;
   border: 1px solid #ddd;
   border-collapse: collapse;
 }
@@ -123,7 +161,37 @@ body {
 .table tbody tr:nth-child(even) {
   background-color: #f5f5f5;
 }
+td[data-lable]::before{
+  font-weight: var(--weight-700);
+  color: var(--first-color);
+}
 
+@media (max-width: 768px){
+  .table-wrapper{
+    width: 100%;
+  }
+
+  .table-wrapper thead{
+    display: none;
+  }
+  .table-wrapper tr,
+  .table-wrapper td{
+    display: block;
+    width: 100%;
+  }
+  .table-wrapper tbody tr td{
+    text-align: right;
+    position: relative;
+  }
+  .table-wrapper td::before{
+    content: attr(data-lable);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    text-align: left;
+    padding-left: 1.2rem;
+  }
+}
 .ctbtn {
   margin-right: 10px;
   cursor: pointer;
@@ -176,6 +244,14 @@ body {
   color: #ffffff;
 }
 
+.pbtn,
+.orderbtn,
+.dctgbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
 .pbtn {
   cursor: pointer;
   background-color: transparent;
@@ -263,6 +339,13 @@ button:hover {
 .mikeBtns {
   display: inline-flex;
 }
+.mikeBtns form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 20px;
+}
 
 .mike {
   display: none;
@@ -283,7 +366,7 @@ button:hover {
 
 /* Header Styles */
 .header {
-  position: fixed;
+  position: sticky;
   left: 0;
   top: 0;
   width: 100%;
@@ -633,7 +716,6 @@ button:hover {
 .carousel-container {
   position: relative;
   width: 100%;
-  margin-top: 175px;
 }
 .carousel-container .carousel .carol {
   margin: 0 15px;
@@ -696,6 +778,9 @@ button:hover {
 }
 
 .ctgbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 25%;
   cursor: pointer;
   background-color: transparent;
@@ -861,10 +946,6 @@ button:hover {
 /* Responsive Design */
 
 @media screen and (max-width: 600px) {
-  .carousel-container {
-    margin-top: 175px;
-  }
-
   .search-bar {
     width: 100%;
     margin: 0 5%;
@@ -887,7 +968,6 @@ button:hover {
     position: relative;
     height: auto;
     width: 100%;
-    margin-top: 145px;
   }
 
   .carousel-container .carousel img {
