@@ -10,8 +10,7 @@ import mysql.connector
 from random import randint
 
 from flask_mysqldb import MySQL
-import smtplib
-from email.message import EmailMessage
+
 
 auth = Blueprint('auth', __name__)
 
@@ -33,89 +32,21 @@ elif programDatabase == 3:
     passwd="MYSQLpassword2024"
     database="user"
 
+import smtplib
 
-from flask import Flask
-from flask_mail import Mail, Message
-
-app = Flask(__name__)
-
-# Configure mail settings
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'terryrawlings50@gmail.com'  # Your email
-app.config['MAIL_PASSWORD'] = 'wvqoffdittvrchet'  # Your app password or regular password
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-
-mail = Mail(app)
-
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
-
-@auth.route('/send_mail')
-def send_mail():
-    try:
-        mail_message = Message(
-            subject='Hello from Flask!',
-            sender='chegemichael003@gmail.com',
-            recipients=['hashimraj02@gmail.com']
-        )
-        mail_message.body = 'This is a test email.'
-        mail.send(mail_message)
-        return 'Mail sent!'
-    except Exception as e:
-        app.logger.error(f'Error: {e}')
-        return f'An error occurred: {e}'
-    
-
-@auth.route("/sendEmail")
-def send_email_to_multiple_recipients():
-    # List of recipients
-    recipients = ["hashimraj02@gmail.com", "terryrawlings50@gmail.com", "chegemichael003@gmail.com"]
-
-    # Creating the message
-    msg = Message("Email to Multiple Recipients",
-                  sender="chegemichael003@gmail.com",
-                  recipients=recipients)
-    msg.body = "mzee, twende kwa johnte."
-
-    
-    # Sending the email
-    mail.send(msg)
-    
-    return render_template('homepage.html')
-
-@auth.route('/verifyEmail', methods=['GET', 'POST'])
-def verifyEmail():
+@auth.route('/sendMail', methods=['GET','POST'])
+def sendMail():
     if request.method == 'POST':
-        email = request.form.get('email')
+        email = request.form.get("email")
+    
+        message = "sirapharm mailmsystem testing!"
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login("chegemichael003@gmail.com", "enter password here")
+        server.sendmail("chegemichael002@gmail.com", email, message)
         
-        def email_alert(subject, body, to):
-            msg = EmailMessage()
-            msg.set_content(body)
-            msg['subject'] = subject
-            msg['to'] = to
+    return render_template('mail.html', user=current_user)
     
-            user = "chegemichael@gmail.com"
-            msg['from'] = user
-            password=""
-    
-            server = smtplib.SMTP("smtp.gmail.com", 587)
-            server.sratrttls()
-            server.login(user, password)
-            server.send_message(msg)
-    
-            server.quit()
-            
-        def codeGenerator():
-            code = randint(100000,999999)
-            return code
-        
-        code = codeGenerator()
-        email_alert('EMAIL VERIFICATION CODE.', 'YOUR VERICATION CODE IS {{ code }}', email)#send email
-        return code
-    return render_template('verifyEmail.html', user=current_user)
     
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -135,9 +66,7 @@ def login():
             else:
                 flash('incorrect password, try again', category = 'error')
                 
-    
     return render_template("login.html", user = current_user)
-
 
 @auth.route('/logout')
 @login_required
