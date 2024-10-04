@@ -3,8 +3,7 @@
 { % endblock title % } {% block content %}
 <!-- Stock Management -->
 <section id="stock" class="section">
-  <h2 style="text-align: center">ITEMS IN CART</h2>
-  <br />
+  <h2 style="text-align: center">ORDERS</h2>
   <div class="table-wrapper">
     <table class="table">
       <thead>
@@ -21,12 +20,12 @@
       <tbody>
         {% for i in range(orders|length) %}
         <tr>
-          <td>SP00{{ orders[i][6] }}</td>
-          <td>{{ orders[i][0] }}</td>
-          <td>{{ orders[i][1] }}</td>
-          <td>{{ orders[i][2] }}</td>
-          <td>{{ orders[i][3] }}</td>
-          <td
+          <td data-lable="Order No." >SP00{{ orders[i][6] }}</td>
+          <td data-lable="Name" >{{ orders[i][0] }}</td>
+          <td data-lable="Email" >{{ orders[i][1] }}</td>
+          <td data-lable="No. of Items" >{{ orders[i][2] }}</td>
+          <td data-lable="Mode of Payment" >{{ orders[i][3] }}</td>
+          <td data-lable="Status"
             {%
             if
             orders[i][4]=="completed"
@@ -43,8 +42,8 @@
           >
             {{ orders[i][4] }}
           </td>
-          <td>{{ orders[i][5] }}</td>
-          <td>
+          <td data-lable="Order Date" >{{ orders[i][5] }}</td>
+          <td data-lable="Action" >
             <div class="mikeBtns">
               <form action="/orderDetails" method="post">
                 <input

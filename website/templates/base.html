@@ -99,7 +99,16 @@
         <div class="contact-info">
           {% if user.id != 1 %}
           <a href="/homepage" class="account"><i class="fas fa-home"></i></a>
-          <a href="/orders" class="account"><i class="fas fa-user"></i></a>
+          <a href="/orders" class="account"><i class="fas fa-user">
+            <ul class="udropdown">
+              <li>Item one one one one </li>
+              <li>Item two</li>
+              <li>Item three</li>
+              <li>Item four</li>
+            </ul>
+
+
+          </i></a>
           <a href="/cart" class="cart">
             <i class="fas fa-shopping-cart"></i>
             <span class="count">{{ cart }}</span>
