@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Email Verification
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="wrapper">
+        <h1>EMAIL VERIFICATION</h1>
+        <form action="{{ url_for('auth.resend_verification', email=email) }}" method="post">
+            <div class="credentials">
+                <div class="input-container">
+                    <p>We sent a verification link to your inbox. Kindly check your inbox to verify your email address.</p>
+                    <input type="submit" value="Resend link" class="ubutton">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<style>
+   .search-bar,
+   .cart .fa-shopping-cart,
+   .count,
+   .contact-info .open-menu-btn {
+       display: none;
+   } 
+   
+   .icon {
+       position: absolute;
+       left: 10px;
+       top: 38%;
+       transform: translateY(-50%);
+       color: #555;
+   }
+</style>
+
+{% endblock %}

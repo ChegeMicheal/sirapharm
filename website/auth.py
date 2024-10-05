@@ -1,6 +1,7 @@
 from flask import Blueprint, Flask, render_template, request, flash, redirect, url_for
 from .models import Supplier,User,Stock,Supply,Sale,SaleFetch,Cart,Order
 import os
+import uuid
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -14,7 +15,7 @@ from flask_mysqldb import MySQL
 
 auth = Blueprint('auth', __name__)
 
-programDatabase = 2
+programDatabase = 3
 
 if programDatabase == 1:
     host="localhost"
@@ -39,11 +40,11 @@ def sendMail():
     if request.method == 'POST':
         email = request.form.get("email")
     
-        message = "sirapharm mailmsystem testing!"
+        message = "sirapharm mail system testing! do you copy?"
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
-        server.login("chegemichael003@gmail.com", "enter password here")
-        server.sendmail("chegemichael002@gmail.com", email, message)
+        server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
+        server.sendmail("terryrawlings50@gmail.com", email, message)
         
     return render_template('mail.html', user=current_user)
     
@@ -74,6 +75,7 @@ def logout():
     logout_user()
     return redirect(url_for('auth.dashboard'))
 
+
 @auth.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
@@ -84,22 +86,71 @@ def sign_up():
         
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('email already exists', category = 'error')
+            flash('Email already exists', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 4 characters.', category='error')
         elif password1 != password2:
-            flash('password mismatch', category='error')
+            flash('Passwords do not match.', category='error')
         elif len(password1) < 7:
-            flash('password must be atleast 7 characters.', category='error')
+            flash('Password must be at least 7 characters.', category='error')
         else:
-            #add user to database
-            new_user = User(email = email, fullName=fullName, password = generate_password_hash(password1))
+            # Add user to database
+            token = str(uuid.uuid4())
+            new_user = User(email=email, fullName=fullName, password=generate_password_hash(password1), verification_token=token)
             db.session.add(new_user)
             db.session.commit()
-            flash('account created successfully!', category='success')
-            return redirect(url_for('auth.login'))
+
+            send_verification_email(email, token)
+
+            flash('Verification email sent! Please check your inbox.', category='success')
+            flash('Account created successfully!', category='success')
+            return render_template('emailVerification.html', user=current_user, email=email)
         
-    return render_template("signUp.html", user = current_user)
+    return render_template("signUp.html", user=current_user)
+
+@auth.route('/resend_verification/<email>', methods=['GET','POST'])
+def resend_verification(email):
+    user = User.query.filter_by(email=email).first()
+    if user and not user.is_verified:
+        token = str(uuid.uuid4())
+        user.verification_token = token
+        db.session.commit()
+
+        send_verification_email(email, token)
+        
+        flash('Verification email resent! Please check your inbox.', category='success')
+    else:
+        flash('User not found or already verified.', category='error')
+
+    return render_template('emailVerification.html', user=current_user, email=email)
+
+def send_verification_email(email, token):
+    verification_link = url_for('auth.verify_email', token=token, _external=True)
+    subject = "Email Verification"
+    message = f"""Subject: {subject}\n\nPlease verify your email by clicking the following link: {verification_link}"""
+
+    try:
+        # Sending the email
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
+        server.sendmail("terryrawlings50@gmail.com", email, message)
+        server.quit()
+    except Exception as e:
+        print(f'An error occurred while sending the email: {e}')  # Handle error appropriately
+
+
+@auth.route('/verify/<token>')
+def verify_email(token):
+    user = User.query.filter_by(verification_token=token).first()
+    if user:
+        user.is_verified = True
+        db.session.commit()
+        flash('Email verified successfully!')
+    else:
+        flash('Verification link is invalid or expired.')
+
+    return redirect(url_for('auth.login'))
 
 @auth.route('/dashboard', methods=['GET', 'POST'])
 @login_required
