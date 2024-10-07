@@ -1,0 +1,16 @@
+subject = f"Order Confirmation - Your Pharmacy Name"
+    email_body = f"""
+    Dear {customer_name},
+
+    Thank you for your order! We’re happy to confirm that your purchase has been successfully placed.
+
+    Order Number: {order_number}
+    Total Amount: {total_amount}
+    Estimated Delivery: {estimated_delivery_date}
+
+    If you have any questions, feel free to contact us.
+
+    Best regards,
+    Your Pharmacy Name
+    Your Contact Information
+    """

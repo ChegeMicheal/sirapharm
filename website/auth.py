@@ -1,7 +1,6 @@
 from flask import Blueprint, Flask, render_template, request, flash, redirect, url_for
 from .models import Supplier,User,Stock,Supply,Sale,SaleFetch,Cart,Order
 import os
-import uuid
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -34,19 +33,53 @@ elif programDatabase == 3:
     database="user"
 
 import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-@auth.route('/sendMail', methods=['GET','POST'])
+@auth.route('/sendMail', methods=['GET', 'POST'])
 def sendMail():
     if request.method == 'POST':
         email = request.form.get("email")
-    
-        message = "sirapharm mail system testing! do you copy?"
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.starttls()
-        server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
-        server.sendmail("terryrawlings50@gmail.com", email, message)
-        
+
+        # Email details
+        subject = "Order Confirmation - SIRA PHARMACY"
+        body = f"""
+        Dear anonymous,
+
+        Thank you for your order! We’re happy to confirm that your purchase has been successfully placed.
+
+        Order Number: SP0099
+        Total Amount: Ksh 1M
+
+        Track your order status at: https://www.sirapharmacy.com
+        If you have any questions, feel free to contact us.
+
+        Best regards,
+        SIRA PHARMACY
+        """
+
+        # Create a multipart email
+        msg = MIMEMultipart()
+        msg['From'] = "chegemichael003@gmail.com"
+        msg['To'] = email
+        msg['Subject'] = subject
+
+        # Attach the body with the msg instance
+        msg.attach(MIMEText(body, 'plain'))
+
+        try:
+            # Sending the email
+            server = smtplib.SMTP("smtp.gmail.com", 587)
+            server.starttls()
+            server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
+            server.sendmail(msg['From'], msg['To'], msg.as_string())
+            server.quit()
+            print("Email sent successfully!")
+        except Exception as e:
+            print(f'An error occurred while sending the email: {e}')  # Handle error appropriately
+
     return render_template('mail.html', user=current_user)
+
     
     
 @auth.route('/login', methods=['GET', 'POST'])
@@ -75,7 +108,6 @@ def logout():
     logout_user()
     return redirect(url_for('auth.dashboard'))
 
-
 @auth.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
@@ -86,71 +118,22 @@ def sign_up():
         
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('Email already exists', category='error')
+            flash('email already exists', category = 'error')
         elif len(email) < 4:
             flash('Email must be greater than 4 characters.', category='error')
         elif password1 != password2:
-            flash('Passwords do not match.', category='error')
+            flash('password mismatch', category='error')
         elif len(password1) < 7:
-            flash('Password must be at least 7 characters.', category='error')
+            flash('password must be atleast 7 characters.', category='error')
         else:
-            # Add user to database
-            token = str(uuid.uuid4())
-            new_user = User(email=email, fullName=fullName, password=generate_password_hash(password1), verification_token=token)
+            #add user to database
+            new_user = User(email = email, fullName=fullName, password = generate_password_hash(password1))
             db.session.add(new_user)
             db.session.commit()
-
-            send_verification_email(email, token)
-
-            flash('Verification email sent! Please check your inbox.', category='success')
-            flash('Account created successfully!', category='success')
-            return render_template('emailVerification.html', user=current_user, email=email)
+            flash('account created successfully!', category='success')
+            return redirect(url_for('auth.login'))
         
-    return render_template("signUp.html", user=current_user)
-
-@auth.route('/resend_verification/<email>', methods=['GET','POST'])
-def resend_verification(email):
-    user = User.query.filter_by(email=email).first()
-    if user and not user.is_verified:
-        token = str(uuid.uuid4())
-        user.verification_token = token
-        db.session.commit()
-
-        send_verification_email(email, token)
-        
-        flash('Verification email resent! Please check your inbox.', category='success')
-    else:
-        flash('User not found or already verified.', category='error')
-
-    return render_template('emailVerification.html', user=current_user, email=email)
-
-def send_verification_email(email, token):
-    verification_link = url_for('auth.verify_email', token=token, _external=True)
-    subject = "Email Verification"
-    message = f"""Subject: {subject}\n\nPlease verify your email by clicking the following link: {verification_link}"""
-
-    try:
-        # Sending the email
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.starttls()
-        server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
-        server.sendmail("terryrawlings50@gmail.com", email, message)
-        server.quit()
-    except Exception as e:
-        print(f'An error occurred while sending the email: {e}')  # Handle error appropriately
-
-
-@auth.route('/verify/<token>')
-def verify_email(token):
-    user = User.query.filter_by(verification_token=token).first()
-    if user:
-        user.is_verified = True
-        db.session.commit()
-        flash('Email verified successfully!')
-    else:
-        flash('Verification link is invalid or expired.')
-
-    return redirect(url_for('auth.login'))
+    return render_template("signUp.html", user = current_user)
 
 @auth.route('/dashboard', methods=['GET', 'POST'])
 @login_required
@@ -926,6 +909,39 @@ def placeOrder():
     email = userMail[0]
     print(email)
     
+    list1=[current_user.id]
+    
+    def getOrderItems():
+        # Connect to the database
+        mydb = mysql.connector.connect(
+            host=host,
+            user=user,
+            passwd=passwd,
+            database=database
+            )
+
+        mycursor = mydb.cursor()
+
+        # Query the database with parameters as a tuple
+        query = "SELECT productName, quantity, itemTally, id, imageFileName, productPrice, priceTally FROM cart WHERE user_id=%s and status='cart'"
+        mycursor.execute(query, (list1[0],))
+
+        # Fetch and print the results
+        DBData = mycursor.fetchall()  # Use fetchone() for a single result
+        print("Query:", query)
+        print("DBData:", DBData)
+
+        # Close the cursor and connection
+        mycursor.close()
+        mydb.close()
+
+        return DBData
+        
+    orderDetails = getOrderItems()
+    totalPrice = 0
+    for i in range (len(orderDetails)):
+        totalPrice = totalPrice + ((len(orderDetails[i][2]))*(len(orderDetails[i][6])))
+    
     if request.method == 'POST':
         paymentMode = request.form.get('paymentMode')
         destination = request.form.get('destination')
@@ -942,20 +958,44 @@ def placeOrder():
         
         db.session.add(new_order)
         db.session.commit()
+
+        # Email details
+        subject = "Order Confirmation - SIRA PHARMACY"
+        body = f"""
+        Subject: {subject}
+
+        Dear {userMail[1]},
         
-        subject = "SIRA PHARMACY ORDER"
-        message = f"""Subject: {subject}\n\nHello our esteemed customer your order has been succefully placed, reference order number: SP00{orderNum}. Track your order status on https://www.sirapharmacy.com"""
+        Thank you for your order! We’re happy to confirm that your purchase has been successfully placed.
+        Order Number: SP00{orderNum}
+        Total Amount: Ksh {totalPrice}
+        
+        Track your order status at: https://www.sirapharmacy.com
+        If you have any questions, feel free to contact us.
+
+        Best regards,
+        SIRA PHARMACY
+        """
+
+        # Create a multipart email
+        msg = MIMEMultipart()
+        msg['From'] = "chegemichael003@gmail.com"
+        msg['To'] = email
+        msg['Subject'] = subject
+
+        # Attach the body with the msg instance
+        msg.attach(MIMEText(body, 'plain'))
 
         try:
             # Sending the email
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
             server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
-            server.sendmail("terryrawlings50@gmail.com", email, message)
+            server.sendmail(msg['From'], msg['To'], msg.as_string())
             server.quit()
+            print("Email sent successfully!")
         except Exception as e:
             print(f'An error occurred while sending the email: {e}')  # Handle error appropriately
-
 
         # Start a new thread to update the cart items after response
         threading.Thread(target=updateCartItems, args=(orderNum, cartItems)).start()
