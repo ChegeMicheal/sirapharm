@@ -97,7 +97,15 @@
         <div class="contact-info">
           {% if user.id != 1 %}
           <a href="/homepage" class="account"><i class="fas fa-home"></i></a>
-          <a href="/orders" class="account"><i class="fas fa-user"></i></a>
+          <div class="account-dropdown">
+            <a href="/orders" class="account"><i class="fas fa-user"></i></a>
+            <div class="udropdown">
+              <a href="/orders">Orders</a>
+              <a href="/login">Login</a>
+              <a href="/sign_up">Signup</a>
+              <a href="/logout">logout</a>
+            </div>
+          </div>
           <a href="/cart" class="cart">
             <i class="fas fa-shopping-cart"></i>
             <span class="count">{{ cart }}</span>
