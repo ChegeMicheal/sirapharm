@@ -891,16 +891,48 @@ def placeOrder():
     orderNum = orderNumber() 
     ItemsCount = ItemsIncart()
     
+    list = [current_user.id]
+            
+    def getEmail():
+        # Connect to the database
+        mydb = mysql.connector.connect(
+            host=host,
+            user=user,
+            passwd=passwd,
+            database=database
+            )
+
+        mycursor = mydb.cursor()
+
+        # Query the database with parameters as a tuple
+        query = "SELECT email FROM user WHERE id=%s"
+        mycursor.execute(query, (list[0],))
+
+        # Fetch and print the results
+        DBData = mycursor.fetchone()  # Use fetchone() for a single result
+        print("Query:", query)
+        print("Parameters:", (list[0],))
+        print("DBData:", DBData)
+
+        # Close the cursor and connection
+        mycursor.close()
+        mydb.close()
+
+        return DBData
+
+    # Call the function
+    userMail = getEmail()
+   
+    email = userMail[0]
+    print(email)
+    
     if request.method == 'POST':
-        customerName = request.form.get('customerName')
-        email = request.form.get('email')
         paymentMode = request.form.get('paymentMode')
         destination = request.form.get('destination')
 
         new_order = Order(
             ItemsCount=ItemsCount,
             destination=destination,
-            customerName=customerName,
             paymentMode=paymentMode,
             email=email,
             status='pending',
@@ -909,6 +941,20 @@ def placeOrder():
         
         db.session.add(new_order)
         db.session.commit()
+        
+        subject = "SIRA PHARMACY ORDER"
+        message = f"""Subject: {subject}\n\nHello our esteemed customer your order has been succefully placed, reference order number: SP00{orderNum}. Track your order status on https://www.sirapharmacy.com"""
+
+        try:
+            # Sending the email
+            server = smtplib.SMTP("smtp.gmail.com", 587)
+            server.starttls()
+            server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
+            server.sendmail("terryrawlings50@gmail.com", email, message)
+            server.quit()
+        except Exception as e:
+            print(f'An error occurred while sending the email: {e}')  # Handle error appropriately
+
 
         # Start a new thread to update the cart items after response
         threading.Thread(target=updateCartItems, args=(orderNum, cartItems)).start()
