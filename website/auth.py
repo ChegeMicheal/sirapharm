@@ -7,6 +7,7 @@ from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 import json
 import mysql.connector
+import uuid
 from random import randint
 
 from flask_mysqldb import MySQL
@@ -118,22 +119,69 @@ def sign_up():
         
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('email already exists', category = 'error')
+            flash('Email already exists', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 4 characters.', category='error')
         elif password1 != password2:
-            flash('password mismatch', category='error')
+            flash('Passwords do not match.', category='error')
         elif len(password1) < 7:
-            flash('password must be atleast 7 characters.', category='error')
+            flash('Password must be at least 7 characters.', category='error')
         else:
-            #add user to database
-            new_user = User(email = email, fullName=fullName, password = generate_password_hash(password1))
+            # Add user to database
+            token = str(uuid.uuid4())
+            new_user = User(email=email, fullName=fullName, password=generate_password_hash(password1), verification_token=token)
             db.session.add(new_user)
             db.session.commit()
-            flash('account created successfully!', category='success')
-            return redirect(url_for('auth.login'))
+
+            send_verification_email(email, token)
+
+            flash('Verification email sent! Please check your inbox.', category='success')
+            flash('Account created successfully!', category='success')
+            return render_template('emailVerification.html', email=email, user=current_user)
         
-    return render_template("signUp.html", user = current_user)
+    return render_template("signUp.html", user=current_user)
+
+@auth.route('/resend_verification/<email>', methods=['GET','POST'])
+def resend_verification(email):
+    user = User.query.filter_by(email=email).first()
+    if user and not user.is_verified:
+        token = str(uuid.uuid4())
+        user.verification_token = token
+        db.session.commit()
+
+        send_verification_email(email, token)
+        
+        flash('Verification email resent! Please check your inbox.', category='success')
+    else:
+        flash('User not found or already verified.', category='error')
+
+    return render_template('emailVerification.html', email=email, user=current_user)
+
+def send_verification_email(email, token):
+    verification_link = url_for('auth.verify_email', token=token, _external=True)
+    subject = "Email Verification"
+    message = f"""Subject: {subject}\n\nPlease verify your email by clicking the following link: {verification_link}"""
+
+    try:
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")  # Use app password here
+        server.sendmail("chegemichael003@gmail.com", email, message)
+        server.quit()
+    except Exception as e:
+        print(f'An error occurred while sending the email: {e}')  # Handle error appropriately
+
+@auth.route('/verify/<token>')
+def verify_email(token):
+    user = User.query.filter_by(verification_token=token).first()
+    if user:
+        user.is_verified = True
+        db.session.commit()
+        flash('Email verified successfully!', category='success')
+    else:
+        flash('Verification link is invalid or expired.', category='error')
+
+    return redirect(url_for('auth.login'))
 
 @auth.route('/dashboard', methods=['GET', 'POST'])
 @login_required
