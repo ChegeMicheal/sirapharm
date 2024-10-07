@@ -14,7 +14,7 @@ from flask_mysqldb import MySQL
 
 auth = Blueprint('auth', __name__)
 
-programDatabase = 3
+programDatabase = 1
 
 if programDatabase == 1:
     host="localhost"
