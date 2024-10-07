@@ -905,7 +905,7 @@ def placeOrder():
         mycursor = mydb.cursor()
 
         # Query the database with parameters as a tuple
-        query = "SELECT email FROM user WHERE id=%s"
+        query = "SELECT email, fullName FROM user WHERE id=%s"
         mycursor.execute(query, (list[0],))
 
         # Fetch and print the results
@@ -935,6 +935,7 @@ def placeOrder():
             destination=destination,
             paymentMode=paymentMode,
             email=email,
+            customerName=userMail[1],
             status='pending',
             user_id=current_user.id
         )

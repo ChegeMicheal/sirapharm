@@ -1,6 +1,9 @@
-{% extends "base.html" %} { % block title % }
-<title>stock</title>
-{ % endblock title % } {% block content %}
+{% extends "base.html" %} 
+{% block title %}
+<title>Stock</title>
+{% endblock title %} 
+
+{% block content %}
 <!-- Stock Management -->
 <section id="stock" class="section">
   <h2 style="text-align: center">ITEMS IN CART</h2>
@@ -15,24 +18,18 @@
         <th>Quantity</th>
         <th>Total</th>
       </thead>
-
       <tbody>
         {% for i in range(cartItems|length) %}
         <tr>
-          <td>{{ i+1 }}</td>
+          <td>{{ i + 1 }}</td>
           {% set filename = cartItems[i][4] %}
           <td>
-            <img
-              src="{{ url_for('static', filename=filename) }}"
-              alt=""
-              class="cartImage"
-            />
+            <img src="{{ url_for('static', filename=filename) }}" alt="" class="cartImage" />
           </td>
-
           <td>{{ cartItems[i][0] }}</td>
           <td>{{ cartItems[i][5] }}</td>
           <td>{{ cartItems[i][1] }}</td>
-          {% set total = ((cartItems[i][2]|length)*(cartItems[i][6]|length)) %}
+          {% set total = ((cartItems[i][2] | length) * (cartItems[i][6] | length)) %}
           <td>{{ total }}</td>
         </tr>
         {% endfor %}
@@ -61,11 +58,12 @@
           <option value="mpesa">M-Pesa</option>
       </select>
       <br /><br />
-      <input type="submit" value="place order" class="checkoutbtn" />
+      <input type="submit" value="Place Order" class="checkoutbtn" />
     </form>
   </div>
 </section>
 {% endblock content %}
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const placeOrder = document.getElementById("placeOrder"); // Get the form element
@@ -77,8 +75,10 @@
       // Show alert to the user
       alert("ORDER HAS BEEN SUCCESSFULLY PLACED. CHECK YOUR MAIL FOR CONFIRMATION MESSAGE!");
 
-      // Submit the form after the alert
-      placeOrder.submit(); // Submit the form
+      // Use setTimeout to ensure the alert shows before submitting the form
+      setTimeout(() => {
+        placeOrder.submit(); // Submit the form
+      }, 100); // Delay of 100 milliseconds
     });
   });
 </script>
