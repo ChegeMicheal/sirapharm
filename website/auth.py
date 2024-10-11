@@ -61,7 +61,7 @@ def sendMail():
 
         # Create a multipart email
         msg = MIMEMultipart()
-        msg['From'] = "chegemichael003@gmail.com"
+        msg['From'] = "sirapharmacy@gmail.com"
         msg['To'] = email
         msg['Subject'] = subject
 
@@ -72,7 +72,7 @@ def sendMail():
             # Sending the email
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
-            server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
+            server.login("sirapharmacy@gmail.com", "ywsakoajfhlpigxv")
             server.sendmail(msg['From'], msg['To'], msg.as_string())
             server.quit()
             print("Email sent successfully!")
@@ -102,6 +102,89 @@ def login():
                 flash('incorrect password, try again', category = 'error')
                 
     return render_template("login.html", user = current_user)
+
+
+# Temporary storage for reset tokens
+reset_tokens = {}
+
+@auth.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            token = str(uuid.uuid4())
+            reset_tokens[token] = email  # Store the token temporarily
+
+            # Generate reset link
+            reset_link = url_for('auth.reset_password', token=token, _external=True)
+
+            # Email details
+            subject = "Password Reset Request"
+            body = f"""
+            Hello,
+
+            We received a request to reset your password. 
+            You can reset your password by clicking the link below:
+
+            {reset_link}
+
+            If you did not request a password reset, please ignore this email.
+
+            Best regards,
+            SIRA PHARMACY
+            """
+
+            # Create a multipart email
+            msg = MIMEMultipart()
+            msg['From'] = "sirapharmacy@gmail.com"
+            msg['To'] = email
+            msg['Subject'] = subject
+
+            # Attach the body with the msg instance
+            msg.attach(MIMEText(body, 'plain'))
+
+            try:
+                # Sending the email
+                server = smtplib.SMTP("smtp.gmail.com", 587)
+                server.starttls()
+                server.login("sirapharmacy@gmail.com", "ywsakoajfhlpigxv")
+                server.sendmail(msg['From'], msg['To'], msg.as_string())
+                server.quit()
+                flash('Password reset email sent!', 'success')
+            except Exception as e:
+                print(f'An error occurred while sending the email: {e}') 
+                flash('An error occurred while sending the email.', 'error')
+        else:
+            flash('Email not found!', 'error')
+
+    return render_template('forgot_password.html', user=current_user)
+
+
+@auth.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    email = reset_tokens.get(token)  # Retrieve the email using the token
+    if email is None:
+        flash('Invalid or expired token!', 'error')
+        return redirect(url_for('auth.forgot_password'))
+
+    if request.method == 'POST':
+        new_password = request.form.get('new_password')
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            user.password = generate_password_hash(new_password)  # Update the password
+            db.session.commit()
+            del reset_tokens[token]  # Remove the token
+            flash('Password reset successful!', 'success')
+            return redirect(url_for('auth.login'))
+        else:
+            flash('User not found!', 'error')
+            return redirect(url_for('auth.forgot_password'))
+
+    return render_template('reset_password.html', token=token, user=current_user)
+
 
 @auth.route('/logout')
 @login_required
@@ -165,8 +248,8 @@ def send_verification_email(email, token):
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
-        server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")  # Use app password here
-        server.sendmail("chegemichael003@gmail.com", email, message)
+        server.login("sirapharmacy@gmail.com", "ywsakoajfhlpigxv")  # Use app password here
+        server.sendmail("sirapharmacy@gmail.com", email, message)
         server.quit()
     except Exception as e:
         print(f'An error occurred while sending the email: {e}')  # Handle error appropriately
@@ -744,7 +827,7 @@ def add2cart():
         
         item = Cart.query.filter_by(productName=productName, status='cart', user_id=current_user.id).first()
         if item:
-            flash('item already exists', category = 'error')
+            flash('item already exists, update the cart item instead.', category = 'error')
             return redirect(url_for('auth.cart'))
         else:
             quantity = 1
@@ -773,6 +856,7 @@ def add2cart():
             db.session.commit()
         
             print(current_user)
+            flash('item added to cart', category= 'success')
                            
     return redirect(url_for('auth.homepage'))
 
@@ -1027,7 +1111,7 @@ def placeOrder():
 
         # Create a multipart email
         msg = MIMEMultipart()
-        msg['From'] = "chegemichael003@gmail.com"
+        msg['From'] = "sirapharmacy@gmail.com"
         msg['To'] = email
         msg['Subject'] = subject
 
@@ -1038,7 +1122,7 @@ def placeOrder():
             # Sending the email
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
-            server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
+            server.login("sirapharmacy@gmail.com", "ywsakoajfhlpigxv")
             server.sendmail(msg['From'], msg['To'], msg.as_string())
             server.quit()
             print("Email sent successfully!")
@@ -1047,6 +1131,7 @@ def placeOrder():
 
         # Start a new thread to update the cart items after response
         threading.Thread(target=updateCartItems, args=(orderNum, cartItems)).start()
+        flash('order placed successfully, check your email for confirmation message.', category= 'success')
         return redirect(url_for('auth.homepage'))
 
     # Handle GET request
