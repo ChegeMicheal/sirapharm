@@ -15,7 +15,7 @@ from flask_mysqldb import MySQL
 
 auth = Blueprint('auth', __name__)
 
-programDatabase = 3
+programDatabase = 2
 
 if programDatabase == 1:
     host="localhost"
@@ -61,7 +61,7 @@ def sendMail():
 
         # Create a multipart email
         msg = MIMEMultipart()
-        msg['From'] = "chegemichael003@gmail.com"
+        msg['From'] = "sirapharmacy@gmail.com"
         msg['To'] = email
         msg['Subject'] = subject
 
@@ -72,7 +72,7 @@ def sendMail():
             # Sending the email
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
-            server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
+            server.login("sirapharmacy@gmail.com", "ywsakoajfhlpigxv")
             server.sendmail(msg['From'], msg['To'], msg.as_string())
             server.quit()
             print("Email sent successfully!")
@@ -102,6 +102,53 @@ def login():
                 flash('incorrect password, try again', category = 'error')
                 
     return render_template("login.html", user = current_user)
+
+
+# Temporary storage for reset tokens
+reset_tokens = {}
+
+@auth.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()  # Replace with your user query
+
+        if user:
+            token = str(uuid.uuid4())
+            reset_tokens[token] = email  # Store the token temporarily
+
+            # Send reset email
+            reset_link = url_for('reset_password', token=token, _external=True)
+            message = f'Click the link to reset your password: {reset_link}'
+
+            # Send email (add your SMTP code here)
+
+            flash('Password reset email sent!', 'success')
+        else:
+            flash('Email not found!', 'error')
+
+    return render_template('forgot_password.html')
+
+@auth.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if request.method == 'POST':
+        new_password = request.form.get('new_password')
+        email = reset_tokens.get(token)  # Retrieve the email using the token
+
+        if email:
+            user = User.query.filter_by(email=email).first()  # Replace with your user query
+            user.password = generate_password_hash(new_password)  # Update the password
+            db.session.commit()
+            del reset_tokens[token]  # Remove the token
+
+            flash('Password reset successful!', 'success')
+            return redirect(url_for('auth.login'))
+        else:
+            flash('Invalid or expired token!', 'error')
+
+    return render_template('reset_password.html', token=token)
+
+
 
 @auth.route('/logout')
 @login_required
@@ -165,8 +212,8 @@ def send_verification_email(email, token):
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
-        server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")  # Use app password here
-        server.sendmail("chegemichael003@gmail.com", email, message)
+        server.login("sirapharmacy@gmail.com", "ywsakoajfhlpigxv")  # Use app password here
+        server.sendmail("sirapharmacy@gmail.com", email, message)
         server.quit()
     except Exception as e:
         print(f'An error occurred while sending the email: {e}')  # Handle error appropriately
@@ -744,7 +791,7 @@ def add2cart():
         
         item = Cart.query.filter_by(productName=productName, status='cart', user_id=current_user.id).first()
         if item:
-            flash('item already exists', category = 'error')
+            flash('item already exists, update the cart item instead.', category = 'error')
             return redirect(url_for('auth.cart'))
         else:
             quantity = 1
@@ -773,6 +820,7 @@ def add2cart():
             db.session.commit()
         
             print(current_user)
+            flash('item added to cart', category= 'success')
                            
     return redirect(url_for('auth.homepage'))
 
@@ -1027,7 +1075,7 @@ def placeOrder():
 
         # Create a multipart email
         msg = MIMEMultipart()
-        msg['From'] = "chegemichael003@gmail.com"
+        msg['From'] = "sirapharmacy@gmail.com"
         msg['To'] = email
         msg['Subject'] = subject
 
@@ -1038,7 +1086,7 @@ def placeOrder():
             # Sending the email
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
-            server.login("chegemichael003@gmail.com", "rcacepzpnhviudqj")
+            server.login("sirapharmacy@gmail.com", "ywsakoajfhlpigxv")
             server.sendmail(msg['From'], msg['To'], msg.as_string())
             server.quit()
             print("Email sent successfully!")
@@ -1047,6 +1095,7 @@ def placeOrder():
 
         # Start a new thread to update the cart items after response
         threading.Thread(target=updateCartItems, args=(orderNum, cartItems)).start()
+        flash('order placed successfully, check your email for confirmation message.', category= 'success')
         return redirect(url_for('auth.homepage'))
 
     # Handle GET request

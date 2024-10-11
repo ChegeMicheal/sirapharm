@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sira Pharmacy</title>
-    <link rel="icon" type="favicon" href="{{ url_for('static', filename='images/sira logo.png') }}" style="height: 80%; width: 100%;">
+    <link
+      rel="icon"
+      type="favicon"
+      href="{{ url_for('static', filename='images/sira logo.png') }}"
+      style="height: 80%; width: 100%"
+    />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
@@ -50,9 +55,7 @@
           <a href="https://wa.me/+254114542511" class="whatsapp-link"
             ><i class="fab fa-whatsapp"></i
           ></a>
-    
         </div>
-
       </div>
       <div class="main-bar">
         <div class="logo">
@@ -100,11 +103,10 @@
             <div class="udropdown">
               {% if user.is_authenticated %}
               <a href="/orders">Orders</a>
-              <a href="/logout" style="color: red;">logout</a>
+              <a href="/logout" style="color: red">logout</a>
               {% else %}
               <a href="/login">Login</a>
               {% endif %}
-              
             </div>
           </div>
           <a href="/cart" class="cart">
@@ -120,7 +122,7 @@
               value="pending"
               checked="true"
             />
-          
+
             <input type="submit" value="pending" class="pbtn" />
           </form>
 
@@ -132,7 +134,7 @@
               value="completed"
               checked="true"
             />
-          
+
             <input type="submit" value="completed" class="orderbtn" />
           </form>
 
@@ -144,7 +146,7 @@
               value="rejected"
               checked="true"
             />
-          
+
             <input type="submit" value="rejected" class="dctgbtn" />
           </form>
 
@@ -167,12 +169,54 @@
             </div>
             <button type="button" class="close-menu-btn"></button>
           </div>
-{% block head %}
-{% endblock head %}
+          {% block head %} {% endblock head %}
         </nav>
       </div>
     </header>
 
+    {% with messages = get_flashed_messages(with_categories=True) %} {% if
+    messages %}
+    <ul id="flashed-messages">
+      {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+
+    <style>
+      #flashed-messages {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      #flashed-messages li {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        color: #fff; /* Text color */
+      }
+
+      /* Success message style */
+      .success {
+        background-color: #28a745; /* Bootstrap's success color */
+      }
+
+      /* Error message style */
+      .error {
+        background-color: #dc3545; /* Bootstrap's danger color */
+      }
+
+      /* Info message style */
+      .info {
+        background-color: #17a2b8; /* Bootstrap's info color */
+      }
+
+      /* Warning message style */
+      .warning {
+        background-color: #ffc107; /* Bootstrap's warning color */
+      }
+    </style>
 
     {% block content %} {% endblock content %}
 
@@ -211,21 +255,32 @@
             <h4>Contact US</h4>
             <div class="social-links">
               <a
-              href="https://www.instagram.com/sira_pharmacy?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a
-              href="https://www.tiktok.com/@sira.pharmacy?is_from_webapp=1&sender_device=pc"
-              ><i class="fab fa-tiktok"></i
-            ></a>
-            <a href="https://wa.me/+254114542511" class="whatsapp-link"
-              ><i class="fab fa-whatsapp"></i
-            ></a>
+                href="https://www.instagram.com/sira_pharmacy?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@sira.pharmacy?is_from_webapp=1&sender_device=pc"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+              <a href="https://wa.me/+254114542511" class="whatsapp-link"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
             </div>
           </div>
         </div>
       </div>
     </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const messages = document.getElementById("flashed-messages");
+        if (messages) {
+          setTimeout(() => {
+            messages.style.display = "none"; // Hide the messages after 5 seconds
+          }, 5000); // 5000 milliseconds = 5 seconds
+        }
+      });
+    </script>
 
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
     <script src="{{ url_for('static', filename='addToCart.js') }}"></script>
@@ -271,7 +326,3 @@
     {% block script %} {% endblock script %}
   </body>
 </html>
-
-
-
-
