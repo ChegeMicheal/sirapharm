@@ -15,7 +15,7 @@ from flask_mysqldb import MySQL
 
 auth = Blueprint('auth', __name__)
 
-programDatabase = 2
+programDatabase = 1
 
 if programDatabase == 1:
     host="localhost"
@@ -1397,6 +1397,11 @@ def shop():
 def shopV():
     
     return render_template('homepage.html', user=current_user)
+
+@auth.route('/products', methods=['GET', 'POST'])
+def products():
+    
+    return render_template('products.html', user=current_user)
 
 @auth.route('/search', methods=['GET', 'POST'])
 def search():

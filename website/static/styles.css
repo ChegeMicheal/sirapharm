@@ -59,6 +59,11 @@
     --tiny-font-size: ;
   }
 }
+html {
+  scroll-behavior: smooth;
+}
+
+
 body {
   position: relative;
 }
