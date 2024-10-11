@@ -111,23 +111,56 @@ reset_tokens = {}
 def forgot_password():
     if request.method == 'POST':
         email = request.form.get('email')
-        user = User.query.filter_by(email=email).first()  # Replace with your user query
+        user = User.query.filter_by(email=email).first()
 
         if user:
             token = str(uuid.uuid4())
             reset_tokens[token] = email  # Store the token temporarily
 
-            # Send reset email
-            reset_link = url_for('reset_password', token=token, _external=True)
-            message = f'Click the link to reset your password: {reset_link}'
+            # Generate reset link
+            reset_link = url_for('auth.reset_password', token=token, _external=True)
 
-            # Send email (add your SMTP code here)
+            # Email details
+            subject = "Password Reset Request"
+            body = f"""
+            Hello,
 
-            flash('Password reset email sent!', 'success')
+            We received a request to reset your password. 
+            You can reset your password by clicking the link below:
+
+            {reset_link}
+
+            If you did not request a password reset, please ignore this email.
+
+            Best regards,
+            SIRA PHARMACY
+            """
+
+            # Create a multipart email
+            msg = MIMEMultipart()
+            msg['From'] = "sirapharmacy@gmail.com"
+            msg['To'] = email
+            msg['Subject'] = subject
+
+            # Attach the body with the msg instance
+            msg.attach(MIMEText(body, 'plain'))
+
+            try:
+                # Sending the email
+                server = smtplib.SMTP("smtp.gmail.com", 587)
+                server.starttls()
+                server.login("sirapharmacy@gmail.com", "ywsakoajfhlpigxv")
+                server.sendmail(msg['From'], msg['To'], msg.as_string())
+                server.quit()
+                flash('Password reset email sent!', 'success')
+            except Exception as e:
+                print(f'An error occurred while sending the email: {e}') 
+                flash('An error occurred while sending the email.', 'error')
         else:
             flash('Email not found!', 'error')
 
-    return render_template('forgot_password.html')
+    return render_template('forgot_password.html', user=current_user)
+
 
 @auth.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
@@ -146,7 +179,7 @@ def reset_password(token):
         else:
             flash('Invalid or expired token!', 'error')
 
-    return render_template('reset_password.html', token=token)
+    return render_template('reset_password.html', token=token, user=current_user)
 
 
 
