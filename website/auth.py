@@ -164,23 +164,26 @@ def forgot_password():
 
 @auth.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
+    email = reset_tokens.get(token)  # Retrieve the email using the token
+    if email is None:
+        flash('Invalid or expired token!', 'error')
+        return redirect(url_for('auth.forgot_password'))
+
     if request.method == 'POST':
         new_password = request.form.get('new_password')
-        email = reset_tokens.get(token)  # Retrieve the email using the token
+        user = User.query.filter_by(email=email).first()
 
-        if email:
-            user = User.query.filter_by(email=email).first()  # Replace with your user query
+        if user:
             user.password = generate_password_hash(new_password)  # Update the password
             db.session.commit()
             del reset_tokens[token]  # Remove the token
-
             flash('Password reset successful!', 'success')
             return redirect(url_for('auth.login'))
         else:
-            flash('Invalid or expired token!', 'error')
+            flash('User not found!', 'error')
+            return redirect(url_for('auth.forgot_password'))
 
     return render_template('reset_password.html', token=token, user=current_user)
-
 
 
 @auth.route('/logout')
