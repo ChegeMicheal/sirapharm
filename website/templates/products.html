@@ -1,388 +1,749 @@
-{% extends "base.html" %}
-
-{% block title %}
+{% extends "base.html" %} {% block title %}
 <title>Products</title>
-{% endblock title %}
-
-{% block content %}
+{% endblock title %} {% block content %}
 <body>
-    <section id="skin-care">
-        <h2 class="lg-title">Skin Care</h2>
-        <p class="text-light">
-            Enhance your skincare routine with our premium selection of products. 
-            From hydrating creams to anti-aging serums, each product is crafted to nourish, 
-            protect, and reveal a healthy, glowing complexion for all skin types.
-        </p>
-        <div class="product-items">
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/med2.png') }}" alt="Product 1">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Salicyclic Acid Daily Gentle Cleanser</a>
-                        <p class="product-price">Ksh. 2500</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/med3.png') }}" alt="Product 2">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Advanced Snail 92 - All in one cream</a>
-                        <p class="product-price">Ksh. 2500</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/med4.png') }}" alt="Product 3">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Advanced Snail 96 - Mucin power essence</a>
-                        <p class="product-price">Ksh. 2500</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/med5.png') }}" alt="Product 4">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Low Good Morning Gel Cleanser</a>
-                        <p class="product-price">Ksh. 2500</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/med1.png') }}" alt="Product 5">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Niacinamide 10% + TXA 4% Serum</a>
-                        <p class="product-price">Ksh. 3200</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/med6.png') }}" alt="Product 6">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Anua HEARTLEAF pore control cleansing oil</a>
-                        <p class="product-price">Ksh. 3200</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/med7.png') }}" alt="Product 7">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Anua HEARTLEAF 77% soothing toner</a>
-                        <p class="product-price">Ksh. 3200</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
+  <section id="skin-care">
+    <h2 class="lg-title">Skin Care</h2>
+    <p class="text-light">
+      Enhance your skincare routine with our premium selection of products. From
+      hydrating creams to anti-aging serums, each product is crafted to nourish,
+      protect, and reveal a healthy, glowing complexion for all skin types.
+    </p>
+    <div class="product-items">
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/med2.png') }}"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name"
+              >Salicyclic Acid Daily Gentle Cleanser</a
+            >
+            <p class="product-price">Ksh. 2500</p>
+
+            <form action="/add2cart" method="post">
+              <br /><br />
+              <input
+                type="checkbox"
+                class="mike"
+                name="productName"
+                value="Salicyclic Acid"
+                checked="true"
+              />
+              <input
+                type="checkbox"
+                class="mike"
+                name="productPrice"
+                value="2500"
+                checked="true"
+              />
+              <input
+                type="checkbox"
+                class="mike"
+                name="imageFileName"
+                value="images/med2.png"
+                checked="true"
+              />
+              <button class="btn-cart">Add to Cart</button>
+            </form>
+          </div>
         </div>
-    </section>
+      </div>
+      <!-- end of single product -->
 
-    <!-- Vitamins & Supplements Section start -->
-
-    <section id="vitamins-supplements">
-        <h2 class="lg-title">Vitamins & Supplements</h2>
-        <p class="text-light">
-            Boost your health with our wide range of vitamins and supplements. 
-            From immune support to daily wellness, 
-            our high-quality products are designed to help you maintain a balanced, 
-            active, and healthy lifestyle.
-        </p>
-        <div class="product-items">
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/becoactinSyrup.png') }}" alt="Product 1">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Becoactin SYRUP</a>
-                        <p class="product-price">Ksh. 600</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/becoactinTablets.png') }}" alt="Product 2">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Becoactin TABLETS</a>
-                        <p class="product-price">Ksh. 600</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/trimetabol.png') }}" alt="Product 3">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Trimetabol</a>
-                        <p class="product-price">Ksh. 1500</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/bonnisan.png') }}" alt="Product 4">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">Bonnisan | for bonny, healthy babies</a>
-                        <p class="product-price">Ksh. 670</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/tres-orix.png') }}" alt="Product 5">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">tres-orix FORTE</a>
-                        <p class="product-price">Ksh. 1000</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
-    
-            <!-- single product -->
-            <div class="product">
-                <div class="product-content">
-                    <div class="product-img">
-                        <img src="{{ url_for('static', filename='images/infacol.png') }}" alt="Product 6">
-                    </div>
-                    <div class="product-info">
-                        <a href="#" class="product-name">infacol Simeticone | effective colic relief</a>
-                        <p class="product-price">Ksh 3200</p>
-                        <button class="btn-cart">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-            <!-- end of single product -->
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/med3.png') }}"
+              alt="Product 2"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name"
+              >Advanced Snail 92 - All in one cream</a
+            >
+            <p class="product-price">Ksh. 2500</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Advanced Snail 92"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="2500"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/med3.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
         </div>
-    </section>
+      </div>
+      <!-- end of single product -->
 
-    <!-- Vitamins & Supplements End -->
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/med4.png') }}"
+              alt="Product 3"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name"
+              >Advanced Snail 96 - Mucin power essence</a
+            >
+            <p class="product-price">Ksh. 2500</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Advanced Snail 96"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="2500"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/med4.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/med5.png') }}"
+              alt="Product 4"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name">Low Good Morning Gel Cleanser</a>
+            <p class="product-price">Ksh. 2500</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Gel Cleanser"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="2500"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/med5.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/med1.png') }}"
+              alt="Product 5"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name">Niacinamide 10% + TXA 4% Serum</a>
+            <p class="product-price">Ksh. 3200</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Niacinamide 10%"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="3200"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/med1.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/med6.png') }}"
+              alt="Product 6"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name"
+              >Anua HEARTLEAF pore control cleansing oil</a
+            >
+            <p class="product-price">Ksh. 3200</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Anua HEARTLEAF"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="3200"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/med6.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/med7.png') }}"
+              alt="Product 7"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name"
+              >Anua HEARTLEAF 77% soothing toner</a
+            >
+            <p class="product-price">Ksh. 3200</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Anua HEARTLEAF 77%"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="3200"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/med7.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+    </div>
+  </section>
+
+  <!-- Vitamins & Supplements Section start -->
+
+  <section id="vitamins-supplements">
+    <h2 class="lg-title">Vitamins & Supplements</h2>
+    <p class="text-light">
+      Boost your health with our wide range of vitamins and supplements. From
+      immune support to daily wellness, our high-quality products are designed
+      to help you maintain a balanced, active, and healthy lifestyle.
+    </p>
+    <div class="product-items">
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/becoactinSyrup.png') }}"
+              alt="Product 1"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name">Becoactin SYRUP</a>
+            <p class="product-price">Ksh. 600</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Becoactin Syrup"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="600"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/becoactinSyrup.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/becoactinTablets.png') }}"
+              alt="Product 2"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name">Becoactin TABLETS</a>
+            <p class="product-price">Ksh. 600</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Becoactin Tablets"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="600"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/becoactinTablets.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/trimetabol.png') }}"
+              alt="Product 3"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name">Trimetabol</a>
+            <p class="product-price">Ksh. 1500</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Trimetabol"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="1500"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/trimetabol.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/bonnisan.png') }}"
+              alt="Product 4"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name"
+              >Bonnisan | for bonny, healthy babies</a
+            >
+            <p class="product-price">Ksh. 670</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Bonnisan"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="670"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/bonnisan.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/tres-orix.png') }}"
+              alt="Product 5"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name">tres-orix FORTE</a>
+            <p class="product-price">Ksh. 1000</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Tres-orix FORTE"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="1000"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/tres-orix.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+
+      <!-- single product -->
+      <div class="product">
+        <div class="product-content">
+          <div class="product-img">
+            <img
+              src="{{ url_for('static', filename='images/infacol.png') }}"
+              alt="Product 6"
+            />
+          </div>
+          <div class="product-info">
+            <a href="#" class="product-name"
+              >infacol Simeticone | effective colic relief</a
+            >
+            <p class="product-price">Ksh 3200</p>
+            <form action="/add2cart" method="post">
+                <br /><br />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productName"
+                  value="Infacol Simeticone"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="productPrice"
+                  value="3200"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  class="mike"
+                  name="imageFileName"
+                  value="images/infacol.png"
+                  checked="true"
+                />
+                <button class="btn-cart">Add to Cart</button>
+              </form>
+          </div>
+        </div>
+      </div>
+      <!-- end of single product -->
+    </div>
+  </section>
+
+  <!-- Vitamins & Supplements End -->
 </body>
 
 <style>
-    :root {
-        --white-light: rgba(255, 255, 255, 0.5);
-        --alice-blue: #f9f9f9;
-        --carribean-green: #00CC99;
-        --gray-light: #f4f4f4;
-        --text-color: #333;
-        --green-dark: #008060;
-    }
+  :root {
+    --white-light: rgba(255, 255, 255, 0.5);
+    --alice-blue: #f9f9f9;
+    --carribean-green: #00cc99;
+    --gray-light: #f4f4f4;
+    --text-color: #333;
+    --green-dark: #008060;
+  }
 
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
 
-    body {
-        font-family: 'Quicksand', sans-serif;
-        background-color: var(--alice-blue);
-        color: var(--text-color);
-    }
+  body {
+    font-family: "Quicksand", sans-serif;
+    background-color: var(--alice-blue);
+    color: var(--text-color);
+  }
 
-    .lg-title{
-        font-family: 'Roboto', sans-serif;
-        text-transform: capitalize;
-        font-size: 2rem;
-        font-weight: 400;
-        text-align: center;
-        padding: 1.3rem 0;
-        opacity: 0.9;
-    }
+  .lg-title {
+    font-family: "Roboto", sans-serif;
+    text-transform: capitalize;
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 1.3rem 0;
+    opacity: 0.9;
+  }
 
-    .text-light{
-        font-size: 1rem;
-        font-weight: 300;
-        line-height: 1.5;
-        opacity: 0.8;
-        margin: 0.4rem 0;
-        padding: 0px 20px;
-    }
+  .text-light {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    opacity: 0.8;
+    margin: 0.4rem 0;
+    padding: 0px 20px;
+  }
 
+  .product-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .product {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+
+  .product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .product-content {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .product-img {
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .product-img img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .product-info {
+    padding: 1rem;
+  }
+
+  .product-name {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-align: left; /* Ensure price is also left-aligned */
+  }
+
+  .product-name:hover {
+    color: var(--green-dark);
+  }
+
+  .product-price {
+    font-size: 1rem;
+    color: var(--green-dark);
+    margin-bottom: 1rem;
+    text-align: left; /* Ensure price is also left-aligned */
+  }
+
+  .btn-cart {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #2adb2a;
+    color: #2adb2a;
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn-cart:hover {
+    background-color: #2adb2a;
+    color: white;
+  }
+
+  /* Media Queries */
+  @media screen and (min-width: 320px) {
     .product-items {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        padding: 1rem;
+      grid-template-columns: repeat(1, 1fr);
     }
+  }
+  @media screen and (min-width: 480px) {
+    .product-items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 
-    .product {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        overflow: hidden;
+  @media screen and (min-width: 768px) {
+    .product-items {
+      grid-template-columns: repeat(3, 1fr);
     }
+  }
 
-    .product:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  @media screen and (min-width: 992px) {
+    .product-items {
+      grid-template-columns: repeat(4, 1fr);
     }
+  }
 
-    .product-content {
-        padding: 1rem;
-        text-align: center;
+  @media screen and (min-width: 1200px) {
+    .product-items {
+      grid-template-columns: repeat(5, 1fr);
     }
-
-    .product-img {
-        width: 100%;
-        height: 200px;
-        background-color: white;
-        border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .product-img img {
-        max-width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .product-info {
-        padding: 1rem;
-    }
-
-    .product-name {
-        display: block;
-        font-size: 0.8rem;
-        font-weight: 300;
-        color: var(--text-color);
-        margin-bottom: 0.5rem;
-        text-transform: capitalize;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        text-align: left; /* Ensure price is also left-aligned */
-    }
-
-    .product-name:hover {
-        color: var(--green-dark);
-    }
-
-    .product-price {
-        font-size: 1rem;
-        color: var(--green-dark);
-        margin-bottom: 1rem;
-        text-align: left; /* Ensure price is also left-aligned */
-    }
-
-    .btn-cart {
-        display: inline-block;
-        background-color: transparent;
-        border: 2px solid #2adb2a;
-        color: #2adb2a;
-        padding: 0.5rem 0.5rem;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .btn-cart:hover {
-        background-color: #2adb2a;
-        color: white;
-    }
-    
-    /* Media Queries */
-    @media screen and (min-width: 320px) {
-        .product-items {
-            grid-template-columns: repeat(1, 1fr);
-        }
-    }
-    @media screen and (min-width: 480px) {
-        .product-items {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media screen and (min-width: 768px) {
-        .product-items {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media screen and (min-width: 992px) {
-        .product-items {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
-
-    @media screen and (min-width: 1200px) {
-        .product-items {
-            grid-template-columns: repeat(5, 1fr);
-        }
-    }
+  }
 </style>
 {% endblock content %}

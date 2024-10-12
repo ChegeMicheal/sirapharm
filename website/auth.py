@@ -1486,7 +1486,7 @@ def shopV():
 @auth.route('/products', methods=['GET', 'POST'])
 def products():
     
-    return render_template('products.html', user=current_user)
+    return render_template('products.html', user=current_user, cart=ItemsIncart())
 
 @auth.route('/search', methods=['GET', 'POST'])
 def search():

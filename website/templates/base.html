@@ -149,7 +149,16 @@
 
             <input type="submit" value="rejected" class="dctgbtn" />
           </form>
-
+          <div class="account-dropdown">
+            <a href="/orders" class="account"><i class="fas fa-user"></i></a>
+            <div class="udropdown">
+              {% if user.is_authenticated %}
+              <a href="/logout" style="color: red">logout</a>
+              {% else %}
+              <a href="/login">Login</a>
+              {% endif %}
+            </div>
+          </div>
           <a href="/admin" class="account"><i class="fas fa-home"></i></a>
           {% endif %}
 
