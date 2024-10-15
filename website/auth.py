@@ -997,7 +997,10 @@ def updateOrder():
             mycursor.close()
             mydb.close()
     update_order()
-    return render_template('admin.html', orders=getAllOrders(), user=current_user)
+    if user.id == 1 or user.id == 7:
+        return redirect(url_for('auth.admin'))
+    else:
+        return redirect(url_for('auth.orders'))
 
 @auth.route('/placeOrder', methods=['GET', 'POST'])
 @login_required
