@@ -34,7 +34,7 @@
           style="color: green"
           {%
           elif
-          orders[i][4]=="rejected"
+          orders[i][4]=="rejected" or orders[i][4]=="cancelled"
           %}
           style="color: red"
           {%
@@ -48,6 +48,26 @@
           
           <td data-lable="Action" >
             <div class="mikeBtns">
+              {% if orders[i][4]=="pending" %}
+              <form action="/updateOrder" method="post">
+                <input
+                  type="checkbox"
+                  name="order_id"
+                  class="mike"
+                  value="{{ orders[i][6] }}"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  name="status"
+                  class="mike"
+                  value="cancelled"
+                  checked="true"
+                />
+              
+                <input type="submit" value="cancel" class="orderbtn" />
+              </form>
+              {% endif %}
               <form action="/orderDetails" method="post">
                 <input
                   type="checkbox"

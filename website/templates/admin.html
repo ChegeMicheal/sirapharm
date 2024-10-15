@@ -33,7 +33,7 @@
           style="color: green"
           {%
           elif
-          orders[i][4]=="rejected"
+          orders[i][4]=="rejected" or orders[i][4]=="cancelled"
           %}
           style="color: red"
           {%
@@ -60,11 +60,11 @@
                   type="checkbox"
                   name="status"
                   class="mike"
-                  value="completed"
+                  value="shipping"
                   checked="true"
                 />
               
-                <input type="submit" value="complete" class="orderbtn" />
+                <input type="submit" value="ship" class="orderbtn" />
               </form>
 
               <form action="/updateOrder" method="post">
@@ -85,7 +85,28 @@
               
                 <input type="submit" value="reject" class="dctgbtn" />
               </form>
+              {% else %}
+              <form action="/updateOrder" method="post">
+                <input
+                  type="checkbox"
+                  name="order_id"
+                  class="mike"
+                  value="{{ orders[i][6] }}"
+                  checked="true"
+                />
+                <input
+                  type="checkbox"
+                  name="status"
+                  class="mike"
+                  value="completed"
+                  checked="true"
+                />
+              
+                <input type="submit" value="complete" class="orderbtn" />
+              </form>
+
             {% endif %}
+
               <form action="/adminOrderDetails" method="post">
                 <input
                   type="checkbox"
