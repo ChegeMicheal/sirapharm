@@ -1188,12 +1188,15 @@ def orderDetails():
     return render_template('orderDetails.html', orderDetails=orderDetails, filename=filename, order_id=id, date_submitted=date_submitted, totalPrice=totalPrice, cart=ItemsIncart(), user=current_user)
 
 
+ALLOWED_USER_IDS = {1, 7}
+
 @auth.route('/admin', methods=['GET', 'POST'])
 @login_required
 def admin():
-    if current_user.id != 1:
-        return redirect(url_for('auth.homepage'))
-    return render_template('admin.html', orders=getAllOrders(), user=current_user)
+    if current_user.id in ALLOWED_USER_IDS:
+        return render_template('admin.html', orders=getAllOrders(), user=current_user)
+    return redirect(url_for('auth.homepage'))
+
 
 @auth.route('/orderFilter', methods=['GET', 'POST'])
 @login_required
