@@ -94,7 +94,7 @@ def login():
             if check_password_hash(user.password,password):
                 flash('logged in successfully', category= 'success')
                 login_user(user, remember=True)
-                if user.id == 1:
+                if user.id == 1 or user.id == 7:
                     return redirect(url_for('auth.admin'))
                 else:
                     return redirect(url_for('auth.homepage'))
