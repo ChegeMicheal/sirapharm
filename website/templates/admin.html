@@ -85,7 +85,7 @@
               
                 <input type="submit" value="reject" class="dctgbtn" />
               </form>
-              {% else %}
+              {% elif orders[i][4] == 'shipping'  %}
               <form action="/updateOrder" method="post">
                 <input
                   type="checkbox"
