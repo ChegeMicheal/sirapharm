@@ -997,7 +997,7 @@ def updateOrder():
             mycursor.close()
             mydb.close()
     update_order()
-    if user.id == 1 or user.id == 7:
+    if current_user.id == 1 or current_user.id == 7:
         return redirect(url_for('auth.admin'))
     else:
         return redirect(url_for('auth.orders'))
