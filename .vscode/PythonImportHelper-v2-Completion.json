@@ -1,0 +1,918 @@
+[
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Blueprint",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "secure_filename",
+        "importPath": "werkzeug.utils",
+        "description": "werkzeug.utils",
+        "isExtraImport": true,
+        "detail": "werkzeug.utils",
+        "documentation": {}
+    },
+    {
+        "label": "generate_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {}
+    },
+    {
+        "label": "check_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {}
+    },
+    {
+        "label": "login_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "logout_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "UserMixin",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "mysql.connector",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "randint",
+        "importPath": "random",
+        "description": "random",
+        "isExtraImport": true,
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "MySQL",
+        "importPath": "flask_mysqldb",
+        "description": "flask_mysqldb",
+        "isExtraImport": true,
+        "detail": "flask_mysqldb",
+        "documentation": {}
+    },
+    {
+        "label": "smtplib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "smtplib",
+        "description": "smtplib",
+        "detail": "smtplib",
+        "documentation": {}
+    },
+    {
+        "label": "MIMEText",
+        "importPath": "email.mime.text",
+        "description": "email.mime.text",
+        "isExtraImport": true,
+        "detail": "email.mime.text",
+        "documentation": {}
+    },
+    {
+        "label": "MIMEMultipart",
+        "importPath": "email.mime.multipart",
+        "description": "email.mime.multipart",
+        "isExtraImport": true,
+        "detail": "email.mime.multipart",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "func",
+        "importPath": "sqlalchemy.sql",
+        "description": "sqlalchemy.sql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.sql",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "pdfkit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pdfkit",
+        "description": "pdfkit",
+        "detail": "pdfkit",
+        "documentation": {}
+    },
+    {
+        "label": "create_app",
+        "importPath": "website",
+        "description": "website",
+        "isExtraImport": true,
+        "detail": "website",
+        "documentation": {}
+    },
+    {
+        "label": "sendMail",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def sendMail():\n    if request.method == 'POST':\n        email = request.form.get(\"email\")\n        # Email details\n        subject = \"Order Confirmation - SIRA PHARMACY\"\n        body = f\"\"\"\n        Dear anonymous,\n        Thank you for your order! We’re happy to confirm that your purchase has been successfully placed.\n        Order Number: SP0099\n        Total Amount: Ksh 1M",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def login():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        password = request.form.get('password')\n        user = User.query.filter_by(email = email).first()\n        if user:\n            if check_password_hash(user.password,password):\n                flash('logged in successfully', category= 'success')\n                login_user(user, remember=True)\n                if user.id == 1 or user.id == 7:",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "forgot_password",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def forgot_password():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        user = User.query.filter_by(email=email).first()\n        if user:\n            token = str(uuid.uuid4())\n            reset_tokens[token] = email  # Store the token temporarily\n            # Generate reset link\n            reset_link = url_for('auth.reset_password', token=token, _external=True)\n            # Email details",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "reset_password",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def reset_password(token):\n    email = reset_tokens.get(token)  # Retrieve the email using the token\n    if email is None:\n        flash('Invalid or expired token!', 'error')\n        return redirect(url_for('auth.forgot_password'))\n    if request.method == 'POST':\n        new_password = request.form.get('new_password')\n        user = User.query.filter_by(email=email).first()\n        if user:\n            user.password = generate_password_hash(new_password)  # Update the password",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def logout():\n    logout_user()\n    return redirect(url_for('auth.dashboard'))\n@auth.route('/sign_up', methods=['GET', 'POST'])\ndef sign_up():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        fullName = request.form.get('fullname')\n        password1 = request.form.get('password1')\n        password2 = request.form.get('password2')",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "sign_up",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def sign_up():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        fullName = request.form.get('fullname')\n        password1 = request.form.get('password1')\n        password2 = request.form.get('password2')\n        user = User.query.filter_by(email=email).first()\n        if user:\n            flash('Email already exists', category='error')\n        elif len(email) < 4:",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "resend_verification",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def resend_verification(email):\n    user = User.query.filter_by(email=email).first()\n    if user and not user.is_verified:\n        token = str(uuid.uuid4())\n        user.verification_token = token\n        db.session.commit()\n        send_verification_email(email, token)\n        flash('Verification email resent! Please check your inbox.', category='success')\n    else:\n        flash('User not found or already verified.', category='error')",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "send_verification_email",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def send_verification_email(email, token):\n    verification_link = url_for('auth.verify_email', token=token, _external=True)\n    subject = \"Email Verification\"\n    message = f\"\"\"Subject: {subject}\\n\\nPlease verify your email by clicking the following link: {verification_link}\"\"\"\n    try:\n        server = smtplib.SMTP(\"smtp.gmail.com\", 587)\n        server.starttls()\n        server.login(\"sirapharmacy@gmail.com\", \"ywsakoajfhlpigxv\")  # Use app password here\n        server.sendmail(\"sirapharmacy@gmail.com\", email, message)\n        server.quit()",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "verify_email",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def verify_email(token):\n    user = User.query.filter_by(verification_token=token).first()\n    if user:\n        user.is_verified = True\n        db.session.commit()\n        flash('Email verified successfully!', category='success')\n    else:\n        flash('Verification link is invalid or expired.', category='error')\n    return redirect(url_for('auth.login'))\n@auth.route('/dashboard', methods=['GET', 'POST'])",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "dashboard",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def dashboard():\n    return render_template('dashboard.html', user=current_user)\n@auth.route('/supplier', methods=['GET', 'POST'])\ndef supplier():\n    if request.method == 'POST':\n        email = request.form.get('supplierEmail')\n        supplierName = request.form.get('supplierName')\n        telephone = request.form.get('supplierTelephone')\n        #add supplier to database\n        new_supplier = Supplier(email = email, supplierName=supplierName, telephone=telephone)",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "supplier",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def supplier():\n    if request.method == 'POST':\n        email = request.form.get('supplierEmail')\n        supplierName = request.form.get('supplierName')\n        telephone = request.form.get('supplierTelephone')\n        #add supplier to database\n        new_supplier = Supplier(email = email, supplierName=supplierName, telephone=telephone)\n        db.session.add(new_supplier)\n        db.session.commit()\n        flash('supplier added successfully!', category='success')",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "supplierReport",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def supplierReport():       \n    def getData():\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT * FROM supplier\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "stock",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def stock():\n    if request.method == 'POST':\n        productName = request.form.get('productName')\n        productCategory= request.form.get('productCategory')\n        stockQuantity = 0\n        productBuyPrice = 0\n        productSellPrice = 0\n        imageFileName = ''\n        imageFileName = 'images/' + productName + '.png'\n        itemTally=''",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "stockReport",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def stockReport():\n    def getData():\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT id, productName, productBuyPrice, productSellPrice, stockQuantity, expiryDate, supplierEmail FROM stock\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "supplyHistory",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def supplyHistory():\n    if request.method == 'POST':\n        supplyProductName = request.form.get('historyProduct')\n        supplyProductBuyPrice = request.form.get('historyUnitPrice',type=int)\n        proftMargin = request.form.get('profitMargin',type=int)\n        supplyStockQuantity = request.form.get('historyQuantity', type=int)\n        supplierEmail = request.form.get('historyEmail')\n        supplyExpiryDate = request.form.get('historyExpiryDate')\n        # Add supply to the database\n        new_supply = Supply(",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "supplyReport",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def supplyReport():    \n    def getData():\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT id, supplyProductName, supplyProductBuyPrice, supplyStockQuantity, supplyExpiryDate, supplierEmail, date_submitted FROM supply\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "sales",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def sales():\n    if request.method == 'POST':\n        saleProductName = request.form.get('saleProductName')\n        saleQuantity = request.form.get('saleQuantity', type=int)\n        saleTally = ''\n        for i in range(saleQuantity):\n            saleTally += '|'\n        # Add sale to the database\n        new_confirmSale = SaleFetch(\n            saleProductName=saleProductName,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "confirmSale",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def confirmSale():\n    product_name = ''\n    quantity = 0\n    sellPrice = 0\n    def getSale():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "salesReport",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def salesReport():        \n    def getData():\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )\n        mycursor = mydb.cursor()\n        mycursor.execute(\"SELECT id, saleProductName, saleUnitPrice, saleQuantity, customerName, paymentMode, date_submitted FROM sale\") ",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "homepage",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def homepage():\n    #define getProductName method\n    def getProductName():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "allowed_image",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def allowed_image(filename):\n    if not '.' in filename:\n        return False\n    ext = filename.rsplit('.',1)[1]\n    if ext.upper() in app.config[\"ALLOWED_IMAGE_EXTENSIONS\"]:\n        return True\n    else:\n        return False\n@auth.route('/upload_image', methods=['GET', 'POST'])\ndef upload_image():",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "upload_image",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def upload_image():\n    if request.method == 'POST':\n        if request.files:\n            image=request.files[\"image\"]\n            if image.filename == \"\":\n                print(\"image must have a filename\")\n                return redirect(request.url)\n            if not allowed_image(image.filename):\n                print(\"that image extension is not allowed\")\n                return redirect(request.url)",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "add2cart",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def add2cart():\n    if request.method == 'POST':\n        productName = request.form.get('productName')\n        productPrice = request.form.get('productPrice',type=int)\n        imageFileName = request.form.get('imageFileName')\n        item = Cart.query.filter_by(productName=productName, status='cart', user_id=current_user.id).first()\n        if item:\n            flash('item already exists, update the cart item instead.', category = 'error')\n            return redirect(url_for('auth.cart'))\n        else:",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "cart",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def cart():    \n    return render_template('cartItems.html', cartItems=getCartItems(), cart=ItemsIncart(), totalPrice = cartTotal(), user=current_user)\n@auth.route('/deleteCart', methods=['GET', 'POST'])\ndef deleteCart():\n    if request.method == 'POST':\n        id = request.form.get('product_id')\n        list = [id]\n        #define getProductName method\n        def delCart():\n            # Connect to the database",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "deleteCart",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def deleteCart():\n    if request.method == 'POST':\n        id = request.form.get('product_id')\n        list = [id]\n        #define getProductName method\n        def delCart():\n            # Connect to the database\n            mydb = mysql.connector.connect(\n                host=host,\n                user=user,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "editCart",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def editCart():\n    if request.method == 'POST':\n        id = request.form.get('product_id')\n        name = request.form.get('productName')\n        filename=request.form.get('imageFileName')\n    return render_template('editCart.html', id=id, name=name,filename=filename, cart=ItemsIncart(), user=current_user)\n@auth.route('/updateCart', methods=['GET', 'POST'])\ndef updateCart():\n    if request.method == 'POST':\n        id = request.form.get('product_id')",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "updateCart",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def updateCart():\n    if request.method == 'POST':\n        id = request.form.get('product_id')\n        quantitty = request.form.get('quantity',type=int)\n        if quantitty > 1:\n            quantity = quantitty\n        else:\n            quantity = 1\n        itemTally = ''\n        for i in range(quantity):",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "orderCart",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def orderCart(order_num, cart_item_id):\n    try:\n        with mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n        ) as mydb:\n            with mydb.cursor() as mycursor:\n                # Correctly format the query with placeholders",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "updateCartItems",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def updateCartItems(orderNum, cartItems):\n    for item in cartItems:\n        cart_item_id = item[3]  # Assuming item[3] contains the ID\n        orderCart(orderNum, cart_item_id)  # Update the cart item status\n@auth.route('/updateOrder', methods=['GET', 'POST'])\n@login_required\ndef updateOrder():\n    if request.method == 'POST':\n        id = request.form.get('order_id')\n        status = request.form.get('status')",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "updateOrder",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def updateOrder():\n    if request.method == 'POST':\n        id = request.form.get('order_id')\n        status = request.form.get('status')\n        list = [id]\n        #define getProductName method\n        def update_order():\n            # Connect to the database\n            mydb = mysql.connector.connect(\n                host=host,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "placeOrder",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def placeOrder():\n    cartItems = getCartItems()\n    orderNum = orderNumber() \n    ItemsCount = ItemsIncart()\n    list = [current_user.id]\n    def getEmail():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "orders",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def orders():\n    return render_template('orders.html', orders=getOrders(), cart=ItemsIncart(), user=current_user)\n@auth.route('/orderDetails', methods=['GET', 'POST'])\n@login_required\ndef orderDetails():\n    filename=''\n    if request.method == 'POST':\n        id = request.form.get('order_id')\n        date_submitted = request.form.get('date_submitted')\n        def getOrderItems():",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "orderDetails",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def orderDetails():\n    filename=''\n    if request.method == 'POST':\n        id = request.form.get('order_id')\n        date_submitted = request.form.get('date_submitted')\n        def getOrderItems():\n            user_id = current_user.id\n            list = [user_id]\n            list1 = [id]\n            # Connect to the database",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def admin():\n    if current_user.id in ALLOWED_USER_IDS:\n        return render_template('admin.html', orders=getAllOrders(), user=current_user)\n    return redirect(url_for('auth.homepage'))\n@auth.route('/orderFilter', methods=['GET', 'POST'])\n@login_required\ndef orderFilter():\n    if request.method == 'POST':\n        status = request.form.get('status')\n        def getFilteredOrders():",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "orderFilter",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def orderFilter():\n    if request.method == 'POST':\n        status = request.form.get('status')\n        def getFilteredOrders():\n            list = [status]\n            # Connect to the database\n            mydb = mysql.connector.connect(\n                host=host,\n                user=user,\n                passwd=passwd,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "adminOrderDetails",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def adminOrderDetails():\n    filename=''\n    if request.method == 'POST':\n        id = request.form.get('order_id')\n        date_submitted = request.form.get('date_submitted')\n        def getOrderItems():\n            list1 = [id]\n            # Connect to the database\n            mydb = mysql.connector.connect(\n                host=host,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "getCartItems",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def getCartItems():\n    user_id = current_user.id\n    list = [user_id]\n    # Connect to the database\n    mydb = mysql.connector.connect(\n        host=host,\n        user=user,\n        passwd=passwd,\n        database=database\n        )",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "ItemsIncart",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def ItemsIncart():\n    try:\n        user_id = current_user.id\n    except Exception as e:\n        user_id = -1\n    list = [user_id]\n    def CartItems():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "cartTotal",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def cartTotal():\n    try:\n        user_id = current_user.id\n    except Exception as e:\n        user_id = -1\n    list = [user_id]\n    def cartPrices():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "orderNumber",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def orderNumber():\n    list = ['try']\n    def orders():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n        )",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "getOrders",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def getOrders():\n    user_id = current_user.id\n    list = [user_id]\n    # Connect to the database\n    mydb = mysql.connector.connect(\n        host=host,\n        user=user,\n        passwd=passwd,\n        database=database\n        )",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "getAllOrders",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def getAllOrders():\n    # Connect to the database\n    mydb = mysql.connector.connect(\n        host=host,\n        user=user,\n        passwd=passwd,\n        database=database\n        )\n    mycursor = mydb.cursor()\n    # Query the database with parameters as a tuple",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "shop",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def shop():\n    if current_user != '':\n        return redirect(url_for('auth.shopV'))\n    else:\n        return redirect(url_for('auth.userLogin'))\n@auth.route('/shopV', methods=['GET', 'POST'])\ndef shopV():\n    return render_template('homepage.html', user=current_user)\n@auth.route('/products', methods=['GET', 'POST'])\ndef products():",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "shopV",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def shopV():\n    return render_template('homepage.html', user=current_user)\n@auth.route('/products', methods=['GET', 'POST'])\ndef products():\n    return render_template('products.html', user=current_user, cart=ItemsIncart())\n@auth.route('/search', methods=['GET', 'POST'])\ndef search():\n    if request.method == 'POST':\n        productName = request.form.get('products')\n        # Update stock table",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "products",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def products():\n    return render_template('products.html', user=current_user, cart=ItemsIncart())\n@auth.route('/search', methods=['GET', 'POST'])\ndef search():\n    if request.method == 'POST':\n        productName = request.form.get('products')\n        # Update stock table\n        searchProdList = [productName.lower()]\n        searchPrdList = [productName]\n        def getResults():",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "search",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def search():\n    if request.method == 'POST':\n        productName = request.form.get('products')\n        # Update stock table\n        searchProdList = [productName.lower()]\n        searchPrdList = [productName]\n        def getResults():\n            # Connect to the database\n            mydb = mysql.connector.connect(\n                host=host,",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "search404",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def search404():\n    return render_template('search404.html', user=current_user)\n@auth.route('/terms_and_conditions')\ndef terms_and_conditions():\n    return render_template('terms_and_conditions.html', user=current_user)\n#create custom error page(s)\n#invalid url\n@auth.errorhandler(404)\ndef page_not_found(e):\n    return render_template(\"404.html\"),404",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "terms_and_conditions",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def terms_and_conditions():\n    return render_template('terms_and_conditions.html', user=current_user)\n#create custom error page(s)\n#invalid url\n@auth.errorhandler(404)\ndef page_not_found(e):\n    return render_template(\"404.html\"),404\n#internal server error\n@auth.errorhandler(500)\ndef server_error(e):",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "page_not_found",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def page_not_found(e):\n    return render_template(\"404.html\"),404\n#internal server error\n@auth.errorhandler(500)\ndef server_error(e):\n    return render_template(\"500.html\"),500",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "server_error",
+        "kind": 2,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "def server_error(e):\n    return render_template(\"500.html\"),500",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "auth",
+        "kind": 5,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "auth = Blueprint('auth', __name__)\nprogramDatabase = 3\nif programDatabase == 1:\n    host=\"localhost\"\n    user=\"root\"\n    passwd=\"hashimraj\"\n    database=\"user\"\nelif programDatabase == 2:\n    host=\"mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\n    user=\"chmq59xthwhdmp9k\"",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "programDatabase",
+        "kind": 5,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "programDatabase = 3\nif programDatabase == 1:\n    host=\"localhost\"\n    user=\"root\"\n    passwd=\"hashimraj\"\n    database=\"user\"\nelif programDatabase == 2:\n    host=\"mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\n    user=\"chmq59xthwhdmp9k\"\n    passwd=\"cicqmdv5hg2k41wz\"",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "reset_tokens",
+        "kind": 5,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "reset_tokens = {}\n@auth.route('/forgot_password', methods=['GET', 'POST'])\ndef forgot_password():\n    if request.method == 'POST':\n        email = request.form.get('email')\n        user = User.query.filter_by(email=email).first()\n        if user:\n            token = str(uuid.uuid4())\n            reset_tokens[token] = email  # Store the token temporarily\n            # Generate reset link",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_USER_IDS",
+        "kind": 5,
+        "importPath": "website.auth",
+        "description": "website.auth",
+        "peekOfCode": "ALLOWED_USER_IDS = {1, 7}\n@auth.route('/admin', methods=['GET', 'POST'])\n@login_required\ndef admin():\n    if current_user.id in ALLOWED_USER_IDS:\n        return render_template('admin.html', orders=getAllOrders(), user=current_user)\n    return redirect(url_for('auth.homepage'))\n@auth.route('/orderFilter', methods=['GET', 'POST'])\n@login_required\ndef orderFilter():",
+        "detail": "website.auth",
+        "documentation": {}
+    },
+    {
+        "label": "mydb",
+        "kind": 5,
+        "importPath": "website.createdb",
+        "description": "website.createdb",
+        "peekOfCode": "mydb = mysql.connector.connect(\n    host=\"localhost\",\n    user=\"root\",\n    passwd=\"hashimraj\"\n)\nmy_cursor = mydb.cursor()\n#my_cursor.execute(\"DROP DATABASE user\")\nmy_cursor.execute(\"CREATE DATABASE user\")\nmy_cursor.execute(\"SHOW DATABASES\")\nfor db in my_cursor:",
+        "detail": "website.createdb",
+        "documentation": {}
+    },
+    {
+        "label": "my_cursor",
+        "kind": 5,
+        "importPath": "website.createdb",
+        "description": "website.createdb",
+        "peekOfCode": "my_cursor = mydb.cursor()\n#my_cursor.execute(\"DROP DATABASE user\")\nmy_cursor.execute(\"CREATE DATABASE user\")\nmy_cursor.execute(\"SHOW DATABASES\")\nfor db in my_cursor:\n    print(db)",
+        "detail": "website.createdb",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class User(db.Model, UserMixin):\n    id= db.Column(db.Integer, primary_key = True)\n    fullName = db.Column(db.String(150), nullable=False)\n    email = db.Column(db.String(150), unique = True, nullable=False)\n    password = db.Column(db.String(1000), nullable=False)\n    is_verified = db.Column(db.Boolean, default=False)\n    verification_token = db.Column(db.String(36), unique=True)\n    carts = db.relationship('Cart', backref='cart')\n    orders = db.relationship('Order', backref='order')\nclass Supplier(db.Model):",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Supplier",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Supplier(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    email = db.Column(db.String(150), nullable=False, unique=True)\n    supplierName = db.Column(db.String(150), nullable=False)\n    telephone = db.Column(db.String(100), nullable=False)\n    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)\n    stocks = db.relationship('Stock', backref='supplier')\n    supplies = db.relationship('Supply', backref='supply')\nclass Stock(db.Model):\n    itemTally = db.Column(db.String(1000), nullable=False)",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Stock",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Stock(db.Model):\n    itemTally = db.Column(db.String(1000), nullable=False)\n    productSellPrice = db.Column(db.Integer, nullable=False)\n    id= db.Column(db.Integer, primary_key = True)\n    productName = db.Column(db.String(150), nullable=False, unique=True)\n    productBuyPrice = db.Column(db.Integer, nullable=False)\n    buyPriceTally = db.Column(db.String(1000), nullable=False)\n    stockQuantity= db.Column(db.Integer, nullable=False)\n    ellPriceTally = db.Column(db.String(1000), nullable=False)\n    expiryDate = db.Column(db.DateTime)",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Supply",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Supply(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    supplyProductName = db.Column(db.String(150), nullable=False)\n    supplyProductBuyPrice = db.Column(db.Integer, nullable=False)\n    supplyStockQuantity= db.Column(db.Integer, nullable=False)\n    supplyExpiryDate = db.Column(db.DateTime, nullable=False)\n    supplierEmail = db.Column(db.String(150), nullable=False)\n    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)\n    supplier_id = db.Column(db.Integer, db.ForeignKey('supplier.id'))\nclass Sale(db.Model):",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Sale",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Sale(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    saleProductName = db.Column(db.String(150), nullable=False)\n    saleUnitPrice = db.Column(db.Integer, nullable=False)\n    saleQuantity= db.Column(db.Integer, nullable=False)\n    paymentMode = db.Column(db.String(150), nullable=False)\n    customerName = db.Column(db.String(150), nullable=False)\n    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)\n    stock_id = db.Column(db.Integer, db.ForeignKey('stock.id'))\nclass SaleFetch(db.Model):",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "SaleFetch",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class SaleFetch(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    saleProductName = db.Column(db.String(150), nullable=False)\n    saleQuantity= db.Column(db.Integer, nullable=False)\n    saleTally = db.Column(db.String(1000), nullable=False)\n    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)\nclass Cart(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    productName = db.Column(db.String(150), nullable=False)\n    productPrice= db.Column(db.Integer, nullable=False)",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Cart(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    productName = db.Column(db.String(150), nullable=False)\n    productPrice= db.Column(db.Integer, nullable=False)\n    priceTally = db.Column(db.String(10000), nullable=False)\n    imageFileName = db.Column(db.String(150))\n    quantity= db.Column(db.Integer, nullable=False)    \n    itemTally = db.Column(db.String(1000), nullable=False)\n    status = db.Column(db.String(1000), nullable=False)\n    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "kind": 6,
+        "importPath": "website.models",
+        "description": "website.models",
+        "peekOfCode": "class Order(db.Model):\n    id= db.Column(db.Integer, primary_key = True)\n    customerName = db.Column(db.String(150))\n    ItemsCount= db.Column(db.Integer, nullable=False)\n    email = db.Column(db.String(10000))\n    paymentMode = db.Column(db.String(1000))\n    destination = db.Column(db.String(1000))\n    status = db.Column(db.String(1000), nullable=False)\n    date_submitted = db.Column(db.DateTime, default=datetime.utcnow)\n    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))",
+        "detail": "website.models",
+        "documentation": {}
+    },
+    {
+        "label": "homepage",
+        "kind": 2,
+        "importPath": "website.views",
+        "description": "website.views",
+        "peekOfCode": "def homepage():\n    #define getProductName method\n    def getProductName():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,\n            user=user,\n            passwd=passwd,\n            database=database\n            )",
+        "detail": "website.views",
+        "documentation": {}
+    },
+    {
+        "label": "ItemsIncart",
+        "kind": 2,
+        "importPath": "website.views",
+        "description": "website.views",
+        "peekOfCode": "def ItemsIncart():\n    try:\n        user_id = current_user.id\n    except Exception as e:\n        user_id = -1\n    list = [user_id]\n    def CartItems():\n        # Connect to the database\n        mydb = mysql.connector.connect(\n            host=host,",
+        "detail": "website.views",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "kind": 5,
+        "importPath": "website.views",
+        "description": "website.views",
+        "peekOfCode": "views = Blueprint('views',__name__)\nprogramDatabase = 3\nif programDatabase == 1:\n    host=\"localhost\"\n    user=\"root\"\n    passwd=\"hashimraj\"\n    database=\"user\"\nelif programDatabase == 2:\n    host=\"mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\n    user=\"chmq59xthwhdmp9k\"",
+        "detail": "website.views",
+        "documentation": {}
+    },
+    {
+        "label": "programDatabase",
+        "kind": 5,
+        "importPath": "website.views",
+        "description": "website.views",
+        "peekOfCode": "programDatabase = 3\nif programDatabase == 1:\n    host=\"localhost\"\n    user=\"root\"\n    passwd=\"hashimraj\"\n    database=\"user\"\nelif programDatabase == 2:\n    host=\"mkorvuw3sl6cu9ms.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\n    user=\"chmq59xthwhdmp9k\"\n    passwd=\"cicqmdv5hg2k41wz\"",
+        "detail": "website.views",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = create_app()\nif __name__ == '__main__':\n    app.run(debug=True)",
+        "detail": "app",
+        "documentation": {}
+    }
+]
