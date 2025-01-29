@@ -1009,7 +1009,7 @@ button:hover {
 @media screen and (max-width: 768px) {
   .cart .count {
     top: -0.55rem;
-    right: 2.6rem;
+    right: 5px;
   }
 
   .carousel-container {
