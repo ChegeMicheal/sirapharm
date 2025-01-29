@@ -858,7 +858,7 @@ def add2cart():
             print(current_user)
             flash('item added to cart', category= 'success')
                            
-    return redirect(url_for('auth.homepage'))
+    return redirect(url_for('auth.products'))
 
 @auth.route('/cart', methods=['GET', 'POST'])
 @login_required
