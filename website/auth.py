@@ -1477,6 +1477,32 @@ def getAllOrders():
 
     return DBData
 
+def getAllUsers():
+    # Connect to the database
+    mydb = mysql.connector.connect(
+        host=host,
+        user=user,
+        passwd=passwd,
+        database=database
+        )
+
+    mycursor = mydb.cursor()
+
+    # Query the database with parameters as a tuple
+    query = "SELECT fullName, email FROM `user`"
+    mycursor.execute(query)
+
+    # Fetch and print the results
+    DBData = mycursor.fetchall()  # Use fetchone() for a single result
+    print("Query:", query)
+    print("DBData:", DBData)
+
+    # Close the cursor and connection
+    mycursor.close()
+    mydb.close()
+
+    return DBData
+
 @auth.route('/shop', methods=['GET', 'POST'])
 def shop():
     if current_user != '':
@@ -1580,6 +1606,14 @@ def search404():
 @auth.route('/terms_and_conditions')
 def terms_and_conditions():
     return render_template('terms_and_conditions.html', user=current_user)
+
+@auth.route('/users', methods=['GET', 'POST'])
+@login_required
+def users():
+    if current_user.id == 1 or current_user.id == 7:
+        return render_template('users.html', users=getAllUsers(), user=current_user)
+    else:
+        return redirect(url_for('auth.homepage'))
 
 #create custom error page(s)
 
