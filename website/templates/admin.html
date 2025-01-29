@@ -3,9 +3,53 @@
 { % endblock title % } {% block content %}
 <!-- Stock Management -->
 <section id="stock" class="section">
+  
+  <div >
+  <div style="display: inline-flex;">
+    <div></div>
+  <form action="/orderFilter" method="post">
+    <input
+      type="checkbox"
+      name="status"
+      class="mike"
+      value="pending"
+      checked="true"
+    />
+
+    <input type="submit" value="pending" class="pbtn" />
+  </form>
+
+  <form action="/orderFilter" method="post">
+    <input
+      type="checkbox"
+      name="status"
+      class="mike"
+      value="completed"
+      checked="true"
+    />
+
+    <input type="submit" value="completed" class="orderbtn" />
+  </form>
+
+  <form action="/orderFilter" method="post">
+    <input
+      type="checkbox"
+      name="status"
+      class="mike"
+      value="rejected"
+      checked="true"
+    />
+
+    <input type="submit" value="rejected" class="dctgbtn" />
+  </form>
+</div>
+<div>
   <h2 style="text-align: center">ORDERS</h2>
+</div>
+</div>
   <div class="table-wrapper">
     <table class="table">
+  
       <thead>
         <th>OrderNo</th>
         <th>Name</th>
